@@ -1,5 +1,20 @@
-import '@/styles/globals.css'
+import Layout from '@/components/Layout'
+import { SessionProvider } from "next-auth/react"
+import SettingsContextProvider from '@/components/context/PomodoroSettingProvider';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps: {session, ...pageProps} 
+}) {
+  return (
+  <SettingsContextProvider>
+    <SessionProvider session = {session}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+  </SessionProvider>
+  </SettingsContextProvider>
+
+    )
 }
+
+export default App;
+
