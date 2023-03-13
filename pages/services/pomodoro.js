@@ -31,6 +31,8 @@ const SettingButton = styled.button`
   touch-action: manipulation;
 
 
+  
+
 &:hover {
   background-color: #fff;
 }
