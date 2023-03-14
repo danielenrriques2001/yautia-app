@@ -1,22 +1,73 @@
+import { Typography } from "@mui/material";
 import { useState, createContext } from "react";
+import styled, {keyframes} from "styled-components";
+import { bounceInDown } from 'react-animations';
+import { ToastContainer, toast } from 'react-toastify';
 
-export const SettingsContext = createContext();
+const bounceAnimation = keyframes`${bounceInDown}`;
 
 
-const SettingsContextProvider = (props) => {
+const TimerHeading = styled.h1`
+    font-family: 'Lobster Two';
+    font-weight: 900;
+    font-size: 100px;
+    text-align: center;
 
+    text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
+`;
+
+const TimerAlertHeading = styled.p`
+    font-size: 20px;
+    font-weight: 100;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    animation: 1s ${bounceAnimation} infinite;
+
+`;
+
+//Create a Context for the settings
+export const PomodoroContext = createContext();
+
+
+const PomodoroContextProvider = (props) => {
+
+    const [message, setMessage ] = useState(false)
+
+    const handleToast = (pomodoro) => {
+
+        if(pomodoro.active === 'work') {
+            toast.success('Take a Break, you Deserve it!')
+
+        }
+        if(executing.active === 'long'|| 
+              executing.active === 'short' ) {
+               
+                 toast.warn('Better Work Bitch!')
+              }
+
+
+        toast.clearWaitingQueue();
+        setMessage(false)
+
+    }
+    
+
+
+    //This is the timer of the Pomodoro
+    // ! Initializes as 0
     const [pomodoro, setPomodoro] = useState(0)
 
+    //
     const [executing, setExecuting] = useState({})
 
     const [startAnimate, setStartAnimate] = useState(false)
 
-    function setCurrentTimer (active_state) {
+    function setCurrentTimer(active_state) {
         updateExecute({
             ...executing,
             active: active_state
         })
 
+        // console.log('Executing', executing)
         setTimerTime(executing)
     }
 
@@ -33,7 +84,17 @@ const SettingsContextProvider = (props) => {
     const minutes = Math.floor(remainingTime / 60)
     const seconds = remainingTime % 60
     
-    return `${minutes}:${seconds}`
+    return (
+    
+    <TimerHeading variant="h1">{minutes}:{seconds}
+    {
+    seconds == 0 && minutes == 0 ? setMessage(true) : setMessage(false)
+    }
+    {
+     message && handleToast(executing)
+    }
+    </TimerHeading>)
+   
     }
 
     // clear session storage 
@@ -45,18 +106,23 @@ const SettingsContextProvider = (props) => {
     const updateExecute = updatedSettings => {
         setExecuting(updatedSettings)
         setTimerTime(updatedSettings)
+
+        // console.log(updatedSettings)
     }
 
-    const setTimerTime = (evaluate) => {
-        switch (evaluate.active) {
+    const setTimerTime = (Executing) => {
+
+        console.log('Executing', Executing)
+
+        switch (Executing.active) {
             case 'work':
-                setPomodoro(evaluate.work)
+                setPomodoro(Executing.work)
                 break;
             case 'short':
-                setPomodoro(evaluate.short)
+                setPomodoro(Executing.short)
                 break;
             case 'long':
-                setPomodoro(evaluate.long)
+                setPomodoro(Executing.long)
                 break;
                 default:
                     setPomodoro(0)
@@ -69,7 +135,7 @@ const SettingsContextProvider = (props) => {
     }
 
     return (
-        <SettingsContext.Provider value={{
+        <PomodoroContext.Provider value={{
             pomodoro, 
             executing,
             updateExecute, 
@@ -82,9 +148,9 @@ const SettingsContextProvider = (props) => {
             stopAnimate
         }}>
             {props.children}
-        </SettingsContext.Provider>
+        </PomodoroContext.Provider>
     )
 
 }
 
-export default SettingsContextProvider
+export default PomodoroContextProvider
