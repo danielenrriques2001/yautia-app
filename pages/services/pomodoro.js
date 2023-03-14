@@ -7,9 +7,24 @@ import { bounce } from 'react-animations'
 import { Typography, Button, Grid } from '@mui/material';
 import { Container } from '@mui/system';
 import React, {useContext, useEffect} from 'react'
-
+import {Roboto} from 'next/font/google'
 
 const fadeInAnimation = keyframes`${bounce}`;
+
+const ReponsiveGrid = styled(Grid)`
+
+  display:  flex;
+  justify-content: center;
+  align-items: center;
+  
+
+  @media (max-width: 762px) {
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
+`;
 
 const SettingButton = styled.button`
   
@@ -54,11 +69,14 @@ const StyledButton = styled.button`
 
   align-items: center;
   background-color: #FFFFFF;
+  background: ${props => props.selected ? "#BAF6C4" : "FFFFFF"};
+  color: #191919;
+  /* color: rgba(0, 0, 0, 0.85); */
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: .25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.85);
+ 
   cursor: pointer;
   display: inline-flex;
   font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -77,6 +95,13 @@ const StyledButton = styled.button`
   touch-action: manipulation;
   vertical-align: baseline;
   width: auto;
+
+  @media (max-width: 768px) {
+      display: block;
+      width: 100%;
+      height: 45px;
+      margin-bottom: 15px;
+  }
 
 
 &:hover,
@@ -175,6 +200,21 @@ const HeadingNavButton = styled(Button)`
 }
 `;
 
+const HeadingPomodoroTitle = styled.p`
+
+  font-family: 'lobster two';
+  margin: 0;
+  padding: 0;
+  font-family: ${props => props.slogan ? 'Segoe UI': 'lobster two'};
+  font-size: ${props => props.slogan ? '1.1rem' : '5rem'};
+  font-weight: ${props => props.slogan ? '100' : '700'};
+  margin-bottom: ${props => props.slogan ? '10px' : '0px'};
+
+
+
+
+`;
+
 
 const PomodoroPage = () => {
 
@@ -191,26 +231,21 @@ const PomodoroPage = () => {
 
         useEffect(() => {updateExecute(executing)}, [executing, startAnimate])
 
-
-
-
         return (
             <Container>
               <HeadingContainer>
-                <Typography variant='h2'>Pomodoro</Typography>
-                <Typography variant='h6'>Be productive, {''}
+                <HeadingPomodoroTitle variant='h2'>Pomodoro</HeadingPomodoroTitle>
+                <HeadingPomodoroTitle slogan variant='h6'>Be productive, {''}
                 <span>Be you!</span>
-                </Typography>
+                </HeadingPomodoroTitle>
               </HeadingContainer>
              
               {
               
               pomodoro !== 0 ?
               <>
-                <Grid
-                  container
-                  justifyContent='center'
-                  gap= '15px'
+                <ReponsiveGrid
+
               
                 >
                     <HeadingNavButton 
@@ -225,7 +260,7 @@ const PomodoroPage = () => {
                     <HeadingNavButton 
                       selected={executing.active === 'long' ? true : false}
                       onClick={() => {setCurrentTimer('long')}}>{'Long Break'}</HeadingNavButton>
-                </Grid>
+                </ReponsiveGrid>
 
                 <Grid
                   container
@@ -233,6 +268,7 @@ const PomodoroPage = () => {
                   justifyContent='center'
                   alignItems='center'
                   marginTop={5}
+                  gap = {2}
                 >
 
                   <CountdownAnimation 
@@ -241,13 +277,22 @@ const PomodoroPage = () => {
                       >
                         {children}
                   </CountdownAnimation>
-                <Grid
+                <ReponsiveGrid
                   container
                   justifyContent={'center'}
                 >
-                  <StyledButton onClick={startTimer}>{'Start'}</StyledButton>
-                  <StyledButton onClick={pauseTimer}>{'Pause'}</StyledButton>
-                </Grid>
+                  <StyledButton 
+                      selected={startAnimate ? true : false} onClick={startTimer}
+                      >{'Start'}
+                  </StyledButton>
+
+                  <StyledButton  
+                    selected={!startAnimate ? true : false}
+                    onClick={pauseTimer}
+                    >{'Pause'}
+                    </StyledButton>
+
+                </ReponsiveGrid>
 
                 </Grid>
                      
@@ -256,7 +301,7 @@ const PomodoroPage = () => {
                 justifyContent={'center'}
                 marginTop = {3}
                 >
-                  <SettingButton onClick={SettingsBtn}>Setting</SettingButton> 
+                  <SettingButton onClick={SettingsBtn}>Create New</SettingButton> 
                 </Grid>
                 
               </> 

@@ -4,6 +4,7 @@ import React, { useContext, useState } from 'react'
 import { PomodoroContext} from '../context/PomodoroSettingProvider'
 
 
+
 const StyledSettingButton = styled(Button)`
   align-items: center;
   background-color: #fee6e3;
@@ -67,11 +68,12 @@ const StyledSettingButton = styled(Button)`
 const StyledInput = styled.input`
 
   margin: 0;
-  border:  1px solid #111;
+  border:  10px solid #BAF6C4;
   width: 200px;
   height: 200px;
   border-radius: 50%;
   text-align: center;
+  transition: all ease-in .3s;
   cursor: pointer;
 
   margin-bottom: 45px;
@@ -79,7 +81,8 @@ const StyledInput = styled.input`
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-weight: 800;
   font-size: 120px;
-  background-color: #fae6e3;
+
+  outline: none;
 
 
   &::-webkit-outer-spin-button,
@@ -87,8 +90,16 @@ const StyledInput = styled.input`
     -webkit-appearance: none;
     }
 
-    &:hover {
-        border: blue 1px solid;
+    &:hover, 
+    &:active, 
+    &:focus {
+        border: #e06666 1px solid;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
+        color: #e06666;
+
     }
 
 `;
@@ -102,9 +113,11 @@ const StyledLabel = styled.label`
 `;
 
 const SettingContainer = styled.div`
+  
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+
 
 
     @media (max-width: 768px) {
@@ -122,6 +135,10 @@ const SetPomodoro = () => {
         long: 0,
         active: 'work'
     })
+
+    const [long, setLong] = useState(false)
+    const [short, setShort] = useState(false)
+    const [work, setWork] = useState(false)
 
     const {updateExecute} = useContext(PomodoroContext)
 
@@ -164,6 +181,7 @@ const SetPomodoro = () => {
                       direction="column"
                       justifyContent="center"
                       alignItems="center"
+                      width = 'fit-content'
                     >
                     <StyledLabel htmlFor='work'>Work</StyledLabel>
                     <StyledInput
@@ -173,7 +191,10 @@ const SetPomodoro = () => {
                         onChange={handleChange} 
                         defaultValue={newTimer.work}
                         label = {'Work'}
-                        InputLabelProps={{ shrink: true }} 
+                        style={{ backgroundImage: work ? `url(/work-cat.jpg)` : 'none' }}
+                        onFocus ={ () => {setWork(true)}}
+                        onBlur = {() => {setWork(false)}}
+                        onMouseOver={ () => {setWork(true)}}
                         />
                     </Grid>
 
@@ -182,6 +203,7 @@ const SetPomodoro = () => {
                       direction="column"
                       justifyContent="center"
                       alignItems="center"
+                      width = 'fit-content'
                     >
                     <StyledLabel htmlFor='shortBreak'>Short Break</StyledLabel>
                     <StyledInput
@@ -190,6 +212,10 @@ const SetPomodoro = () => {
                         onChange={handleChange} 
                         defaultValue={newTimer.short}
                         id = 'shortBreak'
+                        style={{ backgroundImage: short ? `url(/short-break.jpg)` : 'none' }}
+                        onFocus ={ () => {setShort(true)}}
+                        onBlur = {() => {setShort(false)}}
+                        onMouseOver={ () => {setShort(true)}}
                         />
                     </Grid>
 
@@ -198,6 +224,7 @@ const SetPomodoro = () => {
                       direction="column"
                       justifyContent="center"
                       alignItems="center"
+                      width = 'fit-content'
                     >
                     <StyledLabel htmlFor='longBreak'>Long Break</StyledLabel>
                     <StyledInput
@@ -206,6 +233,10 @@ const SetPomodoro = () => {
                         onChange={handleChange} 
                         defaultValue={newTimer.long}
                         id = 'longBreak'
+                        style={{ backgroundImage: long ? `url(/long-break.jpg)` : 'none' }}
+                        onFocus ={ () => {setLong(true)}}
+                        onBlur = {() => {setLong(false)}}
+                        onMouseOver={ () => {setLong(true)}}
                     />
                     </Grid>
                 </SettingContainer>
