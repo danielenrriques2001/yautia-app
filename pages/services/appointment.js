@@ -2,7 +2,7 @@ import Form from '@/components/Form'
 import { Grid } from '@mui/material'
 import React, { useState } from 'react'
 import styled, {keyframes} from 'styled-components'
-import { HeadingContainer, HeadingPomodoroTitle, SettingButton } from '../Styles'
+import { HeadingContainer, HeadingPomodoroTitle, SettingButton } from '../../public/styles'
 const Appointment = () => {
 
   const TinUpIn = keyframes`

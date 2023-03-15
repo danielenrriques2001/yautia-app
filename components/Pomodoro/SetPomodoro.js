@@ -1,4 +1,4 @@
-import { SettingContainer, StyledLabel, StyledInput, StyledSettingButton } from '@/pages/Styles'
+import { SettingContainer, StyledLabel, StyledInput, StyledSettingButton } from '@/public/styles'
 import React, { useContext, useState } from 'react'
 import { PomodoroContext} from '../context/PomodoroSettingProvider'
 import { Grid } from '@mui/material'

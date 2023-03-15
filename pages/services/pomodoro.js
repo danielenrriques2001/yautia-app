@@ -3,7 +3,7 @@ import SetPomodoro from '@/components/Pomodoro/SetPomodoro';
 import CountdownAnimation from '@/components/Pomodoro/CountDownAnimation';
 import { PomodoroContext } from '@/components/context/PomodoroSettingProvider';
 import { Container, Grid, Button, TextField } from '@mui/material';
-import { HeadingContainer, HeadingNavButton, HeadingPomodoroTitle, ReponsiveGrid, SettingButton, StyledButton } from '../Styles';
+import { HeadingContainer, HeadingNavButton, HeadingPomodoroTitle, ReponsiveGrid, SettingButton, StyledButton } from '../../public/styles';
 
 const PomodoroPage = () => {
 
@@ -18,7 +18,7 @@ const PomodoroPage = () => {
         setCurrentTimer,
         SettingsBtn } = useContext(PomodoroContext)
 
-        useEffect(() => {updateExecute(executing)}, [executing, startAnimate])
+        useEffect(() => {updateExecute(executing)}, [executing, updateExecute])
 
         return (
             <Container>
