@@ -73,11 +73,13 @@ function Profile() {
 
   const { data: session, status } = useSession()
 
+  console.log('sesion', session)
+
   if(session) {
     return (
       <ProfileContainer> 
         <Heading>Welcome!</Heading>
-        <HeadingSpan>{session.user.email}</HeadingSpan>
+        <HeadingSpan>{session.user.name}</HeadingSpan>
 
 
       <ProfileButton onClick={() => signOut()}>Sign out</ProfileButton>
@@ -91,7 +93,6 @@ function Profile() {
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req });
 
-  console.log('session',session)
   if (!session) {
     return {
       redirect: {

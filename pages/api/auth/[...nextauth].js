@@ -18,7 +18,7 @@ export const authOptions = ({
           label: 'email',
           type: 'text',
         },
-        password: { label: 'Password', type: 'password' }
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
 
@@ -27,6 +27,8 @@ export const authOptions = ({
         const user = await User.findOne({
           email: credentials.email
         });
+
+        console.log(user)
 
         if (!user) {
           throw new Error('No user found!');
@@ -38,7 +40,7 @@ export const authOptions = ({
           throw new Error(`Your Password is'nt correct!`);
         }
 
-        return { email: user.email };
+        return { email: user.email, name: user.name};
         
       },
     }),

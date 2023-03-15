@@ -17,10 +17,14 @@ const Navigation = () => {
         {
           !session &&  <NavItem underline="none" href={'/login'}>Login </NavItem>
         }
-        <NavItem underline="none" href={'/profile'}>
-          profile
-          <BiUser/>
-        </NavItem>
+
+        {
+          session &&  <NavItem underline="none" href={'/profile'}>profile<BiUser/></NavItem>
+        }
+
+
+
+        
     </NavContainer>
   )
 }
