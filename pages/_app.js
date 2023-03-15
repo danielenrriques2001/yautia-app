@@ -9,7 +9,18 @@ function App({ Component, pageProps: {session, ...pageProps}
 }) {
   return (
   <SettingsContextProvider>
-    <ToastContainer position="top-right" limit={1}/>
+    <ToastContainer 
+      limit={1}
+      position="top-center"
+      autoClose={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      theme="light"
+      
+      />
     <SessionProvider session = {session}>
       <Layout>
         <Component {...pageProps} />

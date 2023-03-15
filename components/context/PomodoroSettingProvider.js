@@ -1,8 +1,10 @@
 import { Typography } from "@mui/material";
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import styled, {keyframes} from "styled-components";
 import { bounceInDown } from 'react-animations';
 import { ToastContainer, toast } from 'react-toastify';
+
+
 
 const bounceAnimation = keyframes`${bounceInDown}`;
 
@@ -32,22 +34,26 @@ const PomodoroContextProvider = (props) => {
 
     const [message, setMessage ] = useState(false)
 
+    
+
     const handleToast = (pomodoro) => {
 
         if(pomodoro.active === 'work') {
             toast.success('Take a Break, you Deserve it!')
 
+    
+
+
         }
         if(executing.active === 'long'|| 
               executing.active === 'short' ) {
-               
                  toast.warn('Better Work Bitch!')
               }
 
 
         toast.clearWaitingQueue();
         setMessage(false)
-
+    
     }
     
 

@@ -16,6 +16,7 @@
     "bulma": "^0.9.4",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
+    "file-loader": "^6.2.0",
     "mongoose": "^7.0.1",
     "next": "13.2.3",
     "next-auth": "^4.20.1",
@@ -27,6 +28,7 @@
     "react-notifications": "^1.7.4",
     "react-notifications-component": "^4.0.1",
     "react-toastify": "^9.1.1",
-    "styled-components": "^5.3.8"
+    "styled-components": "^5.3.8",
+    "use-sound": "^4.0.1"
   }
 }
