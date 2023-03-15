@@ -24,12 +24,11 @@ export default function Home() {
         </Container>
         <Dashboard/>
 
-
       </Grid>
      
     </>
   )
   } else {
-    return <p></p>
+    return <p>Loading.......</p>
   }
 }

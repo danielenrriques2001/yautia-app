@@ -31,7 +31,7 @@ const Dashboard = () => {
   return (
     <LinkContainer>
         <LinkItem href='/services/pomodoro'>Pomodoro Timer</LinkItem>
-        <LinkItem href='/'>Appointment Administrator</LinkItem>
+        <LinkItem href='/services/appointment'>Appointment Administrator</LinkItem>
         <LinkItem href='/'>Budget Tracker</LinkItem>
         <LinkItem href='/'>To-do List</LinkItem>
         <LinkItem href='/'>Learn More...</LinkItem>
