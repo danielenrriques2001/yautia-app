@@ -29,7 +29,6 @@ const StyledSettingButton = styled(Button)`
   touch-action: manipulation;
   
 
-
 &:after {
   background-color: #111;
   border-radius: 8px;

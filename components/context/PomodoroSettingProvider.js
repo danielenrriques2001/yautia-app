@@ -35,15 +35,10 @@ const PomodoroContextProvider = (props) => {
     const [message, setMessage ] = useState(false)
 
     
-
     const handleToast = (pomodoro) => {
 
         if(pomodoro.active === 'work') {
             toast.success('Take a Break, you Deserve it!')
-
-    
-
-
         }
         if(executing.active === 'long'|| 
               executing.active === 'short' ) {
