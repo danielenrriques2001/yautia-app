@@ -13,9 +13,11 @@ export default async function handler(req, res) {
   
     const data = req.body;
   
-    const { email, password } = data;
+    const {name, email, password } = data;
+
+    console.log('NAME FROM BAKEND', name)
   
-    if (!email || !email.includes('@') || !password ||password.trim().length < 7) {
+    if (!name ||!email || !email.includes('@') || !password ||password.trim().length < 7) {
       res.status(422).json({
         message:
           'Invalid input - password should also be at least 7 characters long.',
@@ -26,7 +28,6 @@ export default async function handler(req, res) {
 
     const existingUser = await User.findOne({ email: email });
 
-    console.log(existingUser)
     if (existingUser) {
         res.status(422).json({ message: 'User exists already!' });
         return;
@@ -35,9 +36,13 @@ export default async function handler(req, res) {
     const hashedPassword = await hashPassword(password);
 
     const user = await User.create({
+        name: name, 
         email: email,
         password: hashedPassword,
+        
     });
+
+  
 
     res.status(201).json(user);
 

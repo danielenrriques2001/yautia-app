@@ -43,10 +43,10 @@ const Form = () => {
   }, [errorMessage])
   
 
-  async function createUser(email, password) {
+  async function createUser(name, email, password) {
     const response = await fetch('/api/auth/signup', {
       method: 'POST',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({name, email, password }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -54,6 +54,7 @@ const Form = () => {
   
     const data = await response.json();
   
+    console.log(data)
     if (!response.ok) {
       throw new Error(data.message || 'Something went wrong!');
     }
@@ -70,11 +71,10 @@ const Form = () => {
 
     const formElements = event.target;
 
+    const name = formElements.name.value;
     const email = formElements.email.value;
     const password = formElements.password.value;
-
-
-    // optional: Add validation
+  
 
     if (isLogin) {
 
@@ -105,7 +105,7 @@ const Form = () => {
 
         setIsLoading(true)
 
-        const result = await createUser(email, password);
+        const result = await createUser(name, email, password);
        
         const resultSignUp  = await signIn('credentials', {
           redirect: false,
@@ -130,28 +130,41 @@ const Form = () => {
   return (
     <StyledForm onSubmit={submitHandler}>
 
+      {
+        !isLogin &&
+            <TextField
+            style={{ width: "600px", margin: "5px" }}
+            type="name"
+            label={'name'}
+            variant="outlined"
+            id='name'
+            focused
+            required 
+            defaultValue={''}
+          />
+      }
+      <br/>
     <TextField
             style={{ width: "600px", margin: "5px" }}
             type="email"
             label={'email'}
             variant="outlined"
             id='email'
-            focused
-            required
+            required = {!isLogin ? false : true}
             defaultValue={''}
           />
       <br/>
 
     <TextField
-      style={{ width: "600px", margin: "5px" }}
-      type="password"
-      label={'password'}
-      variant="outlined"
-      id='password'
-      defaultValue={''}
-      required
-    />
-    <br />
+          style={{ width: "600px", margin: "5px" }}
+          type="password"
+          label={'password'}
+          variant="outlined"
+          id='password'
+          defaultValue={''}
+          required
+        />
+      <br />
 
     <br />
     <Button type='submit' variant="contained" color="primary">
