@@ -1,6 +1,7 @@
 
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
+import GoogleProvider from "next-auth/providers/google";
 import { verifyPassword } from '../../../db/utils';
 import dbConnect from '@/db/connect';
 import User from '@/db/models/User';
@@ -32,16 +33,18 @@ export const authOptions = ({
         }
 
         const isValid = await verifyPassword(credentials.password, user.password);
-
-        await console.log(isValid)
         
         if (!isValid) {
-          throw new Error('Could not log you in!');
+          throw new Error(`Your Password is'nt correct!`);
         }
 
         return { email: user.email };
         
       },
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
     }),
   ],
   secret: process.env.NEXT_PUBLIC_SECRET

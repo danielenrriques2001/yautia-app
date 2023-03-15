@@ -84,7 +84,7 @@ function Profile() {
       </ProfileContainer>
     )
   } else {
-    <div>You have tou sign in!</div>
+    <div>You have to sign in!</div>
   }
 }
 

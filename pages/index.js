@@ -30,6 +30,6 @@ export default function Home() {
     </>
   )
   } else {
-    return (<h1>Youre not </h1>)
+    return <p></p>
   }
 }
