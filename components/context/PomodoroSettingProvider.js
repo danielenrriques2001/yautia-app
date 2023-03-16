@@ -5,7 +5,6 @@ import { bounceInDown } from 'react-animations';
 import { ToastContainer, toast } from 'react-toastify';
 
 
-
 const bounceAnimation = keyframes`${bounceInDown}`;
 
 
