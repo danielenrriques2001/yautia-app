@@ -34,6 +34,13 @@ const PomodoroContextProvider = (props) => {
 
     const [message, setMessage ] = useState(false)
 
+    const [pomodoro, setPomodoro] = useState(0)
+
+    //
+    const [executing, setExecuting] = useState({})
+
+    const [startAnimate, setStartAnimate] = useState(false)
+
     
     const handleToast = (pomodoro) => {
 
@@ -47,7 +54,9 @@ const PomodoroContextProvider = (props) => {
 
 
         toast.clearWaitingQueue();
-        setMessage(false)
+       setTimeout(() => {
+            setMessage(false)
+       }, 1000);
     
     }
     
@@ -55,12 +64,7 @@ const PomodoroContextProvider = (props) => {
 
     //This is the timer of the Pomodoro
     // ! Initializes as 0
-    const [pomodoro, setPomodoro] = useState(0)
 
-    //
-    const [executing, setExecuting] = useState({})
-
-    const [startAnimate, setStartAnimate] = useState(false)
 
     function setCurrentTimer(active_state) {
         updateExecute({
@@ -112,8 +116,6 @@ const PomodoroContextProvider = (props) => {
     }
 
     const setTimerTime = (Executing) => {
-
-        console.log('Executing', Executing)
 
         switch (Executing.active) {
             case 'work':

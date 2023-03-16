@@ -12,15 +12,14 @@ function App({ Component, pageProps: {session, ...pageProps}
     <ToastContainer 
       limit={1}
       position="top-center"
-      autoClose={false}
       newestOnTop={false}
-      closeOnClick
       rtl={false}
       pauseOnFocusLoss
       draggable
       theme="light"
-      
+      autoClose={2000}
       />
+
     <SessionProvider session = {session}>
       <Layout>
         <Component {...pageProps} />
