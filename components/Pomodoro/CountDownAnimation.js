@@ -19,6 +19,7 @@ const CountdownAnimation = ({pomodoro, animate, children}) => {
         trailStrokeWidth = {5}
         strokeWidth = {9}
         onComplete={ () => {
+
           setTimeout(() => {
             if(executing.active === 'work') {
               stopAnimate();
@@ -33,15 +34,17 @@ const CountdownAnimation = ({pomodoro, animate, children}) => {
               startTimer();
             }
 
-            if(executing.active === 'long'|| 
-              executing.active === 'short' ) {
-                stopAnimate();
+            if(executing.active === 'short' ) {
                 setCurrentTimer('work');
               }
+
+
+            if(executing.active === 'long') {
+              stopAnimate();
+              setCurrentTimer('work');
+
+            }
           }, 3000);
-
-
-
         }}
       >
       
