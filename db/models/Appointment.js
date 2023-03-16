@@ -5,7 +5,7 @@ const AppointmentSchema = new Schema({
   title: String,
   description: String, 
   date: String, 
-  user: [{ type: mongoose.Types.ObjectId, ref: 'User' }],
+  user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
 
 
@@ -14,7 +14,6 @@ const AppointmentSchema = new Schema({
 // it's not case sensitive
 
 
-const Appointment = mongoose.models.Appointments || mongoose.model("Appointments", AppointmentSchema);
-
+const Appointment = mongoose.models.Appointment || mongoose.model("Appointment", AppointmentSchema);
 
 export default Appointment;
