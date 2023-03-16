@@ -92,6 +92,8 @@ const Form = () => {
         // set some auth state
         router.replace('/profile');
 
+        console.log('after login', result)
+
         setIsLoading(false)
 
         setErrorMessage('')

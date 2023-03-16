@@ -73,7 +73,6 @@ function Profile() {
 
   const { data: session, status } = useSession()
 
-  console.log('sesion', session)
 
   if(session) {
     return (

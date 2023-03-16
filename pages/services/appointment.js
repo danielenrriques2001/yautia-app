@@ -1,9 +1,15 @@
+import CreateAppointment from '@/components/CreateAppointment'
 import Form from '@/components/Form'
+
 import { Grid } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled, {keyframes} from 'styled-components'
 import { HeadingContainer, HeadingPomodoroTitle, SettingButton } from '../../public/styles'
-const Appointment = () => {
+
+const AppointmentCom = () => {
+
+  
+
 
   const TinUpIn = keyframes`
   0% { 
@@ -30,10 +36,8 @@ const Appointment = () => {
 
     `;
   
-  
   const Modal = styled.div`
     position: fixed; 
-    z-index: 1; 
     left: 0;
     top: 0;
     width: 100%; 
@@ -41,6 +45,7 @@ const Appointment = () => {
     overflow: auto; 
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4); 
+    z-index: auto;
   `;
 
   const ModalContent = styled.div`
@@ -49,9 +54,14 @@ const Appointment = () => {
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
-
+    width: 50%;;
     border-radius: 45px 15px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
   `;
 
@@ -63,9 +73,21 @@ const Appointment = () => {
   `;
 
 
+const [modal, setModal] = useState(false)
 
-  const [modal, setModal] = useState(false)
+const [data, setData] = useState(null)
+const [isLoading, setLoading] = useState(false)
 
+console.log(data)
+useEffect(() => {
+  setLoading(true)
+  fetch('/api/appointment')
+    .then((res) => res.json())
+    .then((data) => {
+      setData(data)
+      setLoading(false)
+    })
+}, [])
   return (
     <div>
             <HeadingContainer>
@@ -90,11 +112,12 @@ const Appointment = () => {
 
             {
               modal && 
-              <Modal onClick={() => {setModal(!modal)}}>
+              <Modal >
                 <ModalContent
                 >
                   <HeadingAppointment>New Appointment</HeadingAppointment>
-                 <Form />
+                <CreateAppointment/>
+                  <SettingButton onClick={() => {setModal(!modal)}} >Close</SettingButton>
                 </ModalContent>
 
               </Modal>
@@ -104,4 +127,4 @@ const Appointment = () => {
   )
 }
 
-export default Appointment
+export default AppointmentCom
