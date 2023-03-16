@@ -18,7 +18,10 @@ const PomodoroPage = () => {
         setCurrentTimer,
         SettingsBtn } = useContext(PomodoroContext)
 
-        useEffect(() => {updateExecute(executing)}, [executing, updateExecute])
+        useEffect(() => {
+          updateExecute(executing)}, 
+          
+        [executing, updateExecute])
 
         return (
             <Container>
