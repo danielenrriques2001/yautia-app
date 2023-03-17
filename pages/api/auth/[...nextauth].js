@@ -5,6 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { verifyPassword } from '../../../db/utils';
 import dbConnect from '@/db/connect';
 import User from '@/db/models/User';
+import Appointment from '@/db/models/Appointment';
 
 export const authOptions = ({
   session: {
@@ -24,10 +25,8 @@ export const authOptions = ({
 
         await dbConnect();
 
-        const user = await User.findOne({
-          email: credentials.email
-        });
-        
+        const user = await User.findOne({email: credentials.email})
+
         if (!user) {
           throw new Error('No user found!');
         }
@@ -38,7 +37,10 @@ export const authOptions = ({
           throw new Error(`Your Password is'nt correct!`);
         }
 
-        return { email: user.email, name: user.name};
+        console.log('User blabla', user)
+
+
+        return {name: user.name, email: user.email};
         
       },
     }),

@@ -5,7 +5,7 @@ const AppointmentSchema = new Schema({
   title: String,
   description: String, 
   date: String, 
-  user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
 

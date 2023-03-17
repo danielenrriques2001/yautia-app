@@ -9,11 +9,14 @@ import { SettingButton } from '@/public/styles';
 import { getDisplayName } from 'next/dist/shared/lib/utils';
 
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router';
 
 
 const CreateAppointment = () => {
 
 const { data: session, status } = useSession()
+
+const router = useRouter();
 
 
   async function makeAppointment(appointment) {
@@ -52,7 +55,10 @@ const { data: session, status } = useSession()
     const result = await makeAppointment({title, description, date, user});
 
     
-       
+    setTimeout(() => {
+      router.reload('/services/appointment')
+    }, 1000);
+    
   }
 
   return (
@@ -72,7 +78,6 @@ const { data: session, status } = useSession()
           variant="outlined"
           id='title'
           defaultValue={''}
-          required
     />
     <TextField
           style={{ width: "600px", margin: "5px" }}
@@ -81,17 +86,19 @@ const { data: session, status } = useSession()
           variant="outlined"
           id='description'
           defaultValue={''}
-          
-          required
+          multiline
+          rows={4}
+          maxRows={2}
+
     />
     <TextField
           style={{ width: "600px", margin: "5px" }}
-          type="text"
+          type="date"
           label={'date'}
           variant="outlined"
           id='date'
           defaultValue={''}
-          required
+          InputLabelProps={{ shrink: true }} 
     />
 
 

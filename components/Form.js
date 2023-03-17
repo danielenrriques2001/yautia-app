@@ -54,7 +54,6 @@ const Form = () => {
   
     const data = await response.json();
   
-    console.log(data)
     if (!response.ok) {
       throw new Error(data.message || 'Something went wrong!');
     }
@@ -86,13 +85,13 @@ const Form = () => {
         password: password,
       });
 
+      console.log('after login data', result)
       
       
       if (!result.error) {
         // set some auth state
         router.replace('/profile');
 
-        console.log('after login', result)
 
         setIsLoading(false)
 

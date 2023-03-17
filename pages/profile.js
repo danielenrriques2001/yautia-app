@@ -1,4 +1,5 @@
 import { useSession, signOut, getSession } from "next-auth/react"
+import { useState, useEffect } from "react";
 import styled from 'styled-components';
 
   const Heading = styled.h2`
@@ -91,6 +92,7 @@ function Profile() {
 
 export async function getServerSideProps(context) {
   const session = await getSession({ req: context.req });
+
 
   if (!session) {
     return {

@@ -31,27 +31,8 @@ export default async function handler (req, res) {
         res.status(400).json({ success: false })
       }
       break;
-    
-      case 'GET':
 
-      try {
-
-
-      //  const users =  User.find().populate('appointment')
       
-
-     const user =  await User.find().populate('appointments')
-
-      res.status(200).json(user)
-
-      } catch (error) {
-        res.status(400).json({ success: false })
-      }
-      break
-
-
-
-
     default:
       res.status(400).json({ success: false })
       break
