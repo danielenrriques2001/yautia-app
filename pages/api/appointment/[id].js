@@ -35,14 +35,16 @@ export default async function handler (req, res) {
 
       try {
 
-        const appointment = await Appointment.findOneAndDelete(id);
-        const user = await User.findOne({_id: appointment.user});
+        const appointment = await Appointment.findOneAndRemove(id);
+        const user = await User.findOneAndUpdate({_id: appointment.user}, { $pull: { 'appointments': id }});
 
         
-        
+        user.save();
 
-        
-        
+
+
+       
+                   
         if (!appointment) {
           return res.status(404).json({ status: "Not Found" });
         }

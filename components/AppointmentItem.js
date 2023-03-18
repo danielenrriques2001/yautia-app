@@ -2,8 +2,11 @@ import React from 'react'
 import { Grid, Card } from '@mui/material'
 import styled from 'styled-components';
 import {  StyledButton } from '@/public/styles'
+import { useRouter } from 'next/router';
 
 const AppointmentItem = ({title, description, date, id}) => {
+
+    const router = useRouter();
 
     const deleteTermin = async (id) =>{
         
@@ -12,6 +15,13 @@ const AppointmentItem = ({title, description, date, id}) => {
         })
         .then(res => console.log("SUCCESS:: "+ res.json()))
         .catch(e => console.log("ERROR:" + e))
+
+
+        setTimeout(() => {
+            router.reload('/services/appointment')
+        }, 500);
+
+
         
     }
     
@@ -25,6 +35,10 @@ const AppointmentItem = ({title, description, date, id}) => {
       })
         .then(res => console.log("SUCCESS:: "+ res.json()))
         .catch(e => console.log("ERROR:" + e))
+
+        setTimeout(() => {
+          router.reload('/services/appointment')
+      }, 500);
     
     }
 
