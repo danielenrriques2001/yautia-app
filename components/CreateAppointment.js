@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router';
 
 
-const CreateAppointment = () => {
+const CreateAppointment = ({title, description, date, updateTermin, edit, id}) => {
 
 const { data: session, status } = useSession()
 
@@ -52,12 +52,16 @@ const router = useRouter();
     const user = session.user.email;
   
 
+    if(edit) {
+      const result = await updateTermin(id, {title, description, date})
+
+
+      return;
+    }
+
     const result = await makeAppointment({title, description, date, user});
 
     
-    setTimeout(() => {
-      router.reload('/services/appointment')
-    }, 1000);
     
   }
 
@@ -77,7 +81,7 @@ const router = useRouter();
           label={'title'}
           variant="outlined"
           id='title'
-          defaultValue={''}
+          defaultValue={title}
     />
     <TextField
           style={{ width: "600px", margin: "5px" }}
@@ -85,7 +89,7 @@ const router = useRouter();
           label={'description'}
           variant="outlined"
           id='description'
-          defaultValue={''}
+          defaultValue={description}
           multiline
           rows={4}
           maxRows={2}
@@ -97,7 +101,7 @@ const router = useRouter();
           label={'date'}
           variant="outlined"
           id='date'
-          defaultValue={''}
+          defaultValue={date}
           InputLabelProps={{ shrink: true }} 
     />
 

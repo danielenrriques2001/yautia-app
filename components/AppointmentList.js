@@ -6,9 +6,6 @@ import AppointmentItem from './AppointmentItem'
 
 
 
-
-
-
 const AppointmentList = ({data}) => {
   return (
       <Grid
@@ -35,3 +32,4 @@ const AppointmentList = ({data}) => {
 }
 
 export default AppointmentList
+

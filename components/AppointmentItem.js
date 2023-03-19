@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid, Card } from '@mui/material'
 import styled from 'styled-components';
 import {  StyledButton } from '@/public/styles'
 import { useRouter } from 'next/router';
+import ModalComponent from './Modal';
 
 const AppointmentItem = ({title, description, date, id}) => {
 
     const router = useRouter();
+
+    const [edit, setEdit] = useState(false)
 
     const deleteTermin = async (id) =>{
         
@@ -27,7 +30,7 @@ const AppointmentItem = ({title, description, date, id}) => {
     
     async function updateTermin(id, data) {
       const response = await fetch(`/api/appointment/${id}`, {
-        method: "PUT",
+        method: "PATCH",
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
@@ -36,10 +39,11 @@ const AppointmentItem = ({title, description, date, id}) => {
         .then(res => console.log("SUCCESS:: "+ res.json()))
         .catch(e => console.log("ERROR:" + e))
 
+
         setTimeout(() => {
           router.reload('/services/appointment')
       }, 500);
-    
+      
     }
 
 
@@ -72,9 +76,24 @@ const AppointmentItem = ({title, description, date, id}) => {
 
                    >
                     <AppointmentButton delete onClick={() => {deleteTermin(id)}} >Delete</AppointmentButton>
-                    <AppointmentButton>Edit</AppointmentButton>
+                    <AppointmentButton  onClick={() => {setEdit(!edit)}}>Edit</AppointmentButton>
                    </Grid>
                 </Card>
+
+                {
+                  edit && <ModalComponent 
+                            setter = {setEdit} 
+                            condition = {edit}
+                            title = {title}
+                            description = {description}
+                            date = {date}
+                            updateTermin = {updateTermin}
+                            edit = {edit}
+                            id =  {id}
+                            
+                            
+                            />
+                }
 
 
 

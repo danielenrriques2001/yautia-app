@@ -2,6 +2,7 @@ import dbConnect from "@/db/connect";
 import User from "@/db/models/User";
 
 import Appointment from "@/db/models/Appointment";
+import mongoose from "mongoose";
 
 export default async function handler (req, res) {
   const { method } = req
@@ -38,13 +39,11 @@ export default async function handler (req, res) {
         const appointment = await Appointment.findOneAndRemove(id);
         const user = await User.findOneAndUpdate({_id: appointment.user}, { $pull: { 'appointments': id }});
 
+    
+
         
         user.save();
 
-
-
-       
-                   
         if (!appointment) {
           return res.status(404).json({ status: "Not Found" });
         }
@@ -59,10 +58,28 @@ export default async function handler (req, res) {
       }
       break;
 
+      case 'PATCH':
+
+      console.log('This is the USER', req.body)
+
+      const appointment = await Appointment.findByIdAndUpdate(id, req.body );
+
+
+    
+  
+      if (!appointment) {
+        
+        return res.status(404).json({ status: "Not Updated" });
+      }
+  
+      return res.status(200).json({status: 'Successfully Updated'});
+
+      break; 
+  
     
       
     default:
-      res.status(400).json({ success: false })
+      return res.status(400).json({ success: false })
       break
   }
 }
