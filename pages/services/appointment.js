@@ -58,7 +58,7 @@ if (!data) return <p>No profile data</p>
             </div>
 
             {
-              modal && <ModalComponent condition = {modal} setter = {setModal}/>
+              modal && <ModalComponent condition = {modal} setter = {setModal}></ModalComponent>
 
             }
 

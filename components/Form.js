@@ -73,6 +73,7 @@ const Form = () => {
     const name = formElements.name.value;
     const email = formElements.email.value;
     const password = formElements.password.value;
+    const budget = 0; 
   
 
     if (isLogin) {
@@ -106,7 +107,7 @@ const Form = () => {
 
         setIsLoading(true)
 
-        const result = await createUser(name, email, password);
+        const result = await createUser(name, email, password, budget);
        
         const resultSignUp  = await signIn('credentials', {
           redirect: false,
