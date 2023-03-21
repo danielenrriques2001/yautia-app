@@ -3,7 +3,7 @@ import { Container, Grid, Card, Box } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
-const ViewBudget = ({budget, handleEditClick}) => {
+const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 
 
 	const ViewBudgetButton = styled(HeadingPomodoroTitle)`
@@ -85,7 +85,7 @@ const ViewBudget = ({budget, handleEditClick}) => {
 		>
 			<ViewBudgetButton >
 				<ViewBudgetItem small>
-					Disponible: ${budget}
+					Disponible: ${budget - totalExpenses}
 				</ViewBudgetItem>	
 					</ViewBudgetButton>
 				
@@ -97,10 +97,10 @@ const ViewBudget = ({budget, handleEditClick}) => {
 						gridRow={'span 1'}
 						gridColumn = {'11/13'}
 		>
-			<ViewBudgetItem small>Spent so far: </ViewBudgetItem>
+			<ViewBudgetItem small>Spent so far: ${totalExpenses} </ViewBudgetItem>
 		</ViewBudgetContent>
 		</Grid>
-	);
-};
+	)
+		};
 
 export default ViewBudget;

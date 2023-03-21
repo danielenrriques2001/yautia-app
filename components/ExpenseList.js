@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect, useMemo } from 'react';
 import ExpenseItem from './ExpenseItem';
 
 
-const ExpenseList = ({expenses}) => {
+const ExpenseList = ({expenses, isEditing}) => {
 
     const [filteredExpenses, setfilteredExpenses] = useState(expenses)
 	const [selectedCategory, setSelectedCategory] = useState('');
@@ -37,7 +37,7 @@ const ExpenseList = ({expenses}) => {
 
 	console.log('Filtered---------------------', filteredList)
 	  
-	return (
+	if(!isEditing)return (
 		<Grid
             container
             marginY={5}
@@ -72,7 +72,7 @@ const ExpenseList = ({expenses}) => {
             >
 				{filteredList.map((expense) => (
 					<ExpenseItem 
-						item xs={2} sm={4} md={4} 
+						id = {expense.id}
 						key={ expense.id}
 						name={expense.name}
 						cost={expense.cost}

@@ -1,11 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ViewBudget from './ViewBudget';
 import EditBudget from './EditBudget';
 import { useRouter } from 'next/router';
-const Budget = ({value, updateUser, id}) => {
+const Budget = ({value, updateUser, id, isEditing, setIsEditing, expenses}) => {
+
+
+	const [totalExpenses, settotalExpenses] = useState(0)
+
+	useEffect(() => {
+
+		if(expenses) {
+
+		let totalExpenses = expenses.reduce( (accumulator, current) => {
+		
+			return accumulator + Number(current.cost); 
+		
+		}, 0)
+
+		settotalExpenses(totalExpenses)
+
+		}
+
+
+	
+	}, [expenses])
+	
 
   const router = useRouter();
-	const [isEditing, setIsEditing] = useState(false);
 
 	const handleEditClick = () => {
 		setIsEditing(true);
@@ -28,7 +49,7 @@ const Budget = ({value, updateUser, id}) => {
 			{isEditing ? (
 				<EditBudget handleSaveClick={handleSaveClick} budget={value} />
 			) : (
-				<ViewBudget handleEditClick={handleEditClick} budget={value} />
+				<ViewBudget isEditing = {isEditing} handleEditClick={handleEditClick} budget={value} totalExpenses = {totalExpenses}/>
 			)}
 		</div>
 	);

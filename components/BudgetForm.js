@@ -1,7 +1,6 @@
 import { SettingButton } from '@/public/styles'
-import { Grid, Select, TextField, MenuItem, InputLabel} from '@mui/material'
-
-import React from 'react'
+import { Grid, Select, TextField, MenuItem, InputLabel, Modal} from '@mui/material'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 const ModalContent = styled.div`
 
@@ -42,7 +41,10 @@ const StyledSelect = styled.select`
 
 `;
 
-const BudgetForm = ({id, SetOpenbudgetForm}) => {
+const BudgetForm = ({id, open, handleClose}) => {
+
+
+
 
   async function createExpense(expense) {
 
@@ -81,7 +83,7 @@ const BudgetForm = ({id, SetOpenbudgetForm}) => {
 
     setTimeout(() => {
 
-      SetOpenbudgetForm(false)
+      handleClose()
     }, 1000);
 
   }
@@ -91,9 +93,18 @@ const BudgetForm = ({id, SetOpenbudgetForm}) => {
 
   return (
 
+  
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
 
-    <ModalContent>
-         <form 
+
+      <ModalContent>
+
+      <form 
           onSubmit={submitHandler}
       // container
       // flexDirection={'column'}
@@ -144,10 +155,15 @@ const BudgetForm = ({id, SetOpenbudgetForm}) => {
     
     </form>
 
+        
+      </ModalContent>
+
+        
 
 
-    </ModalContent>
-   
+
+    </Modal>
+
 
   )
 }
