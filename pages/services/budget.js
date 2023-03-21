@@ -26,6 +26,10 @@ const Budget = () => {
   const [budgetNumber, setBudgetNumber] = useState(0)
 
   const [isEditing, setIsEditing] = useState(false);
+  const [isEditingExpense, setisEditingExpense] = useState(false)
+
+  const handleOpenExpense = () => setisEditingExpense(true);
+  const handleCloseExpense = () => setisEditingExpense(false);
 
 
   const [open, setOpen] = useState(false);
@@ -128,8 +132,17 @@ if (isLoading) return <p>Loading...</p>
         }
 
         {
-          expensesList && <ExpenseList expenses={expensesList} isEditing = {isEditing} />
+          expensesList && <ExpenseList 
+          expenses={expensesList} 
+          isEditing = {isEditing} 
+          isEditingExpense = {isEditingExpense}
+          handleCloseExpense = {handleCloseExpense}
+          handleOpenExpense = {handleOpenExpense}
+
+          />
         }
+
+       
    
     </>
 

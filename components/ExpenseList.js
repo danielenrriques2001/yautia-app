@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect, useMemo } from 'react';
 import ExpenseItem from './ExpenseItem';
 
 
-const ExpenseList = ({expenses, isEditing}) => {
+const ExpenseList = ({expenses, isEditing, isEditingExpense, handleCloseExpense, handleOpenExpense}) => {
 
     const [filteredExpenses, setfilteredExpenses] = useState(expenses)
 	const [selectedCategory, setSelectedCategory] = useState('');
@@ -24,7 +24,7 @@ const ExpenseList = ({expenses, isEditing}) => {
 		setfilteredExpenses(searchResults);
 	};
 
-	const handleCategoryChange = e =>  setSelectedCategory(event.target.value);
+	const handleCategoryChange = e =>  setSelectedCategory(e.target.value);
 
 	const  getFilteredList = () => {
 		if (!selectedCategory) {
@@ -35,7 +35,6 @@ const ExpenseList = ({expenses, isEditing}) => {
 	 
 	let filteredList = useMemo(getFilteredList, [selectedCategory, filteredExpenses]);
 
-	console.log('Filtered---------------------', filteredList)
 	  
 	if(!isEditing)return (
 		<Grid
@@ -72,11 +71,14 @@ const ExpenseList = ({expenses, isEditing}) => {
             >
 				{filteredList.map((expense) => (
 					<ExpenseItem 
-						id = {expense.id}
-						key={ expense.id}
+						id = {expense._id}
+						key={ expense._id}
 						name={expense.name}
 						cost={expense.cost}
                         category = {expense.category}
+						isEditingExpense = {isEditingExpense}
+						handleCloseExpense = {handleCloseExpense}
+						handleOpenExpense = {handleOpenExpense}
 						// id={expense.id}
 					/>
 				))}

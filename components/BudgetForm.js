@@ -2,6 +2,7 @@ import { SettingButton } from '@/public/styles'
 import { Grid, Select, TextField, MenuItem, InputLabel, Modal} from '@mui/material'
 import React, { useState } from 'react'
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 const ModalContent = styled.div`
 
   background-color: #fefefe;
@@ -41,10 +42,10 @@ const StyledSelect = styled.select`
 
 `;
 
-const BudgetForm = ({id, open, handleClose}) => {
+const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpense}) => {
 
 
-
+  const router = useRouter();
 
   async function createExpense(expense) {
 
@@ -66,7 +67,23 @@ const BudgetForm = ({id, open, handleClose}) => {
   }
 
 
+  async function updateExpense(id, data) {
+    const response = await fetch(`/api/budget/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then(res => console.log("SUCCESS:: "+ res.json()))
+      .catch(e => console.log("ERROR:" + e))
 
+
+      setTimeout(() => {
+        router.reload('/services/budget')
+    }, 500);
+    
+  }
   
   async function submitHandler(event) {
     event.preventDefault();
@@ -79,6 +96,18 @@ const BudgetForm = ({id, open, handleClose}) => {
     const category = formElements.category.value;    
     const date = new Date();
     const user = id; 
+
+    if(isEditingExpense) {
+      const result = updateExpense(id, {name, cost, category})
+
+
+      setTimeout(() => {
+        handleClose()
+        router.reload('/services/budget')
+      }, 1000);
+
+      return; 
+    }
     const result = createExpense({name, cost, category, date, user});
 
     setTimeout(() => {
@@ -118,7 +147,7 @@ const BudgetForm = ({id, open, handleClose}) => {
           label={'name'}
           variant="outlined"
           id='name'
-          // defaultValue={title}
+          defaultValue={name}
     />
     <TextField
           style={{ width: "600px", margin: "5px" }}
@@ -126,12 +155,12 @@ const BudgetForm = ({id, open, handleClose}) => {
           label={'cost'}
           variant="outlined"
           id='cost'
-          // defaultValue={description}
+          defaultValue={cost}
     />
      <InputLabel id="category">Category</InputLabel>
 
 
-     <StyledSelect name="category" id="category">
+     <StyledSelect name="category" id="category" defaultValue={category}>
         <option value="saving" disabled>---------------Select---------------</option>
         <option value="saving">Savings</option>
         <option value="food">Food</option>
@@ -140,10 +169,10 @@ const BudgetForm = ({id, open, handleClose}) => {
         <option value="hobby">Hobbies</option>
         <option value="health">Health</option>
         <option value="abo">Abos</option>
-  
+
   </StyledSelect>
 
-
+    
     
     <Grid
       marginBottom={1}
