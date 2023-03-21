@@ -20,6 +20,7 @@ const StyledCard = styled(Card)`
 
 `;
 
+
 const ExpenseItem = (props) => {
 
 
@@ -34,8 +35,8 @@ const ExpenseItem = (props) => {
 				container
 				flexDirection={'column'}
 			>
-				<StyledButton>{props.category}</StyledButton>
-				<StyledButton >${props.cost}</StyledButton>
+				<p>{props.category}</p>
+				<p >${props.cost}</p>
 				{/* <TiDelete size='1.5em' onClick={handleDeleteExpense} /> */}
 			</Grid>
 		</StyledCard>

@@ -62,26 +62,7 @@ useEffect(() => {
   
 }, [])
 
-// useEffect(() => {
-//   setLoading(true)
-//   fetch(`/api/budget/${id}`)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       console.log(data)
-//       setData(data)
-//       setLoading(false)
-
-//       if(data) {
-//         setValidBudget(true)
-//         return;
-//       }
-//       setValidBudget(false)
-      
-//     })
-// }, [])
-
   
-
 
 async function updateUser(id, data) {
   const response = await fetch(`/api/user/${id}`, {
@@ -134,11 +115,8 @@ if (isLoading) return <p>Loading...</p>
         <FloatingButton onClick={() => {SetOpenbudgetForm(true)}} >Add!</FloatingButton>
 
         {
-          OpenbudgetForm && <Modal>
-                              <BudgetForm id = {id} SetOpenbudgetForm = {SetOpenbudgetForm}/>
-                            </Modal>
+          OpenbudgetForm && <BudgetForm id = {id} SetOpenbudgetForm = {SetOpenbudgetForm}/> 
         }
-
 
         {
           expensesList && <ExpenseList expenses={expensesList} />

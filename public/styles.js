@@ -342,10 +342,11 @@ export const FloatingButton = styled(SettingButton)`
 
   position: fixed;
   bottom: 10%;
-  left: 70%;
-  width: 450px;
+  left: 90%;
+  width: 20px;
   height: 100px;
   background-color: #fefdfb;
   z-index: 1;
+  border-radius: 50%;
 
 `;
