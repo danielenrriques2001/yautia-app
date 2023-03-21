@@ -1,8 +1,7 @@
 import dbConnect from "@/db/connect";
 import User from "@/db/models/User";
-
-import Appointment from "@/db/models/Appointment";
 import mongoose from "mongoose";
+import Expense from "@/db/models/Expense";
 
 export default async function handler (req, res) {
   const { method } = req
@@ -21,9 +20,9 @@ export default async function handler (req, res) {
 
         const user = await User.findOne({email: id});
  
-        const appointments = await Appointment.find({user: user });
+        const expenses = await Expense.find({user: user });
 
-        res.status(200).json(appointments)
+        res.status(200).json(expenses)
 
 
       } catch (error) {

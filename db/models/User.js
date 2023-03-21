@@ -5,11 +5,13 @@ const UserSchema = new Schema({
   name:  String,
   email: String,
   password: String,
+  budget: {type: Number, default: 0}, 
   appointments : [
     { type: Schema.Types.ObjectId, 
       ref: 'Appointment'
     }
   ],
+
 });
 
 // connecting through mongoose to cards collection in the database.
