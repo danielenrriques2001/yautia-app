@@ -24,7 +24,17 @@ const Budget = () => {
   const { data: session, status } = useSession()
   const [validBudget, setValidBudget] = useState(false)
   const [budgetNumber, setBudgetNumber] = useState(0)
-  const [OpenbudgetForm, SetOpenbudgetForm] = useState(false)
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [isEditingExpense, setisEditingExpense] = useState(false)
+
+  const handleOpenExpense = () => setisEditingExpense(true);
+  const handleCloseExpense = () => setisEditingExpense(false);
+
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const [data, setData] = useState(null)
   const [expensesList, setExpensesList] = useState(null)
@@ -97,6 +107,9 @@ if (isLoading) return <p>Loading...</p>
             id = {session?.user?.email} 
             value = {data}
             updateUser = {updateUser}
+            isEditing = {isEditing}
+            setIsEditing = {setIsEditing}
+            expenses={expensesList}
             /> 
       : <Modal>
         <NewBudget 
@@ -112,15 +125,24 @@ if (isLoading) return <p>Loading...</p>
     }
 
 
-        <FloatingButton onClick={() => {SetOpenbudgetForm(true)}} >Add!</FloatingButton>
+        <FloatingButton onClick={() => {handleOpen()}} >Add!</FloatingButton>
 
         {
-          OpenbudgetForm && <BudgetForm id = {id} SetOpenbudgetForm = {SetOpenbudgetForm}/> 
+          open && <BudgetForm id = {id} open = {open} handleClose = {handleClose}/> 
         }
 
         {
-          expensesList && <ExpenseList expenses={expensesList} />
+          expensesList && <ExpenseList 
+          expenses={expensesList} 
+          isEditing = {isEditing} 
+          isEditingExpense = {isEditingExpense}
+          handleCloseExpense = {handleCloseExpense}
+          handleOpenExpense = {handleOpenExpense}
+
+          />
         }
+
+       
    
     </>
 
