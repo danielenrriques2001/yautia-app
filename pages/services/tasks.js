@@ -1,9 +1,11 @@
 import TaskForm from '@/components/TaskForm'
+import TaskItem from '@/components/TaskItem'
 import TaskList from '@/components/TaskList'
-import { HeadingContainer, HeadingPomodoroTitle } from '@/public/styles'
-import { Grid } from '@mui/material'
+import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, ModalContent } from '@/public/styles'
+import { Grid, Modal } from '@mui/material'
 import { useSession, getSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
+import ReactLoading from 'react-loading';
 
 const TasksComponent = () => {
 
@@ -17,6 +19,29 @@ const TasksComponent = () => {
 
   const [EditingItem, setEditingItem] = useState({})
   const [isEditingItem, setIsEditingItem] = useState(false)
+
+  const [randomTask, setRandomTask] = useState()
+  const [openGenerator, setOpenGenerator] = useState(false);
+  const handleOpenGenerator = () => setOpenGenerator(true);
+  const handleCloseGenerator = () => {setOpenGenerator(false); setRandomTask()};
+
+  
+
+  function generateRandomTask() {
+
+   const randomNumber = Math.floor((Math.random() * data.length));
+
+   const randomItem = data[randomNumber]
+
+   
+   setTimeout(() => {
+    setRandomTask(randomItem)
+   }, 1500);
+
+  
+   
+  };
+
 
 
 useEffect(() => {
@@ -45,6 +70,29 @@ useEffect(() => {
           data && <TaskList tasks = {data} setEditingItem = {setEditingItem} setIsEditingItem = {setIsEditingItem}/>
         }
         </Grid>
+
+
+        <FloatingButton onClick={() => {handleOpenGenerator(); generateRandomTask();}}>Random!</FloatingButton>
+       {
+        openGenerator && 
+        <Modal
+          open = {openGenerator} onClose = {handleCloseGenerator}
+
+        >
+
+          <ModalContent>
+                 {randomTask 
+                 ? <TaskItem name = {randomTask.name} category = {randomTask.category} description = {randomTask.description} date = {randomTask.date}  />
+                 : <ReactLoading type={'cylon'} color={'#e33900'} height={400} width={400} />
+                 }
+                
+          </ModalContent>
+           
+        </Modal>
+        
+        
+
+       }
 
     </>
   )

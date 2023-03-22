@@ -50,7 +50,7 @@ async function MarkAsComplete(id, data) {
         <p>{date}</p>
 
         <SettingButton onClick={() => {deleteTask(id)}}>x</SettingButton>
-        <SettingButton onClick={() => {setEditingItem({id, name, description, category}); setIsEditingItem(true)}}>Edit</SettingButton>
+        <SettingButton onClick={() => {setEditingItem({id, name, description, category, date}); setIsEditingItem(true)}}>Edit</SettingButton>
         <SettingButton onClick={() => {MarkAsComplete(id, {name, description, category, completed: !completed})}}>{completed ? 'Uncompleted' : 'Mark as Completed'}</SettingButton>
     </Card>
   )

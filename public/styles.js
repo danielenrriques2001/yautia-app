@@ -350,3 +350,26 @@ export const FloatingButton = styled(SettingButton)`
   border-radius: 50%;
 
 `;
+
+export const ModalContent = styled.div`
+
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 45px 15px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: -15%;
+  left: 25%;
+  
+
+
+`;
