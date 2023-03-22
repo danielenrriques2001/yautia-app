@@ -7,28 +7,31 @@ import useSWR from 'swr'
 const Articles = () => {
 
     const fetcher = (...args) => fetch(...args).then(res => res.json())
+    
+
+    const [filteredArticles, setFilteredArticles] = useState([])
 
     const [keyword, setKeyWord] = useState('everything')
 
-
-
-
-
-    const { data, error, isLoading, mutate } = useSWR(`https://newsapi.org/v2/everything?q=${ keyword.length > 3 ? keyword : 'you'}&apiKey=${process.env.NEXT_PUBLIC_ARTICLES_KEY}`, fetcher)
-
-
+    const URL = `https://newsapi.org/v2/everything?q=${keyword}}&apiKey=${process.env.NEXT_PUBLIC_ARTICLES_KEY}`;
+    const [data, setData] = useState(null)
+    const [isLoading, setLoading] = useState(false)
+    const [urlValue, SetURLValue] = useState()
+  
     useEffect(() => {
+      setLoading(true)
+      fetch(URL)
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data)
+          setLoading(false)
+        })
+    }, [urlValue, URL])
+  
+    if (isLoading) return <p>Loading...</p>
+    if (!data) return <p>No profile data</p>
 
-        mutate();
-
-    }, [keyword])
-    
-
-   
-  if (error) return <div>failed to load</div>
-  if (isLoading) return <div>loading...</div>
-
-  return (<ArticlesContainer data = {data} setKeyWord = {setKeyWord}/>)
+  return (<ArticlesContainer data = {data} SetURLValue ={SetURLValue}/>)
 }
 
 export default Articles

@@ -1,10 +1,12 @@
-import { Grid, TextField } from '@mui/material'
+import { Button, Grid, TextField } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import ArticleItem from './ArticleItem'
 
-const ArticlesContainer = (data, setKeyWord) => {
+const ArticlesContainer = (data, SetURLValue) => {
 
   const [filteredArticles, setFilteredArticles] = useState(data.data.articles)
+
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
 		setFilteredArticles(data.data.articles);
@@ -15,8 +17,12 @@ const ArticlesContainer = (data, setKeyWord) => {
     
     const inputValue = e.target.value;
   
-    setKeyWord(inputValue)
+    setQuery(inputValue)
 
+  }
+
+  const handleSearch = () => {
+    SetURLValue(`https://newsapi.org/v2/everything?q=${query}}&apiKey=${process.env.NEXT_PUBLIC_ARTICLES_KEY}`)
   }
 
 
@@ -26,11 +32,16 @@ const ArticlesContainer = (data, setKeyWord) => {
 
     >
 
+
     <TextField
             type='text'
             placeholder='Type to search...'
             onChange={handleChange}
           />
+
+    <Button onClick={handleSearch}>
+      Search
+    </Button>
         {
 
                 filteredArticles.map((article) => {
