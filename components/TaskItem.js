@@ -14,9 +14,7 @@ const TaskItem = ({name, description, date, completed, category, id, setEditingI
     .then(res => console.log("SUCCESS:: "+ res.json()))
     .catch(e => console.log("ERROR:" + e))
 
-    setTimeout(() => {
-        router.reload('/services/task')
-    }, 500);
+    router.push('/services/tasks')
     
 }
 
@@ -31,11 +29,8 @@ async function MarkAsComplete(id, data) {
     .then(res => console.log("SUCCESS:: "+ res.json()))
     .catch(e => console.log("ERROR:" + e))
 
-
-  //   setTimeout(() => {
-  //     router.reload('/services/tasks')
-  // }, 1000);
   
+    router.push('/services/tasks')
 }
 
 

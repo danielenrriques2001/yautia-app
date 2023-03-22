@@ -9,11 +9,10 @@ import { SWRConfig } from 'swr';
 function App({ Component, pageProps: {session, ...pageProps} 
 }) {
 
-  const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 
   return (
-  <SettingsContextProvider>
+    <SettingsContextProvider>
     <ToastContainer 
       limit={1}
       position="top-center"
@@ -31,6 +30,8 @@ function App({ Component, pageProps: {session, ...pageProps}
       </Layout>
   </SessionProvider>
   </SettingsContextProvider>
+
+
 
     )
 }

@@ -24,6 +24,8 @@ const StyledSelect = styled.select`
 const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpense}) => {
 
 
+
+
   const router = useRouter();
 
   async function createExpense(expense) {
@@ -128,7 +130,7 @@ const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpen
           id='name'
           defaultValue={name}
     />
-    
+
     <TextField
           style={{ width: "600px", margin: "5px" }}
           type="number"
