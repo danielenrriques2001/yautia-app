@@ -3,6 +3,8 @@ import { Grid, Select, TextField, MenuItem, InputLabel, Modal} from '@mui/materi
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import useSWR, { mutate } from "swr";
+
 const ModalContent = styled.div`
 
   background-color: #fefefe;
@@ -54,8 +56,28 @@ const StyledForm = styled.form`
 
 `;
 
-const TaskForm = ({id, isEditingItem , EditingItem}) => {
+const TaskForm = ({id, isEditingItem , EditingItem, setIsEditingItem}) => {
 
+  console.log(isEditingItem)
+
+  const fetcher = (...args) => fetch(...args).then(res => res.json())
+
+  const tasks = useSWR(`/api/task/${id}`, fetcher)
+
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [category, setCategory] = useState('')
+ 
+
+  useEffect(() => {
+
+    if(isEditingItem) {
+      setName(EditingItem.name ?? '')
+      setDescription(EditingItem.description ?? '')
+      setCategory(EditingItem.category ?? '')
+    }
+  }, [isEditingItem, EditingItem])
+  
 
 
 
@@ -92,10 +114,6 @@ const TaskForm = ({id, isEditingItem , EditingItem}) => {
       .then(res => console.log("SUCCESS:: "+ res.json()))
       .catch(e => console.log("ERROR:" + e))
 
-
-      setTimeout(() => {
-        router.reload('/services/tasks')
-    }, 1000);
     
   }
   
@@ -118,16 +136,31 @@ const TaskForm = ({id, isEditingItem , EditingItem}) => {
     
     if(isEditingItem) {
       const result = updateTask(EditingItem.id, {name, description, category})
+
+      setIsEditingItem(false)
+      console.log(isEditingItem)
   
-      // setTimeout(() => {
-      //   router.reload('/services/budget')
-      // }, 1000);
+    }  else {
 
-      return; 
+    
+
+      const result = createTask({name, description, category, date, user, completed});
+      
     }
-    const result = createTask({name, description, category, date, user, completed});
 
-    formElements.reset();
+   
+
+
+    setName('')
+    setCategory('')
+    setDescription('')
+    router.push('/services/tasks')
+   
+
+    
+
+
+    
 
 
   }
@@ -146,18 +179,24 @@ const TaskForm = ({id, isEditingItem , EditingItem}) => {
     
     >
     <TextField
-         
+          defaultValue={isEditingItem ? EditingItem.name : ''}
+          // key={isEditingItem ? EditingItem.name : ''} 
           style={{ width: "600px", margin: "5px" }}
           type="text"
           label={'task'}
           variant="outlined"
           id='name'
-          defaultValue={isEditingItem ? EditingItem.name : ''}
-          key={EditingItem.name} 
+          value = {name}
+          onChange={(e) => {setName(e.target.value)}}
+
+
 
     />
     <TextField
           defaultValue={isEditingItem ? EditingItem.description : ''}
+          // key={isEditingItem ? EditingItem.description : ''}
+          value = {description}
+          onChange={(e) => {setDescription(e.target.value)}}
           style={{ width: "600px", margin: "5px" }}
           type="text"
           label={'description'}
@@ -165,7 +204,7 @@ const TaskForm = ({id, isEditingItem , EditingItem}) => {
           id='description'
           multiline
           rows={4}
-          key={EditingItem.description} 
+         
 
         //   defaultValue={cost}
        
@@ -173,7 +212,13 @@ const TaskForm = ({id, isEditingItem , EditingItem}) => {
      <InputLabel id="category">Category</InputLabel>
 
 
-     <StyledSelect name="category" id="category" defaultValue={isEditingItem && EditingItem.category }  key={EditingItem.category} >
+     <StyledSelect 
+     name="category" 
+     id="category" 
+     defaultValue={isEditingItem ? EditingItem.category : '' }   
+     value = {category}
+     onChange={(e) => {setCategory(e.target.value)}}
+    >
         <option value=" " disabled>---------------Select---------------</option>
         <option value="personal">Personal</option>
         <option value="business">Business</option>

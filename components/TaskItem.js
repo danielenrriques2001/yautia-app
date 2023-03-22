@@ -14,9 +14,7 @@ const TaskItem = ({name, description, date, completed, category, id, setEditingI
     .then(res => console.log("SUCCESS:: "+ res.json()))
     .catch(e => console.log("ERROR:" + e))
 
-    setTimeout(() => {
-        router.reload('/services/task')
-    }, 500);
+    router.push('/services/tasks')
     
 }
 
@@ -31,11 +29,8 @@ async function MarkAsComplete(id, data) {
     .then(res => console.log("SUCCESS:: "+ res.json()))
     .catch(e => console.log("ERROR:" + e))
 
-
-  //   setTimeout(() => {
-  //     router.reload('/services/tasks')
-  // }, 1000);
   
+    router.push('/services/tasks')
 }
 
 
@@ -50,7 +45,7 @@ async function MarkAsComplete(id, data) {
         <p>{date}</p>
 
         <SettingButton onClick={() => {deleteTask(id)}}>x</SettingButton>
-        <SettingButton onClick={() => {setEditingItem({id, name, description, category}); setIsEditingItem(true)}}>Edit</SettingButton>
+        <SettingButton onClick={() => {setEditingItem({id, name, description, category, date}); setIsEditingItem(true)}}>Edit</SettingButton>
         <SettingButton onClick={() => {MarkAsComplete(id, {name, description, category, completed: !completed})}}>{completed ? 'Uncompleted' : 'Mark as Completed'}</SettingButton>
     </Card>
   )
