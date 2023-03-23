@@ -7,6 +7,96 @@ import { useState, useRef, useEffect } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import ReactLoading from 'react-loading';
+import { HeadingPomodoroTitle, SettingButton } from '@/public/styles';
+
+const ButtonLogin = styled.button`
+
+  background-color: #222;
+  border-radius: 4px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  max-width: none;
+  min-height: 44px;
+  min-width: 10px;
+  outline: none;
+  overflow: hidden;
+  padding: 9px 20px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+
+
+&:hover,
+&:focus {
+  opacity: .75;
+}
+
+`;
+
+
+
+
+const ButtonCreate = styled.button`
+
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #373B44;
+  
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: #353739;
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 18px;
+
+
+&:hover,
+&:focus-visible{
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+&:active {
+  background: var(--color);
+  color: #353739;
+}
+
+
+
+`;
+
+const HeadingLogin = styled(HeadingPomodoroTitle)`
+  color: #353739;
+`;
+
+const StyledTextField = styled(TextField)`
+
+
+`;
 
 const Form = () => {
 
@@ -130,82 +220,88 @@ const Form = () => {
   }
 
   return (
-    <StyledForm onSubmit={submitHandler}>
 
-      {
-        !isLogin &&
-            <TextField
-            style={{ width: "600px", margin: "5px" }}
-            type="name"
-            label={'name'}
-            variant="outlined"
-            id='name'
-            focused
-            required 
-            defaultValue={''}
-          />
-      }
-      <br/>
-    <TextField
-            style={{ width: "600px", margin: "5px" }}
-            type="email"
-            label={'email'}
-            variant="outlined"
-            id='email'
-            required = {!isLogin ? false : true}
-            defaultValue={''}
-          />
-      <br/>
+    <>
+       
+        <StyledForm onSubmit={submitHandler}>
+        <HeadingLogin>{isLogin ? `You're back!` : 'Welcome!'}</HeadingLogin>
+{
+  !isLogin &&
+      <StyledTextField
+      style={{ width: "600px", margin: "5px" }}
+      type="name"
+      label={'name'}
+      variant="outlined"
+      id='name'
+      required  = {!isLogin ? false : true}
+      defaultValue={''}
+    />
+}
+<br/>
+<StyledTextField
+      style={{ width: "600px", margin: "5px" }}
+      type="email"
+      label={'email'}
+      variant="outlined"
+      id='email'
+      required = {!isLogin ? false : true}
+      defaultValue={''}
+    />
+<br/>
 
-    <TextField
-          style={{ width: "600px", margin: "5px" }}
-          type="password"
-          label={'password'}
-          variant="outlined"
-          id='password'
-          defaultValue={''}
-          required
-        />
-      <br />
+<StyledTextField
+    style={{ width: "600px", margin: "5px" }}
+    type="password"
+    label={'password'}
+    variant="outlined"
+    id='password'
+    defaultValue={''}
+    required  = {!isLogin ? false : true}
+  />
+<br />
 
-    <br />
-    <Button type='submit' variant="contained" color="primary">
-    {isLogin ? 'Login' : 'Create Account'}
-    </Button>
-    <Button type='button' onClick={switchAuthModeHandler}>
-    {isLogin ? 'Create new account' : 'Login with existing account'}
-    </Button>
+<br />
+<ButtonLogin type='submit' variant="contained" color="primary">
+{isLogin ? 'Login' : 'Create Account'}
+</ButtonLogin>
+<ButtonCreate type='button' onClick={switchAuthModeHandler}>
+{isLogin ? 'Create new account' : 'Login with existing account'}
+</ButtonCreate>
 
-    {
+{
 
-      isLoading && <Grid
-                  container 
-                  justifyContent={'center'}
-                  alignItems = {'center'}
-                  flexDirection = {'column'}
+isLoading && <Grid
+            container 
+            justifyContent={'center'}
+            alignItems = {'center'}
+            flexDirection = {'column'}
 
-                  >
-                    <ReactLoading  type={'spinningBubbles'} color={'#9fc5e8'} height={'20%'} width={'20%'} />
-                    <LoadingLabel variant='h5'>{ isLogin ? 'Looking your Profile' : 'Your Account is being Created'}</LoadingLabel>
-                  </Grid>
-    } 
-    {
-      errorMessage  && <Grid
-                      container 
-                      justifyContent={'center'}
-                      alignItems = {'center'}
-                      marginTop = {'15px'}
-                      >
-         <Alert severity = 'error'>{errorMessage}</Alert> 
+            >
+              <ReactLoading  type={'spinningBubbles'} color={'#9fc5e8'} height={'20%'} width={'20%'} />
+              <LoadingLabel variant='h5'>{ isLogin ? 'Looking your Profile' : 'Your Account is being Created'}</LoadingLabel>
+            </Grid>
+} 
+{
+errorMessage  && <Grid
+                container 
+                justifyContent={'center'}
+                alignItems = {'center'}
+                marginTop = {'15px'}
+                >
+   <Alert severity = 'error'>{errorMessage}</Alert> 
 
-     
 
-      </Grid>
-      
-     
-    }
-      
-  </StyledForm>
+
+</Grid>
+
+
+}
+
+</StyledForm>
+    
+    
+    </>
+    
   )
 }
 
@@ -213,6 +309,21 @@ export default Form
 
 
 const StyledForm = styled.form`
-text-align: center;
+    width: fit-content;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    padding: 45px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    border-radius: 45px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    transition: all .5s ease-in-out;
+
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+      transform: translateY(-15px);
+    }
 
 `;

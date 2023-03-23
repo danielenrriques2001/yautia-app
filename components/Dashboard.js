@@ -34,7 +34,7 @@ const Dashboard = () => {
         <LinkItem href='/services/appointment'>Appointment Administrator</LinkItem>
         <LinkItem href='/services/budget'>Budget Tracker</LinkItem>
         <LinkItem href='/services/tasks'>To-do List</LinkItem>
-        <LinkItem href='/'>Learn More...</LinkItem>
+        <LinkItem href='/services/articles'>Learn More...</LinkItem>
     </LinkContainer>
   )
 }
