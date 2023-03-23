@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from '@mui/material'
 import styled from 'styled-components'
 import { useSession } from 'next-auth/react'
-import { BiUser, BiListOl } from "react-icons/bi";
+import { BiUser, BiListOl, BiLogIn } from "react-icons/bi";
 
 
 const Navigation = () => {
@@ -15,7 +15,10 @@ const Navigation = () => {
           <BiListOl/>
         </NavItem>
         {
-          !session &&  <NavItem underline="none" href={'/login'}>Login </NavItem>
+          !session &&  <NavItem underline="none" href={'/login'}>
+            Login
+            <BiLogIn/>
+            </NavItem>
         }
 
         {
@@ -56,6 +59,10 @@ const NavItem = styled.a`
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 
 &:hover {

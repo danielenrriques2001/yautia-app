@@ -2,6 +2,7 @@ import Dashboard from '@/components/Dashboard'
 import { Card, Container, Grid, Typography } from '@mui/material'
 import { useSession } from 'next-auth/react'
 import { useState, useEffect } from 'react'
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader'
 import useSWR from 'swr'
 
 export default function Home() {
@@ -71,6 +72,10 @@ export default function Home() {
     </>
   )
   } else {
-    return <p>Loading.......</p>
+    return (
+
+      <ClimbingBoxLoader color='#353739'/>
+
+    );
   }
 }

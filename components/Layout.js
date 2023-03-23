@@ -1,6 +1,12 @@
 import Header from '../components/Header'
 import styled from 'styled-components';
+
+
 export default function Layout({ children }) {
+
+
+
+
   return (
     <LayoutContainer >
       <Header/>
