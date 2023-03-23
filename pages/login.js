@@ -6,8 +6,7 @@ import { Grid, Typography } from '@mui/material';
 import styled from 'styled-components';
 import { HeadingPomodoroTitle } from '@/public/styles';
 import randomColor from "randomcolor";
-import { greetings } from 'random-greetings';
-// <h1>Discover, <span class="underlined underline-clip">Sell</span><br>& Collect <span class="underlined underline-mask">Rare</span><br><span class="underlined underline-overflow">NFTs</span></h1>
+import { ClimbingBoxLoader } from 'react-spinners';
 
 const TextContainer = styled.div`
 
@@ -32,12 +31,6 @@ const TextContainer = styled.div`
     }
 `;
 
-
-const StyledTitle = styled(HeadingPomodoroTitle)`
-
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-`;
 
 
 const Login = () => {
@@ -66,7 +59,9 @@ const Login = () => {
   }, [router]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <ClimbingBoxLoader color='#353739'/>
+    );
   }
 
   return (

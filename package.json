@@ -33,8 +33,10 @@
     "react-multi-carousel": "^2.8.2",
     "react-notifications": "^1.7.4",
     "react-notifications-component": "^4.0.1",
+    "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.1",
     "styled-components": "^5.3.8",
+    "swiper": "^9.1.1",
     "swr": "^2.1.0",
     "use-sound": "^4.0.1"
   }

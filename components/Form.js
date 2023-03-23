@@ -6,8 +6,8 @@ import { pulse } from 'react-animations';
 import { useState, useRef, useEffect } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import ReactLoading from 'react-loading';
 import { HeadingPomodoroTitle, SettingButton } from '@/public/styles';
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const ButtonLogin = styled.button`
 
@@ -179,7 +179,7 @@ const Form = () => {
       console.log('after login data', result)
       
       
-      if (!result.error) {
+      if (!result.error || !result.status === 40) {
         // set some auth state
         router.replace('/profile');
 
@@ -214,7 +214,7 @@ const Form = () => {
         }
 
       } catch (error) {
-        console.log(error);
+        setErrorMessage(error.message);
       }
     }
   }
@@ -277,7 +277,7 @@ isLoading && <Grid
             flexDirection = {'column'}
 
             >
-              <ReactLoading  type={'spinningBubbles'} color={'#9fc5e8'} height={'20%'} width={'20%'} />
+              <PacmanLoader color = {'#353739'}/>
               <LoadingLabel variant='h5'>{ isLogin ? 'Looking your Profile' : 'Your Account is being Created'}</LoadingLabel>
             </Grid>
 } 
