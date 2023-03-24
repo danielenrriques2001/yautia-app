@@ -21,6 +21,7 @@
     "mongoose": "^7.0.1",
     "next": "13.2.3",
     "next-auth": "^4.20.1",
+    "openai": "^3.2.1",
     "random-greetings": "^1.0.5",
     "randomcolor": "^0.6.2",
     "react": "18.2.0",

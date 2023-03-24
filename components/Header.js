@@ -1,6 +1,8 @@
 import Navigation from "./Navigation";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Grid } from "@mui/material";
+import { zoomInDown} from 'react-animations';
+const zoomInAnimation = keyframes`${zoomInDown}`;
 
 
 
@@ -9,9 +11,9 @@ import { Grid } from "@mui/material";
   return (
   <Grid
     container 
-    flexDirection={'column'}
-    justifyContent = {'Center'}
-    alignItems = {'center'}
+    justifyContent={'space-between'}
+    alignItems='baseline'
+
   >
 
         <Heading href="/" >YAUTIA</Heading>
@@ -24,7 +26,6 @@ const Heading = styled.a`
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-transform: uppercase;
-  margin: 0 auto;
   font-size: 100px;
   color: #353739;
   cursor: pointer;
@@ -32,10 +33,9 @@ const Heading = styled.a`
   font-weight: 800;
   letter-spacing: 15px;
   text-decoration: none;
-
-  
- display: flex;
- justify-content: center;
+  animation: 1s ${zoomInAnimation};
+  display: flex;
+  justify-content: center;
 `;
 
 const HeadingBorder = styled.div`

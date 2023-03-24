@@ -311,14 +311,14 @@ export default Form
 const StyledForm = styled.form`
     width: fit-content;
     text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    background-color: white; 
     padding: 45px;
     padding-top: 100px;
     padding-bottom: 100px;
     border-radius: 45px;
-    background-color: white;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     transition: all .5s ease-in-out;
+    border: 9px  rgba(214, 229, 227, 0.1) solid;
 
 
     &:hover {
