@@ -147,10 +147,6 @@ export default function Home() {
   const openai = new OpenAIApi(configuration);
   const [storedValues, setStoredValues] = useState([]);
 
-
-  
-
-
   const generateResponse = async (newQuestion, setNewQuestion) => {
     let options = {
         model: 'text-davinci-003',
