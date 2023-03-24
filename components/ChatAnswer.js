@@ -36,8 +36,9 @@ font-family: sans-serif;
 
 const AnswersContainer = styled.div`
 
-    overflow-y: scroll;
-    max-height: 250px;
+    height: 200;
+    overflow: scroll;
+
 `;
 
 

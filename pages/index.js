@@ -173,9 +173,9 @@ export default function Home() {
               {
                   question: newQuestion,
                   answer: response.data.choices[0].text,
-              },
+              }
 
-              ...storedValues,
+              // ...storedValues,
           ]);
           setNewQuestion('');
       }

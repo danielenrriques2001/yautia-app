@@ -18,6 +18,7 @@ const ChatForm = ({generateResponse}) => {
                 placeholder="Chat with us!"
                 value={newQuestion}
                 onChange={(e) => setNewQuestion(e.target.value)}
+                onKeyDown={(e) => {if(e.key === 'Enter') {generateResponse(newQuestion, setNewQuestion)}}}
             ></TextField>
             <StyledButton className="btn" onClick={() => generateResponse(newQuestion, setNewQuestion)}>
                   Send!
