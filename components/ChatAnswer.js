@@ -23,7 +23,6 @@ font-weight: 100;
 `;
 
 const AnswerItem = styled.div`
-
 background-color: gray;
 border-radius: 15px;
 font-family: sans-serif;
@@ -36,8 +35,8 @@ font-family: sans-serif;
 
 const AnswersContainer = styled.div`
 
-    height: 200;
-    overflow: scroll;
+    max-height: 300px;
+
 
 `;
 
