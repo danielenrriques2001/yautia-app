@@ -1,5 +1,5 @@
 import Dashboard from '@/components/Dashboard'
-import { HeadingPomodoroTitle } from '@/public/styles'
+import { FloatingButton, HeadingPomodoroTitle, SettingButton } from '@/public/styles'
 import { Box, Card, Container, Grid, Typography } from '@mui/material'
 import { useSession } from 'next-auth/react'
 import { useState, useEffect } from 'react'
@@ -13,7 +13,7 @@ import effectiveness from '/public/effectiveness.png'
 import time from '/public/time.png'
 import Image from 'next/image'
 import { Configuration, OpenAIApi } from 'openai';
-
+import {MdClose} from 'react-icons/md'
 
 import collage from '/public/collage.jpg'
 import collage1 from '/public/collage.jpg'
@@ -122,9 +122,8 @@ const ColoredLine = styled.div`
 
 export default function Home() {
 
-
-
   const [heading, setHeading] = useState('Just Be!');
+  const [openChat, setOpenChat] = useState(false)
 
   useEffect(() => {
 
@@ -174,10 +173,12 @@ export default function Home() {
 
         if (response.data.choices) {
           setStoredValues([
+          
               {
                   question: newQuestion,
                   answer: response.data.choices[0].text,
               },
+
               ...storedValues,
           ]);
           setNewQuestion('');
@@ -331,10 +332,16 @@ export default function Home() {
             </Grid>
 
 
-        <FloatingHover>
+        <FloatingButton onClick={() => {setOpenChat(!openChat)}}>Chat with us!</FloatingButton>
+
+       { 
+       openChat &&
+       <FloatingHover>
+            <MdClose onClick={() => {setOpenChat(false)}}/>
             <AnswerSection storedValues = {storedValues}/>
             <ChatForm generateResponse={generateResponse}/>
         </FloatingHover>
+        }
 
 
             
