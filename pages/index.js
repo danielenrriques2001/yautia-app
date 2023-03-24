@@ -305,25 +305,44 @@ export default function Home() {
               <Grid
                 container
                 justifyContent={'center'}
-                alignItems ='center'
+                alignItems='center'
+                gap={5}
+                margin = {5}
               >
               <CollageItem item image = {collage}/>
               <HeadingPomodoroTitle>Time for yourself!</HeadingPomodoroTitle>
 
               </Grid>
-          
+  
 
-            <CollageItem item image = {collage7}/>
-           
-            <CollageItem item image = {collage2}/>
-           
-            <CollageItem item image = {collage3}/>
+
+
+            <Grid
+              display={'grid'}
+              gridTemplateColumns="repeat(3, 1fr)" gap={2}
+            >
+              <CollageItem item image = {collage7}/>
+              
+              <CollageItem item image = {collage2}/>
+              
+              <CollageItem item image = {collage3}/>
+            </Grid>
+
             <HeadingPomodoroTitle>Make every second count!</HeadingPomodoroTitle>
+
+            <Grid
+              container 
+              justifyContent={'center'}
+              alignItems = {'center'}
+              gap = {1}
+            >
             <CollageItem item image = {collage4}/>
-          
             <CollageItem item image = {collage5}/>
-            <HeadingPomodoroTitle>Joy for your Job!</HeadingPomodoroTitle>
             <CollageItem item image = {collage6}/>
+            <HeadingPomodoroTitle>Joy for your Job!</HeadingPomodoroTitle>
+            </Grid>
+
+            
             
             </Grid>
 
@@ -397,9 +416,6 @@ export const CollageItem = ({image, title, content}) => {
   height: fit-content;
   transition: all .3s ease-out;
   border-radius: 45px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-
     &:hover {
       cursor: pointer;
       transform: translateY(-15px);
