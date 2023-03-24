@@ -13,6 +13,15 @@ import effectiveness from '/public/effectiveness.png'
 import time from '/public/time.png'
 import Image from 'next/image'
 
+import collage from '/public/collage.jpg'
+import collage1 from '/public/collage.jpg'
+import collage2 from '/public/collage2.jpg'
+import collage3 from '/public/collage3.jpg'
+import collage4 from '/public/collage4.jpg'
+import collage5 from '/public/collage5.jpg'
+import collage6 from '/public/collage6.jpg'
+import collage7 from '/public/collage7.jpg'
+
 const Hero = styled.div`
 
   background-image: url(${props => props.image.src});
@@ -77,7 +86,7 @@ const IntroHeading = styled(Typography)`
     font-family: monospace;
     text-align: center;
     font-weight: 100;
-    line-height: 1.5;
+    line-height: 2;
     
 
 `;
@@ -85,10 +94,14 @@ const IntroHeading = styled(Typography)`
 const ColoredLine = styled.div`
     width: 100%;
     height: 4px;
-    background-color: rgba(163, 138, 138, 0.4);
+    background-color: #EE769E;
     margin: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 4rem;
     border-radius: 45px;
 `;
+
+
 export default function Home() {
 
 
@@ -204,6 +217,8 @@ export default function Home() {
               container 
               justifyContent={'space-evenly'}
               alignItems = {'center'}
+              marginTop={'3rem'}
+              marginBottom={'3rem'}
               
             >
 
@@ -221,10 +236,45 @@ export default function Home() {
             title = {'Cooperation'}
             />
 
-              
-
-
             </Grid>
+
+            <HeadingPomodoroTitle>Our Promise</HeadingPomodoroTitle>
+            <ColoredLine/>
+           
+            
+            <Grid
+               container 
+               columns={{ xs: 4, sm: 8, md: 12 }}
+               
+
+            >
+
+              <Grid
+                container
+                justifyContent={'center'}
+                alignItems ='center'
+              >
+              <CollageItem item image = {collage}/>
+              <HeadingPomodoroTitle>Time for yourself!</HeadingPomodoroTitle>
+
+              </Grid>
+          
+
+            <CollageItem item image = {collage7}/>
+           
+            <CollageItem item image = {collage2}/>
+           
+            <CollageItem item image = {collage3}/>
+            <HeadingPomodoroTitle>Make every second count!</HeadingPomodoroTitle>
+            <CollageItem item image = {collage4}/>
+          
+            <CollageItem item image = {collage5}/>
+            <HeadingPomodoroTitle>Joy for your Job!</HeadingPomodoroTitle>
+            <CollageItem item image = {collage6}/>
+            
+            </Grid>
+
+
             
           </Grid>
 
@@ -273,3 +323,29 @@ export const WhyItem = ({image, title}) => {
   </>
 )
 }
+
+export const CollageItem = ({image, title, content}) => {
+
+  const StyledImage = styled(Image)`
+
+  width: fit-content;
+  height: fit-content;
+  transition: all .3s ease-out;
+  border-radius: 45px;
+
+    &:hover {
+      cursor: pointer;
+      transform: translateY(-15px);
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    }
+
+
+  `;
+
+
+  return (
+  
+      <StyledImage src={image.src} alt = {`This is ${image}`} width={300} height={300}></StyledImage>
+)
+}
+
