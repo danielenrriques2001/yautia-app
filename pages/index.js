@@ -12,6 +12,8 @@ import cooperation from '/public/cooperation.png'
 import effectiveness from '/public/effectiveness.png'
 import time from '/public/time.png'
 import Image from 'next/image'
+import { Configuration, OpenAIApi } from 'openai';
+
 
 import collage from '/public/collage.jpg'
 import collage1 from '/public/collage.jpg'
@@ -21,7 +23,20 @@ import collage4 from '/public/collage4.jpg'
 import collage5 from '/public/collage5.jpg'
 import collage6 from '/public/collage6.jpg'
 import collage7 from '/public/collage7.jpg'
+import ChatForm from '@/components/ChatForm'
+import AnswerSection from '@/components/ChatAnswer'
 
+const FloatingHover = styled.div`
+
+width: 500px;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+position: fixed;
+bottom: 1%;
+right: 1%;
+padding: 20px;
+border-radius: 15px;
+
+`;
 const Hero = styled.div`
 
   background-image: url(${props => props.image.src});
@@ -53,6 +68,9 @@ const HeadingHero = styled(HeadingPomodoroTitle)`
   white-space: nowrap;  
   text-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
   -webkit-text-stroke:  black 2px;
+  transition: all 1s ease-in-out;
+  
+
   &:after 
     --deco-height: 0.3125em;
     content: "";
@@ -106,14 +124,11 @@ export default function Home() {
 
 
 
-
   const [heading, setHeading] = useState('Just Be!');
 
   useEffect(() => {
 
  
-
-
     const interval = setInterval(() => {
       const headings = ['Productive', 'Unstoppable', 'You', 'Hardworking', 'Understanding', 'Energetic']
         
@@ -126,14 +141,55 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [heading]);
 
+  const configuration = new Configuration({
+    apiKey: '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',
+});
+
+  const openai = new OpenAIApi(configuration);
+  const [storedValues, setStoredValues] = useState([]);
+
+
+  
+
+
+  const generateResponse = async (newQuestion, setNewQuestion) => {
+    let options = {
+        model: 'text-davinci-003',
+        temperature: 0,
+        max_tokens: 100,
+        top_p: 1,
+        frequency_penalty: 0.0,
+        presence_penalty: 0.0,
+        stop: ['/'],
+    };
+
+    let completeOptions = {
+        ...options,
+        prompt: newQuestion,
+    };
+    
+      const response = await openai.createCompletion(completeOptions);
+
+        console.log(response.data.choices[0].text);
+
+        if (response.data.choices) {
+          setStoredValues([
+              {
+                  question: newQuestion,
+                  answer: response.data.choices[0].text,
+              },
+              ...storedValues,
+          ]);
+          setNewQuestion('');
+      }
+
+
+  }
 
   const { data: session, status } = useSession()
 
 
   const [randomQuote, SetrandomQuote] = useState('Maria lava la ropa!')
-
-  console.log(randomQuote)
-
 
 
   function generateRandomQuotes(array) {
@@ -275,6 +331,12 @@ export default function Home() {
             </Grid>
 
 
+        <FloatingHover>
+            <AnswerSection storedValues = {storedValues}/>
+            <ChatForm generateResponse={generateResponse}/>
+        </FloatingHover>
+
+
             
           </Grid>
 
@@ -332,6 +394,8 @@ export const CollageItem = ({image, title, content}) => {
   height: fit-content;
   transition: all .3s ease-out;
   border-radius: 45px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 
     &:hover {
       cursor: pointer;

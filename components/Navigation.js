@@ -10,10 +10,6 @@ const Navigation = () => {
   
   return (
     <NavContainer>
-        <NavItem underline="none" href={'/'}>
-          {session ? 'Dashboard ' : 'Home'} 
-          <BiListOl/>
-        </NavItem>
         {
           !session &&  <NavItem underline="none" href={'/login'}>
             Login
