@@ -141,7 +141,7 @@ export default function Home() {
   }, [heading]);
 
   const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: process.env.NEXT_PUBLIC_OPENAI_KEY,
 });
 
   const openai = new OpenAIApi(configuration);
