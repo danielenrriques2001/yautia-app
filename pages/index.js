@@ -27,14 +27,14 @@ import ChatForm from '@/components/ChatForm'
 import AnswerSection from '@/components/ChatAnswer'
 
 const FloatingHover = styled.div`
-
 width: 500px;
-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
 position: fixed;
 bottom: 1%;
 right: 1%;
 padding: 20px;
 border-radius: 15px;
+background-color: #F8F8F8;
 
 `;
 const Hero = styled.div`
@@ -46,7 +46,6 @@ const Hero = styled.div`
   background-position: center center;
   background-size: cover;
   border-radius: 15px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,11 +53,10 @@ const Hero = styled.div`
 `;
 
 const HeadingHero = styled(HeadingPomodoroTitle)`
-
   text-transform: uppercase;
   font-family: sans-serif;
   color: white;
-  font-size: 10rem;
+  font-size: 8rem;
   text-align: center;
   font-weight: 900;
   margin: 0;
@@ -124,6 +122,7 @@ export default function Home() {
 
   const [heading, setHeading] = useState('Just Be!');
   const [openChat, setOpenChat] = useState(false)
+  const [chatSpinner, setChatSpinner] = useState(false)
 
   useEffect(() => {
 
@@ -168,7 +167,12 @@ export default function Home() {
         console.log(response.data.choices[0].text);
 
         if (response.data.choices) {
-          setStoredValues([
+
+          setChatSpinner(true)
+
+          setTimeout(() => {
+
+            setStoredValues([
           
               {
                   question: newQuestion,
@@ -178,6 +182,11 @@ export default function Home() {
               // ...storedValues,
           ]);
           setNewQuestion('');
+          setChatSpinner(false)
+            
+          }, 3000);
+
+
       }
 
 
@@ -353,7 +362,7 @@ export default function Home() {
        openChat &&
        <FloatingHover>
             <MdClose onClick={() => {setOpenChat(false)}}/>
-            <AnswerSection storedValues = {storedValues}/>
+            <AnswerSection storedValues = {storedValues} chatSpinner = {chatSpinner}/>
             <ChatForm generateResponse={generateResponse}/>
         </FloatingHover>
         }
