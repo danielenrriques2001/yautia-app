@@ -1,24 +1,10 @@
-import { HeadingPomodoroTitle, SettingButton } from '@/public/styles';
+import { EditButton, HeadingPomodoroTitle, SettingButton } from '@/public/styles';
 import { Container, Grid, Card, Box } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 
 const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 
-
-	const ViewBudgetButton = styled(HeadingPomodoroTitle)`
-	
-		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		font-size: 45px;
-		margin: 0;
-		padding: 0;
-		text-transform: uppercase;
-
-		letter-spacing: 5px;
-		line-height: 1;
-	
-	
-	`;
 
 	const ViewBudgetItem = styled.p`
 		padding: 0;
@@ -63,13 +49,13 @@ const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 
 
 
-				<ViewBudgetButton>Budget:</ViewBudgetButton>
-				<ViewBudgetItem>
+				<HeadingPomodoroTitle slogan>Budget:</HeadingPomodoroTitle>
+				<HeadingPomodoroTitle>
 						${budget}
-					</ViewBudgetItem>
-				<SettingButton type='button' class='btn btn-primary' onClick={handleEditClick}>
+					</HeadingPomodoroTitle>
+				<EditButton onClick={handleEditClick}>
 					Edit
-				</SettingButton>
+				</EditButton>
 
 		</Grid>
 
@@ -83,11 +69,13 @@ const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 			alignItems = {'center'}
 			justifyContent = {'center'}
 		>
-			<ViewBudgetButton >
-				<ViewBudgetItem small>
-					Disponible: ${budget - totalExpenses}
-				</ViewBudgetItem>	
-					</ViewBudgetButton>
+			<HeadingPomodoroTitle slogan >
+				Disponible:
+				<HeadingPomodoroTitle slogan = {totalExpenses > budget ? true : false} 
+				style={{color: totalExpenses > budget ? 'red' : 'black', fontSize: budget - totalExpenses >= 10000 && '4rem'}}>
+					 ${budget - totalExpenses}
+				</HeadingPomodoroTitle>	
+			</HeadingPomodoroTitle>
 				
 				
 			</ViewBudgetContent>
@@ -97,7 +85,9 @@ const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 						gridRow={'span 1'}
 						gridColumn = {'11/13'}
 		>
-			<ViewBudgetItem small>Spent so far: ${totalExpenses} </ViewBudgetItem>
+			<HeadingPomodoroTitle slogan>Spent so far: 
+				<HeadingPomodoroTitle style={ {fontSize: totalExpenses >= 10000 && '2rem'}}>${totalExpenses} </HeadingPomodoroTitle>
+			</HeadingPomodoroTitle>
 		</ViewBudgetContent>
 		</Grid>
 	)

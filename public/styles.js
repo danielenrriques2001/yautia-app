@@ -157,15 +157,16 @@ export const HeadingContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-top: 15px;
   animation: 1s ${fadeInAnimation};
-  padding: 45px;
+  padding: 1rem;
 
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   border-radius: 45px;
   
   border:  1px gray ;
-  padding-bottom: 0;
+
   margin-bottom: 35px;
 
 `;
@@ -424,7 +425,7 @@ export const FloatingButton = styled(SettingButton)`
 }
 
 `;
-export const spinnerContainer = styled.div`
+export const SpinnerContainer = styled.div`
 
 width: 100%;
 height: 100%;
@@ -526,6 +527,8 @@ export const EditButton = styled.button`
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+
+
 
 
 &:hover {
