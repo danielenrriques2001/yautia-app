@@ -17,14 +17,23 @@ const QuoteAuthor = styled(HeadingPomodoroTitle)`
     text-align: center;
 
 `;
+
+const QuoteContainer = styled(Card)`
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
+  transition:  all .5s ease-in;
+  &:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  }
+`;
 const Quotes = ({content, author}) => {
 
 
   return (
-    <Card>
+    <QuoteContainer>
         <QuoteContent slogan>{content}</QuoteContent>
         <QuoteAuthor>{author}</QuoteAuthor>
-    </Card>
+    </QuoteContainer>
 
   )
 }

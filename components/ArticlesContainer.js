@@ -4,6 +4,8 @@ import ArticleItem from './ArticleItem'
 import useSWR from 'swr'
 import styled from 'styled-components'
 import { Container } from '@mui/system'
+import { SpinnerContainer } from '@/public/styles'
+import { RingLoader } from 'react-spinners'
 
 const StyledGrid = styled(Grid)`
 
@@ -25,12 +27,12 @@ const ArticlesContainer = ({setKeyWord, keyword}) => {
 
 
   if (error) return <div>failed to load</div>
-  if (isLoading) return <div>loading...</div>
+  if (isLoading) return <SpinnerContainer><RingLoader size = {450} color = {'#76EEC6'}/></SpinnerContainer>
 
 console.log(data)
 
 
-  if(data.status === 'error') {return (
+  if(!data.status === 'ok') { (
 
     <Container>
       <Alert severity="error">  
@@ -41,7 +43,7 @@ console.log(data)
    
   )} else {
 
-
+    return (
     <StyledGrid
     >
 
@@ -67,7 +69,7 @@ console.log(data)
 
     </StyledGrid>
 
-  }
+  )}
 }
 
 export default ArticlesContainer
