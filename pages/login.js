@@ -51,7 +51,7 @@ const Login = () => {
   useEffect(() => {
     getSession().then((session) => {
       if (session) {
-        router.replace('/profile');
+        router.replace('/');
       } else {
         setIsLoading(false);
       }
