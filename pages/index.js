@@ -14,7 +14,6 @@ import time from '/public/time.png'
 import Image from 'next/image'
 import { Configuration, OpenAIApi } from 'openai';
 import {MdClose} from 'react-icons/md'
-
 import collage from '/public/collage.jpg'
 import collage1 from '/public/collage.jpg'
 import collage2 from '/public/collage2.jpg'
@@ -25,6 +24,7 @@ import collage6 from '/public/collage6.jpg'
 import collage7 from '/public/collage7.jpg'
 import ChatForm from '@/components/ChatForm'
 import AnswerSection from '@/components/ChatAnswer'
+import Quotes from '@/components/Quotes'
 
 const FloatingHover = styled.div`
 width: 500px;
@@ -124,6 +124,7 @@ export default function Home() {
   const [openChat, setOpenChat] = useState(false)
   const [chatSpinner, setChatSpinner] = useState(false)
 
+
   useEffect(() => {
 
  
@@ -204,6 +205,7 @@ export default function Home() {
         const randomItem = array[randomNumber]
      
          SetrandomQuote(randomItem)
+       
 
      
       }
@@ -237,17 +239,19 @@ export default function Home() {
         alignItems="center"
       > 
              
-        <Typography variant='h5'>Ready for a Productive Day!</Typography>
+        <HeadingPomodoroTitle variant='h5'>Ready for a Productive Day?!</HeadingPomodoroTitle>
+        <ColoredLine/>
 
         <Container>
-              <Card>
-                <Typography variant='h5'>{randomQuote?.text}</Typography>
-                <Typography variant='h6'>{randomQuote?.author}</Typography>
-
-              </Card>
+                <Quotes 
+                content = {randomQuote?.text}
+                author = {randomQuote?.author}
+                />
         </Container>
         <Dashboard/>
 
+      <ColoredLine/>
+      
       </Grid>
      
     </>
