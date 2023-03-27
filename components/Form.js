@@ -181,7 +181,7 @@ const Form = () => {
       
       if (!result.error || !result.status === 40) {
         // set some auth state
-        router.replace('/profile');
+        router.replace('/');
 
 
         setIsLoading(false)
@@ -210,7 +210,7 @@ const Form = () => {
           // set some auth state
           setIsLoading(false)
 
-          router.replace('/profile');
+          router.replace('/');
         }
 
       } catch (error) {
