@@ -1,15 +1,25 @@
 import React, { useState } from 'react'
 import { Grid, Card } from '@mui/material'
 import styled from 'styled-components';
-import {  StyledButton } from '@/public/styles'
+import {  HeadingPomodoroTitle, NavigationItemLink, EditButton, DeleteButton, HeadingNavButton} from '@/public/styles'
 import { useRouter } from 'next/router';
-import ModalComponent from './AppointmentForm';
+import AppointmentForm from './AppointmentForm';
 
+
+const ItemAppointment = styled(NavigationItemLink)`
+
+  width: 100%;
+
+  @media (max-width: 768px) {
+   width: 80%;
+}
+`;
 const AppointmentItem = ({title, description, date, id}) => {
 
     const router = useRouter();
 
     const [edit, setEdit] = useState(false)
+    const handleEdit = () => setEdit(!edit);
 
     const deleteTermin = async (id) =>{
         
@@ -51,18 +61,18 @@ const AppointmentItem = ({title, description, date, id}) => {
 
   return (
     <div>
-         <Card>
+         <ItemAppointment>
                 <Grid
                   container 
                   flexDirection={'column'}
                   alignItems= {'center'}
                   paddingTop = {'25px'}
                 >
-                    <AppointmentHeading>{title}</AppointmentHeading>
+                    <HeadingPomodoroTitle slogan>{title}</HeadingPomodoroTitle>
 
                     <div>
                       <p>{description}</p>
-                      <p>{date}</p>
+                      <HeadingPomodoroTitle slogan>{date}</HeadingPomodoroTitle>
                     </div>
                 
                 </Grid>
@@ -75,15 +85,15 @@ const AppointmentItem = ({title, description, date, id}) => {
                     gap = {1}
 
                    >
-                    <AppointmentButton delete onClick={() => {deleteTermin(id)}} >Delete</AppointmentButton>
-                    <AppointmentButton  onClick={() => {setEdit(!edit)}}>Edit</AppointmentButton>
+                    <DeleteButton delete onClick={() => {deleteTermin(id)}} >Delete</DeleteButton>
+                    <EditButton  onClick={() => {setEdit(!edit)}}>Edit</EditButton>
                    </Grid>
-                </Card>
+                </ItemAppointment>
 
                 {
-                  edit && <ModalComponent 
-                            setter = {setEdit} 
-                            condition = {edit}
+                  edit && <AppointmentForm 
+                            open = {edit} 
+                            handleClose = {handleEdit}
                             title = {title}
                             description = {description}
                             date = {date}
@@ -103,15 +113,3 @@ const AppointmentItem = ({title, description, date, id}) => {
 
 export default AppointmentItem
 
-const AppointmentHeading = styled.h2`
-margin: 0;
-padding: 0;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-text-transform: uppercase;
-
-`;
-
-const AppointmentButton = styled(StyledButton)`
-
-background: ${props => props.delete ? '#e7197e': '#efe1ce'};
-`;

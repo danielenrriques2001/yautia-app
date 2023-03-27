@@ -4,13 +4,15 @@ import Form from '@/components/Form'
 import { Grid, Typography } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import styled, {keyframes} from 'styled-components'
-import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, SettingButton } from '../../public/styles'
+import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, SettingButton, spinnerContainer } from '../../public/styles'
 import { getSession, useSession } from 'next-auth/react'
 import AppointmentList from '@/components/AppointmentList'
 import ModalComponent from '@/components/AppointmentForm'
 
 import ClipLoader from "react-spinners/ClipLoader";
 import AppointmentForm from '@/components/AppointmentForm'
+
+
 
 const AppointmentCom = () => {
   const { data: session, status } = useSession()
@@ -35,7 +37,7 @@ useEffect(() => {
 }, [])
 
 
-if (isLoading) return <ClipLoader color='#76EEC6'/>
+if (isLoading) return <spinnerContainer><ClipLoader color='#76EEC6' size={450}/></spinnerContainer> 
 if (!data) return <p>No profile data</p>
 
 

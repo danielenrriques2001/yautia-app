@@ -209,12 +209,7 @@ export const HeadingPomodoroTitle = styled.p`
   font-weight: ${props => props.slogan ? '100' : '700'};
   margin-bottom: ${props => props.slogan ? '10px' : '0px'};
 
-
-
-
 `;
-
-
 
 export const StyledSettingButton = styled(Button)`
   align-items: center;
@@ -416,6 +411,30 @@ export const FloatingButton = styled(SettingButton)`
   box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
 
+
+@media (max-width: 768px) {
+  width: 200px;
+  right: 40%;
+  bottom: 1%;
+ 
+  height: 75px;
+  background-color: transparent;
+
+
+}
+
+`;
+export const spinnerContainer = styled.div`
+
+width: 100%;
+height: 100%;
+
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0 auto;
+text-align: center;
+
 `;
 
 export const ModalContent = styled.div`
@@ -437,6 +456,123 @@ export const ModalContent = styled.div`
   top: -15%;
   left: 25%;
   
+
+
+`;
+
+export const NavigationItemLink = styled.a`
+
+  width: 450px;
+  padding: 45px;
+  text-decoration: none;
+  border-radius: 15px;
+  font-family: sans-serif;
+  font-weight: 100;
+  min-height: 100px;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  transition: all .2s ease-in-out;
+  font-size: 15px;
+  color: #414141; 
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 10px;
+  }
+
+`;
+
+export const LinkNavigationContainer = styled.div`
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+  
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+
+  }
+      
+`;
+
+export const EditButton = styled.button`
+
+
+  background-color: #13aa52;
+  border: 1px solid #13aa52;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+
+&:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+    padding: 10px 30px;
+}
+
+`;
+
+export const DeleteButton = styled.button`
+
+  background-color: #FFFFFF;
+  border: 1px solid rgb(209,213,219);
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
+&:hover {
+  background-color: rgb(249,250,251);
+}
+
+&:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+&:focus-visible {
+  box-shadow: none;
+}
+
 
 
 `;
