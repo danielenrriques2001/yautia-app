@@ -1,12 +1,12 @@
 import TaskForm from '@/components/TaskForm'
 import TaskItem from '@/components/TaskItem'
 import TaskList from '@/components/TaskList'
-import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, ModalContent } from '@/public/styles'
+import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, ModalContent, SpinnerContainer } from '@/public/styles'
 import { Grid, Modal } from '@mui/material'
 import { useSession, getSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
-import ReactLoading from 'react-loading';
 import useSWR from 'swr'
+import {MoonLoader, ClockLoader} from "react-spinners";
 
 
 const TasksComponent = () => {
@@ -50,13 +50,13 @@ const TasksComponent = () => {
 
 
   if (error) return <div>failed to load</div>
-  if (isLoading) return <div>loading...</div>
+  if (isLoading) return <SpinnerContainer><MoonLoader color='#76EEC6' size={500}/></SpinnerContainer>
 
 
   return (
     <>
         <HeadingContainer>
-            <HeadingPomodoroTitle>To-do List</HeadingPomodoroTitle>
+            <HeadingPomodoroTitle slogan>To-do List</HeadingPomodoroTitle>
         </HeadingContainer>
 
         <Grid
@@ -64,13 +64,17 @@ const TasksComponent = () => {
     
         >
         <TaskForm EditingItem = {EditingItem} id = {id} isEditingItem = {isEditingItem} setIsEditingItem = {setIsEditingItem}/>
+
         {
           tasks && <TaskList tasks = {tasks} setEditingItem = {setEditingItem} setIsEditingItem = {setIsEditingItem}/>
         }
         </Grid>
 
+        {
+          tasks.length > 0 && <FloatingButton onClick={() => {handleOpenGenerator(); generateRandomTask();}}>Random!</FloatingButton>
+        }
 
-        <FloatingButton onClick={() => {handleOpenGenerator(); generateRandomTask();}}>Random!</FloatingButton>
+        
        {
         openGenerator && 
         <Modal
@@ -78,10 +82,10 @@ const TasksComponent = () => {
 
         >
 
-          <ModalContent>
+          <ModalContent task >
                  {randomTask 
                  ? <TaskItem name = {randomTask.name} category = {randomTask.category} description = {randomTask.description} date = {randomTask.date}  />
-                 : <ReactLoading type={'cylon'} color={'#e33900'} height={400} width={400} />
+                 : <SpinnerContainer><ClockLoader color='#BC3F67' size={450}/></SpinnerContainer>
                  }
                 
           </ModalContent>

@@ -5,6 +5,7 @@ const TaskList = ({tasks, setEditingItem, setIsEditingItem}) => {
   return (
 
     <Grid
+      marginLeft = {1}
         
     >
         {

@@ -1,30 +1,11 @@
-import { SettingButton } from '@/public/styles'
+import { EditButton, SettingButton } from '@/public/styles'
 import { Grid, Select, TextField, MenuItem, InputLabel, Modal} from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import useSWR, { mutate } from "swr";
 
-const ModalContent = styled.div`
 
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%;
-  border-radius: 45px 15px;
-  text-align: center;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  position: absolute;
-  top: -15%;
-  left: 25%;
-
-`;
 
 const StyledSelect = styled.select`
 
@@ -46,19 +27,15 @@ const StyledForm = styled.form`
     
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
-    width: fit-content;
-    padding: 45px;
-
-    border-top-left-radius: 4em; 
-    border-top-right-radius: 4em; 
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    padding: 15px;
+    border-radius: 45px;
 
 `;
 
 const TaskForm = ({id, isEditingItem , EditingItem, setIsEditingItem}) => {
 
-  console.log(isEditingItem)
+
 
   const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -172,15 +149,10 @@ const TaskForm = ({id, isEditingItem , EditingItem, setIsEditingItem}) => {
 
       <StyledForm 
           onSubmit={submitHandler}
-      // container
-      // flexDirection={'column'}
-      // justifyContent = {'center'}
-      // textAlign = {'center'}
     
     >
     <TextField
           defaultValue={isEditingItem ? EditingItem.name : ''}
-          // key={isEditingItem ? EditingItem.name : ''} 
           style={{ width: "600px", margin: "5px" }}
           type="text"
           label={'task'}
@@ -194,7 +166,6 @@ const TaskForm = ({id, isEditingItem , EditingItem, setIsEditingItem}) => {
     />
     <TextField
           defaultValue={isEditingItem ? EditingItem.description : ''}
-          // key={isEditingItem ? EditingItem.description : ''}
           value = {description}
           onChange={(e) => {setDescription(e.target.value)}}
           style={{ width: "600px", margin: "5px" }}
@@ -204,10 +175,7 @@ const TaskForm = ({id, isEditingItem , EditingItem, setIsEditingItem}) => {
           id='description'
           multiline
           rows={4}
-         
 
-        //   defaultValue={cost}
-       
     />
      <InputLabel id="category">Category</InputLabel>
 
@@ -225,13 +193,11 @@ const TaskForm = ({id, isEditingItem , EditingItem, setIsEditingItem}) => {
         <option value="family">Family</option>
   </StyledSelect>
 
-    
-    
     <Grid
-      marginBottom={1}
+      marginTop={2}
     >
-    <SettingButton type='submit' variant="contained" color="primary"  
-    >Do it!</SettingButton>
+    <EditButton type='submit' variant="contained" color="primary"  
+    >Do it!</EditButton>
     </Grid>
 
     

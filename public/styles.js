@@ -457,6 +457,7 @@ export const ModalContent = styled.div`
   top: -15%;
   left: 25%;
   
+  padding: ${props => props.task ? '45px': '20px'};
 
 
 `;
@@ -544,7 +545,6 @@ export const EditButton = styled.button`
 
 export const DeleteButton = styled.button`
 
-  background-color: #FFFFFF;
   border: 1px solid rgb(209,213,219);
   border-radius: .5rem;
   box-sizing: border-box;
@@ -562,9 +562,12 @@ export const DeleteButton = styled.button`
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  background-color: ${props => props.delete ? '#BC3F67': '#FFFFFF'};
+  color: ${props => props.delete ? 'white': 'black'};
 
 &:hover {
   background-color: rgb(249,250,251);
+  color: black;
 }
 
 &:focus {
