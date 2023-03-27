@@ -3,7 +3,7 @@ import { Grid, Card } from '@mui/material'
 import styled from 'styled-components';
 import {  StyledButton } from '@/public/styles'
 import { useRouter } from 'next/router';
-import ModalComponent from './Modal';
+import ModalComponent from './AppointmentForm';
 
 const AppointmentItem = ({title, description, date, id}) => {
 

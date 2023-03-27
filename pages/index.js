@@ -225,7 +225,7 @@ export default function Home() {
           })
       }, [])
     
-      if (isLoading) return <p>Loading...</p>
+      if (isLoading) return <ClimbingBoxLoader color = '#76EEC6'/>
       if (!data) return <p>No profile data</p>
 
   if(session) {

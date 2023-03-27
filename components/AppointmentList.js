@@ -5,15 +5,20 @@ import styled from 'styled-components'
 import AppointmentItem from './AppointmentItem'
 
 
+const AppointmentsContainer = styled.div`
+
+--auto-grid-min-size: 16rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+  grid-gap: 1rem;
+
+
+`;
 
 const AppointmentList = ({data}) => {
   return (
-      <Grid
-        container
-        flexDirection={'Column'}
-        gap={2}
-      >
-        {
+      <AppointmentsContainer> 
+      {
           data.map(e => {
             return(
             <AppointmentItem 
@@ -26,8 +31,10 @@ const AppointmentList = ({data}) => {
             )
           })
         }
-      </Grid>
-   
+
+
+
+      </AppointmentsContainer>
     )
 }
 
