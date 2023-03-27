@@ -1,10 +1,27 @@
-import { HeadingPomodoroTitle, SettingButton } from '@/public/styles'
-import { Card } from '@mui/material'
+import { DeleteButton, EditButton, HeadingPomodoroTitle, SettingButton } from '@/public/styles'
+import { Card, Grid, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
+import styled from 'styled-components'
+
+
+const TaskCard = styled(Card)`
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding: 25px;
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  border-radius: 45px;
+`;
+
+const TaskContent = styled(Grid)`
+
+  width: 45rem;
+
+
+`;
 
 const TaskItem = ({name, description, date, completed, category, id, setEditingItem, setIsEditingItem}) => {
-
   const router = useRouter();
   const deleteTask = async (id) =>{
         
@@ -17,7 +34,6 @@ const TaskItem = ({name, description, date, completed, category, id, setEditingI
     router.push('/services/tasks')
     
 }
-
 async function MarkAsComplete(id, data) {
   const response = await fetch(`/api/task/${id}`, {
     method: "PATCH",
@@ -32,22 +48,36 @@ async function MarkAsComplete(id, data) {
   
     router.push('/services/tasks')
 }
-
-
-
   return (
-    <Card>
-        <HeadingPomodoroTitle>{name}</HeadingPomodoroTitle>
-        <p>{description}</p>
-        <p>{completed}</p>
-        <p>{category}</p>
+    <TaskCard>
 
-        <p>{date}</p>
+        <TaskContent
+        >
 
-        <SettingButton onClick={() => {deleteTask(id)}}>x</SettingButton>
-        <SettingButton onClick={() => {setEditingItem({id, name, description, category, date}); setIsEditingItem(true)}}>Edit</SettingButton>
-        <SettingButton onClick={() => {MarkAsComplete(id, {name, description, category, completed: !completed})}}>{completed ? 'Uncompleted' : 'Mark as Completed'}</SettingButton>
-    </Card>
+        <Typography variant='h4'>{name}</Typography>
+        <Typography variant='h5'>{description}</Typography>
+        <Typography>{completed}</Typography>
+        <DeleteButton>{category}</DeleteButton>
+
+        <Typography>{date}</Typography>
+
+        </TaskContent>
+
+
+        <Grid
+          container 
+          flexDirection={'column'}
+          gap = {'15px'}
+        >
+          
+       
+        <DeleteButton delete onClick={() => {deleteTask(id)}}>x</DeleteButton>
+        <EditButton onClick={() => {setEditingItem({id, name, description, category, date}); setIsEditingItem(true)}}>Edit</EditButton>
+        <DeleteButton onClick={() => {MarkAsComplete(id, {name, description, category, completed: !completed})}}>{completed ? '✅' : '☑️'}
+        </DeleteButton>
+        </Grid>
+
+    </TaskCard>
   )
 }
 

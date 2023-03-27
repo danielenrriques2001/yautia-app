@@ -1,4 +1,4 @@
-import { SettingButton, ModalContent } from '@/public/styles'
+import { SettingButton, ModalContent, EditButton } from '@/public/styles'
 import { Grid, Select, TextField, MenuItem, InputLabel, Modal} from '@mui/material'
 import React, { useState } from 'react'
 import styled from 'styled-components';
@@ -157,10 +157,11 @@ const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpen
     
     
     <Grid
-      marginBottom={1}
+      marginBottom={'1rem'}
+      marginTop = {1}
     >
-    <SettingButton type='submit' variant="contained" color="primary"  
-    >Add it!</SettingButton>
+    <EditButton type='submit' variant="contained" color="primary"  
+    >Add it!</EditButton>
     </Grid>
 
     

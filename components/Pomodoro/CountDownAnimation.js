@@ -6,6 +6,7 @@ const CountdownAnimation = ({pomodoro, animate, children}) => {
 
   const [started, setStarted] = useState(false);
 
+
   const { stopAnimate, executing, setCurrentTimer, startTimer } = useContext(PomodoroContext);
 
     return (

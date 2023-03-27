@@ -40,6 +40,7 @@ const ExpenseList = ({expenses, isEditing, isEditingExpense, handleCloseExpense,
 		<Grid
             container
             marginY={5}
+	
         >
 			<TextField
 				type='text'
@@ -68,6 +69,8 @@ const ExpenseList = ({expenses, isEditing, isEditingExpense, handleCloseExpense,
 			<Grid
                 container 
                 columns={{ xs: 4, sm: 8, md: 12 }}
+				marginTop = {2}
+				gap = {2}
             >
 				{filteredList.map((expense) => (
 					<ExpenseItem 

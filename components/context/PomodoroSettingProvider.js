@@ -3,6 +3,7 @@ import { useState, createContext, useEffect } from "react";
 import styled, {keyframes} from "styled-components";
 import { bounceInDown } from 'react-animations';
 import { ToastContainer, toast } from 'react-toastify';
+import useSound from 'use-sound';
 
 
 const bounceAnimation = keyframes`${bounceInDown}`;
@@ -40,6 +41,8 @@ const PomodoroContextProvider = (props) => {
 
     const [startAnimate, setStartAnimate] = useState(false)
 
+    const [play, {stop}] = useSound('/alarm.wav',{ volume: 0.25 });
+
     
     const handleToast = (pomodoro) => {
 
@@ -58,12 +61,8 @@ const PomodoroContextProvider = (props) => {
        }, 1000);
     
     }
-    
-
-
     //This is the timer of the Pomodoro
     // ! Initializes as 0
-
 
     function setCurrentTimer(active_state) {
         updateExecute({
@@ -92,7 +91,7 @@ const PomodoroContextProvider = (props) => {
     
     <TimerHeading variant="h1">{minutes}:{seconds}
     {
-    seconds == 0 && minutes == 0 ? setMessage(true) : setMessage(false)
+    seconds == 0 && minutes == 0 ? setAlarmResponse(true) : setAlarmResponse(false)
     }
     {
      message && handleToast(executing)
@@ -134,6 +133,20 @@ const PomodoroContextProvider = (props) => {
 
     function stopAnimate() {
         setStartAnimate(false)
+    }
+
+    function setAlarmResponse(boolean) {
+
+        if(boolean === true) {
+            setMessage(true)
+            play()
+        }
+        if(boolean === false) {
+            setMessage(false)
+            
+            stop();
+        }
+
     }
 
     return (

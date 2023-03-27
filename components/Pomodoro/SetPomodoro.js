@@ -68,10 +68,7 @@ const SetPomodoro = () => {
                         onChange={handleChange} 
                         defaultValue={newTimer.work}
                         label = {'Work'}
-                        style={{ backgroundImage: work ? `url(/work-cat.jpg)` : 'none' }}
-                        onFocus ={ () => {setWork(true)}}
-                        onBlur = {() => {setWork(false)}}
-                        onMouseOver={ () => {setWork(true)}}
+
                         />
                     </Grid>
 
@@ -89,10 +86,6 @@ const SetPomodoro = () => {
                         onChange={handleChange} 
                         defaultValue={newTimer.short}
                         id = 'shortBreak'
-                        style={{ backgroundImage: short ? `url(/short-break.jpg)` : 'none' }}
-                        onFocus ={ () => {setShort(true)}}
-                        onBlur = {() => {setShort(false)}}
-                        onMouseOver={ () => {setShort(true)}}
                         />
                     </Grid>
 
@@ -110,10 +103,6 @@ const SetPomodoro = () => {
                         onChange={handleChange} 
                         defaultValue={newTimer.long}
                         id = 'longBreak'
-                        style={{ backgroundImage: long ? `url(/long-break.jpg)` : 'none' }}
-                        onFocus ={ () => {setLong(true)}}
-                        onBlur = {() => {setLong(false)}}
-                        onMouseOver={ () => {setLong(true)}}
                     />
                     </Grid>
                 </SettingContainer>

@@ -1,11 +1,12 @@
 import { Card, Typography, Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import styled from "styled-components";
+import SyncLoader from 'react-spinners/SyncLoader'
 
-const AnswerSection = ({storedValues}) => {
+const AnswerSection = ({storedValues, chatSpinner}) => {
 
 const ChatItem = styled.div`
- background-color: ${props => props.answer ? "#05C4BC" : "#F3F6F4"};
+background-color: ${props => props.answer ? "#05C4BC" : "#F3F6F4"};
 padding: 15px;
 border-radius: 15px;
 color: white;
@@ -15,20 +16,10 @@ color: black;
 text-align: end;
 margin-bottom: 15px;
 font-weight: 100;
+box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
 
 &:before {
     content: '👀 ';
-}
-
-`;
-
-const AnswerItem = styled.div`
-background-color: gray;
-border-radius: 15px;
-font-family: sans-serif;
-
-&:before {
-    content: '🕶';
 }
 
 `;
@@ -47,6 +38,8 @@ const AnswersContainer = styled.div`
 
             
             >
+            
+           
                
             {storedValues.map((value, index) => {
                     return (
@@ -61,6 +54,9 @@ const AnswersContainer = styled.div`
                         </Grid>
                     );
                 })}
+                 {
+                    chatSpinner && <ChatItem><SyncLoader color="#05C4BC"/></ChatItem>
+                 }
             </AnswersContainer>
         </>
     )

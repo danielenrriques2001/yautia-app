@@ -1,11 +1,12 @@
 import NewBudget from '@/components/NewBudget'
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
-import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, SettingButton } from '../../public/styles'
+import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, SettingButton, SpinnerContainer } from '../../public/styles'
 import { getSession, useSession } from 'next-auth/react';
 import BudgetOverView from '@/components/BudgetOverView';
 import BudgetForm from '@/components/BudgetForm';
 import ExpenseList from '@/components/ExpenseList';
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Modal = styled.div`
   position: fixed; 
@@ -93,12 +94,12 @@ async function updateUser(id, data) {
 }
 
 
-if (isLoading) return <p>Loading...</p>
+if (isLoading) return <SpinnerContainer><MoonLoader color='#76EEC6' size={500}/></SpinnerContainer>
 
   return (
     <>
           <HeadingContainer>
-              <HeadingPomodoroTitle>Budget Admin</HeadingPomodoroTitle>
+              <HeadingPomodoroTitle slogan>Budget Admin</HeadingPomodoroTitle>
           </HeadingContainer>
 
     {
@@ -132,7 +133,7 @@ if (isLoading) return <p>Loading...</p>
         }
 
         {
-          expensesList && <ExpenseList 
+          expensesList?.length > 0 && <ExpenseList 
           expenses={expensesList} 
           isEditing = {isEditing} 
           isEditingExpense = {isEditingExpense}

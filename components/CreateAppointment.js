@@ -5,7 +5,7 @@ import { pulse } from 'react-animations';
 
 import { useState, useRef, useEffect } from 'react';
 import ReactLoading from 'react-loading';
-import { SettingButton } from '@/public/styles';
+import { EditButton, SettingButton } from '@/public/styles';
 import { getDisplayName } from 'next/dist/shared/lib/utils';
 
 import { useSession } from 'next-auth/react'
@@ -110,8 +110,8 @@ const router = useRouter();
     <Grid
       marginBottom={1}
     >
-    <SettingButton type='submit' variant="contained" color="primary"  
-    >Add it!</SettingButton>
+    <EditButton type='submit' variant="contained" color="primary"  
+    >Add it!</EditButton>
     </Grid>
 
     
