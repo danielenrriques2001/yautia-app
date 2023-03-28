@@ -5,8 +5,6 @@ import { bounce } from 'react-animations'
 import { Typography, Button, Grid } from '@mui/material';
 import { Container } from '@mui/system';
 import React, {useContext, useEffect} from 'react'
-import {Roboto} from 'next/font/google'
-
 
 const fadeInAnimation = keyframes`${bounce}`;
 
@@ -126,29 +124,44 @@ export const StyledButton = styled.button`
 
 export const PauseButton = styled.button`
 
-  background: #FFFFFF;
+  background: ${(props) => props.BGColor || '#FFFFFF'};
   border: 0 solid #E2E8F0;
+  border-style: ${(props) => props.BStyle || 'solid'};
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
-  color: #1A202C;
-  display: inline-flex;
-  font-family: Inter, sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
+  color: ${(props) => props.TextColor || '#1A202C'};
+  font-family: 'Yanone Kaffeesatz' , sans-serif;
+  font-size: ${(props) => props.FontSize || 1}rem;
+  font-weight: ${(props) => props.FontWeight || 800};
   height: 56px;
   justify-content: center;
+  align-items: center;
   line-height: 24px;
   overflow-wrap: break-word;
-  padding: 24px;
+  padding: ${(props) => props.Padding || 24}px;
   text-decoration: none;
-  width: auto;
-  border-radius: 8px;
+  min-width: 10px;
+  width: ${(props) => props.Width || 100}%;
+  border-radius: ${(props) => props.BRadius || 8}px;
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin-top: ${(props) => props.MTop || 0}px;
+  margin-bottom: ${(props) => props.MBottom || 0}px;
+  
+  &:hover,
+&:focus {
+  opacity: .75;
+}
 
-  border: 1px solid black;
+@media (max-width: 768px) {
+  width: 100%;
+}
+  
+  
+  
+
 
 
 `;
@@ -168,14 +181,14 @@ export const HeadingContainer = styled.div`
   border:  1px gray ;
 
   margin-bottom: 35px;
-
+  
 `;
 
 export const HeadingNavButton = styled(Button)`
 
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  letter-spacing: 2px;
+  font-family:  'Yanone Kaffeesatz', sans-serif;
+  font-size: 25px;
+  letter-spacing: 15px;
   text-decoration: none;
   text-transform: uppercase;
   color: #000;
@@ -188,7 +201,7 @@ export const HeadingNavButton = styled(Button)`
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  background: ${props => props.selected ? "#fbeee0" : "white"};
+  background: ${props => props.selected ? "#BAD7E9" : "white"};
 &:active {
   box-shadow: 0px 0px 0px 0px;
   top: 5px;
@@ -202,13 +215,25 @@ export const HeadingNavButton = styled(Button)`
 
 export const HeadingPomodoroTitle = styled.p`
 
-  font-family: 'lobster two';
   margin: 0;
   padding: 0;
-  font-family: ${props => props.slogan ? 'Segoe UI': 'lobster two'};
-  font-size: ${props => props.slogan ? '1.1rem' : '5rem'};
-  font-weight: ${props => props.slogan ? '100' : '700'};
-  margin-bottom: ${props => props.slogan ? '10px' : '0px'};
+  font-family: ${props => props.slogan ? 'Yanone Kaffeesatz, sans-serif': 'Nunito, sans-serif'};
+  /* font-size: ${props => props.slogan ? '1rem' : '5rem'}; */
+  font-weight: ${(props) => props.Weight || 100};
+  font-size: ${(props) => props.Size || 1}rem;
+  color: ${(props) => props.Color || '#2D2727'};
+  letter-spacing: 1px;
+  margin-top: ${(props) => props.MTop || 0}rem;
+  margin-bottom: ${(props) => props.MBottom || 0}rem;
+  border-bottom-color: ${(props) => props.BColor || 'transparent'};
+  border-bottom-width: ${(props) => props.BWidth || 1}px;
+  letter-spacing: ${(props) => props.LetterSpace || 0}rem;
+  border-bottom-style: solid;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 
 `;
 
@@ -274,21 +299,19 @@ export const StyledSettingButton = styled(Button)`
 export const StyledInput = styled.input`
 
   margin: 0;
-  border:  10px solid #BAF6C4;
+  border:  10px solid #2B3467;
   width: 200px;
   height: 200px;
+  font-family: ;
   border-radius: 50%;
   text-align: center;
   transition: all ease-in .3s;
   cursor: pointer;
-
   margin-bottom: 45px;
-
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-weight: 800;
-  font-size: 120px;
-
+  font-weight: 1000;
+  font-size: 100px;
   outline: none;
+  font-family: 'Nunito', sans-serif;
 
 
   &::-webkit-outer-spin-button,
@@ -299,12 +322,12 @@ export const StyledInput = styled.input`
     &:hover, 
     &:active, 
     &:focus {
-        border: #e06666 1px solid;
+        border: #EB455F 1px solid;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
-        color: #e06666;
+        color: #EB455F;
 
     }
 
@@ -312,9 +335,9 @@ export const StyledInput = styled.input`
 
 export const StyledLabel = styled.label`
 
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
+    font-family:  'Yanone Kaffeesatz', sans-serif;;
+    font-size: 2rem;
+    font-weight: 300;
 
 `;
 
@@ -333,8 +356,7 @@ export const SettingContainer = styled.div`
 
 `;
  
-
-export const FloatingButton = styled(SettingButton)`
+export const FloatingButton = styled.button`
 
   position: fixed;
   bottom: 10%;
@@ -355,10 +377,8 @@ export const FloatingButton = styled(SettingButton)`
   color: #3c4043;
   cursor: pointer;
   display: inline-flex;
-  fill: currentcolor;
-  font-family: "Google Sans",Roboto,Arial,sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 800;
   height: 48px;
   justify-content: center;
   letter-spacing: .25px;
@@ -374,7 +394,7 @@ export const FloatingButton = styled(SettingButton)`
   touch-action: manipulation;
   width: auto;
   will-change: transform,opacity;
-  z-index: 3;
+  font-family:  'Yanone Kaffeesatz', sans-serif;
 
 
 &:hover {
@@ -414,12 +434,13 @@ export const FloatingButton = styled(SettingButton)`
 
 
 @media (max-width: 768px) {
-  width: 200px;
-  right: 40%;
-  bottom: 1%;
  
-  height: 75px;
-  background-color: transparent;
+  position: fixed;
+  top: 90%;
+  margin: 0;
+  right: 40%;
+
+
 
 
 }
@@ -468,17 +489,17 @@ export const NavigationItemLink = styled.a`
   padding: 45px;
   text-decoration: none;
   border-radius: 15px;
-  font-family: sans-serif;
-  font-weight: 100;
+  font-family:  'Yanone Kaffeesatz', sans-serif;
+  font-weight: 400;
   min-height: 100px;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   transition: all .2s ease-in-out;
-  font-size: 15px;
-  color: #414141; 
-
+  color: #2B3467; 
+  font-size: ${(props) => props.FontSize || 30}px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 2px solid #EB455F;
 
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
@@ -487,20 +508,26 @@ export const NavigationItemLink = styled.a`
 
   @media (max-width: 768px) {
     min-height: 10px;
+    width: 100%;
   }
 
 `;
 
 export const LinkNavigationContainer = styled.div`
 
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  display: ${(props) => props.Display || 'grid'};
+  justify-content: center;
+  align-items: center;
+  flex-direction: ${(props) => props.FlexDirection || 'row'} ;
+  
+  grid-template-columns:  repeat(${(props) => props.ColumnNumber || 2}, 1fr);
+  gap: ${(props) => props.Gap || 5}rem;
   margin-top: 3rem;
   
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
   }
       
@@ -579,6 +606,27 @@ export const DeleteButton = styled.button`
   box-shadow: none;
 }
 
-
-
 `;
+
+export const ColoredLine = styled.div`
+    width: 100%;
+    height: ${(props) => props.Height || .2}rem;
+    margin: 2rem;
+    border-radius: 45px;
+    margin-top: ${(props) => props.MTop || 1}rem;
+    margin-bottom: ${(props) => props.MBottom || 1}rem;
+    background-color: ${(props) => props.Color || 'gray'};
+`;
+
+
+export const FloatingContainer = styled.div`
+width: 500px;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+position: fixed;
+bottom: 1%;
+right: 1%;
+padding: 20px;
+border-radius: 15px;
+background-color: #F8F8F8;
+`;
+

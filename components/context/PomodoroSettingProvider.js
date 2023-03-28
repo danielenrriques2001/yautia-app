@@ -4,19 +4,13 @@ import styled, {keyframes} from "styled-components";
 import { bounceInDown } from 'react-animations';
 import { ToastContainer, toast } from 'react-toastify';
 import useSound from 'use-sound';
+import { HeadingPomodoroTitle } from "@/public/styles";
 
 
 const bounceAnimation = keyframes`${bounceInDown}`;
 
 
-const TimerHeading = styled.h1`
-    font-family: 'Lobster Two';
-    font-weight: 900;
-    font-size: 100px;
-    text-align: center;
 
-    text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
-`;
 
 const TimerAlertHeading = styled.p`
     font-size: 20px;
@@ -89,14 +83,17 @@ const PomodoroContextProvider = (props) => {
     
     return (
     
-    <TimerHeading variant="h1">{minutes}:{seconds}
+    <HeadingPomodoroTitle
+        Size = {10}
+        Weight = {1000}
+    >{minutes}:{seconds}
     {
     seconds == 0 && minutes == 0 ? setAlarmResponse(true) : setAlarmResponse(false)
     }
     {
      message && handleToast(executing)
     }
-    </TimerHeading>)
+    </HeadingPomodoroTitle>)
    
     }
 

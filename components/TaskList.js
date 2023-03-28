@@ -1,11 +1,14 @@
+import { LinkNavigationContainer } from '@/public/styles'
 import { Grid } from '@mui/material'
 import React from 'react'
 import TaskItem from './TaskItem'
 const TaskList = ({tasks, setEditingItem, setIsEditingItem}) => {
   return (
 
-    <Grid
-      marginLeft = {1}
+    <LinkNavigationContainer
+      Display = 'flex'
+      FlexDirection = 'column'
+      Gap = {1}
         
     >
         {
@@ -28,7 +31,7 @@ const TaskList = ({tasks, setEditingItem, setIsEditingItem}) => {
             })
         }
     
-    </Grid>
+    </LinkNavigationContainer>
     
 
   )

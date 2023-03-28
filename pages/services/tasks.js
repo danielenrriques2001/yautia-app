@@ -56,7 +56,11 @@ const TasksComponent = () => {
   return (
     <>
         <HeadingContainer>
-            <HeadingPomodoroTitle slogan>To-do List</HeadingPomodoroTitle>
+            <HeadingPomodoroTitle
+            Size = {5}
+            Weight = {300}
+            Color = {'#2B3467'}
+            >To-do List</HeadingPomodoroTitle>
         </HeadingContainer>
 
         <Grid

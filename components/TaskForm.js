@@ -1,4 +1,4 @@
-import { EditButton, SettingButton } from '@/public/styles'
+import { EditButton, PauseButton, SettingButton } from '@/public/styles'
 import { Grid, Select, TextField, MenuItem, InputLabel, Modal} from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
@@ -30,6 +30,7 @@ const StyledForm = styled.form`
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     padding: 15px;
     border-radius: 45px;
+    height: 100%;
 
 `;
 
@@ -196,8 +197,13 @@ const TaskForm = ({id, isEditingItem , EditingItem, setIsEditingItem}) => {
     <Grid
       marginTop={2}
     >
-    <EditButton type='submit' variant="contained" color="primary"  
-    >Do it!</EditButton>
+    <PauseButton 
+      type='submit' 
+      BGColor = {'#BAD7E9'}
+      FontSize = {2}
+      FontWeight = {500}
+      Width = {30}
+    >Do it!</PauseButton>
     </Grid>
 
     

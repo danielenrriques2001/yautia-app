@@ -13,6 +13,7 @@ const StyledGrid = styled(Grid)`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
   grid-gap: 1rem;
+  margin-top: 3rem;
 
 
 `;

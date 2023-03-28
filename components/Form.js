@@ -2,112 +2,18 @@ import {TextField, Button, Grid, Typography, Alert } from '@mui/material';
 import styled, {keyframes} from 'styled-components';
 import { pulse } from 'react-animations';
 
-
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import { HeadingPomodoroTitle, SettingButton } from '@/public/styles';
+import { HeadingPomodoroTitle, LinkNavigationContainer, PauseButton } from '@/public/styles';
 import PacmanLoader from "react-spinners/PacmanLoader";
 
-const ButtonLogin = styled.button`
-
-  background-color: #222;
-  border-radius: 4px;
-  border-style: none;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Farfetch Basis","Helvetica Neue",Arial,sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
-  margin: 0;
-  max-width: none;
-  min-height: 44px;
-  min-width: 10px;
-  outline: none;
-  overflow: hidden;
-  padding: 9px 20px 8px;
-  position: relative;
-  text-align: center;
-  text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: 100%;
-
-
-&:hover,
-&:focus {
-  opacity: .75;
-}
-
-`;
-
-
-
-
-const ButtonCreate = styled.button`
-
-  --b: 3px;   /* border thickness */
-  --s: .45em; /* size of the corner */
-  --color: #373B44;
-  
-  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
-  color: #353739;
-  --_p: var(--s);
-  background:
-    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-  transition: .3s linear, color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: .6em;
-  font-size: 16px;
-
-  border: 0;
-
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  margin: 18px;
-
-
-&:hover,
-&:focus-visible{
-  --_p: 0px;
-  outline-color: var(--color);
-  outline-offset: .05em;
-}
-
-&:active {
-  background: var(--color);
-  color: #353739;
-}
-
-
-
-`;
-
-const HeadingLogin = styled(HeadingPomodoroTitle)`
-  color: #353739;
-`;
-
-const StyledTextField = styled(TextField)`
-
-
-`;
 
 const Form = () => {
 
   const pulseAnimation = keyframes`${pulse}`;
 
-  // const emailInputRef = useRef();
-  // const passwordInputRef = useRef();
-
-
-
-  const LoadingLabel = styled(Typography)`
+  const LoadingLabel = styled(HeadingPomodoroTitle)`
   
     animation: 1s infinite ${pulseAnimation};
 
@@ -181,7 +87,7 @@ const Form = () => {
       
       if (!result.error || !result.status === 40) {
         // set some auth state
-        router.replace('/profile');
+        router.replace('/');
 
 
         setIsLoading(false)
@@ -210,7 +116,7 @@ const Form = () => {
           // set some auth state
           setIsLoading(false)
 
-          router.replace('/profile');
+          router.replace('/');
         }
 
       } catch (error) {
@@ -224,10 +130,19 @@ const Form = () => {
     <>
        
         <StyledForm onSubmit={submitHandler}>
-        <HeadingLogin>{isLogin ? `You're back!` : 'Welcome!'}</HeadingLogin>
+        <HeadingPomodoroTitle
+          slogan
+          Weight = {300}
+          Size = {3}
+          LetterSpace = {.25}
+
+        
+        >{isLogin ? `You're back!` : 'Welcome!'}
+        
+        </HeadingPomodoroTitle>
 {
   !isLogin &&
-      <StyledTextField
+      <TextField
       style={{ width: "600px", margin: "5px" }}
       type="name"
       label={'name'}
@@ -238,7 +153,7 @@ const Form = () => {
     />
 }
 <br/>
-<StyledTextField
+<TextField
       style={{ width: "600px", margin: "5px" }}
       type="email"
       label={'email'}
@@ -249,7 +164,7 @@ const Form = () => {
     />
 <br/>
 
-<StyledTextField
+<TextField
     style={{ width: "600px", margin: "5px" }}
     type="password"
     label={'password'}
@@ -261,25 +176,42 @@ const Form = () => {
 <br />
 
 <br />
-<ButtonLogin type='submit' variant="contained" color="primary">
+<PauseButton 
+  type='submit'
+  BGColor = {'#EB455F'}
+  Bstyle = {'none'}
+  FontSize = {1.3}
+  FontWeight  = {300}
+  BRadius = {4}
+  TextColor = {'black'}
+  >
 {isLogin ? 'Login' : 'Create Account'}
-</ButtonLogin>
-<ButtonCreate type='button' onClick={switchAuthModeHandler}>
+</PauseButton>
+<PauseButton 
+  type='button' 
+  onClick={switchAuthModeHandler}
+  FontWeight = {300}
+  FontSize = {1.3}
+  MTop = {5}
+  TextColor = {'black'}
+  BGColor = {'#7E4851'}
+  >
 {isLogin ? 'Create new account' : 'Login with existing account'}
-</ButtonCreate>
+</PauseButton>
 
 {
 
-isLoading && <Grid
-            container 
-            justifyContent={'center'}
-            alignItems = {'center'}
-            flexDirection = {'column'}
-
+isLoading && <LinkNavigationContainer
+                Display = {'flex'}
+                FlexDirection = {'column'}
             >
               <PacmanLoader color = {'#353739'}/>
-              <LoadingLabel variant='h5'>{ isLogin ? 'Looking your Profile' : 'Your Account is being Created'}</LoadingLabel>
-            </Grid>
+              <LoadingLabel
+                Weight = {800}
+                Size = {2}
+              >{ isLogin ? 'Looking your Profile' : 'Your Account is being Created'}
+              </LoadingLabel>
+            </LinkNavigationContainer>
 } 
 {
 errorMessage  && <Grid

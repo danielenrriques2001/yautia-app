@@ -99,7 +99,12 @@ if (isLoading) return <SpinnerContainer><MoonLoader color='#76EEC6' size={500}/>
   return (
     <>
           <HeadingContainer>
-              <HeadingPomodoroTitle slogan>Budget Admin</HeadingPomodoroTitle>
+              <HeadingPomodoroTitle
+                 Size = {5}
+                 Weight = {300}
+                 Color = {'#2B3467'}
+              
+              >Budget Admin</HeadingPomodoroTitle>
           </HeadingContainer>
 
     {

@@ -4,17 +4,15 @@ import { getSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 import styled from 'styled-components';
-import { HeadingPomodoroTitle } from '@/public/styles';
 import randomColor from "randomcolor";
 import { ClimbingBoxLoader } from 'react-spinners';
+import { LinkNavigationContainer } from '@/public/styles';
 
 const TextContainer = styled.div`
 
     width: 50%;
     border-radius: 45px;
-    background-color: #FFDBE7;
-    /* border:  #353739 solid 3px; */
-
+    background-color: #2B3467;
     text-align: center;
     padding: 15px; 
 
@@ -32,21 +30,10 @@ const TextContainer = styled.div`
 `;
 
 
-
 const Login = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [colorValue, setColorValue] = useState('blue')
 
   const router = useRouter();
-
-  useEffect(() => {
-    const color = randomColor();
-
-    const interval = setInterval(() => setColorValue(color), 4000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [colorValue]);
 
   useEffect(() => {
     getSession().then((session) => {
@@ -73,18 +60,12 @@ const Login = () => {
     >
             
              
-             <TextContainer
-              onMouseOver={() => {
-                let color = randomColor();
-                setColorValue(color)
-              }}
-              style={{
-                backgroundColor: colorValue
-               }} 
-             >
-              <Form/>
+             <TextContainer>
+
+               <Form/>
 
              </TextContainer>
+
 
 
              

@@ -3,7 +3,7 @@ import SetPomodoro from '@/components/Pomodoro/SetPomodoro';
 import CountdownAnimation from '@/components/Pomodoro/CountDownAnimation';
 import { PomodoroContext } from '@/components/context/PomodoroSettingProvider';
 import { Container, Grid, Button, TextField } from '@mui/material';
-import { HeadingContainer, HeadingNavButton, HeadingPomodoroTitle, ReponsiveGrid, SettingButton, StyledButton } from '../../public/styles';
+import { HeadingContainer, HeadingNavButton, HeadingPomodoroTitle, ReponsiveGrid, SettingButton, StyledButton, PauseButton, FloatingButton} from '../../public/styles';
 
 const PomodoroPage = () => {
 
@@ -26,8 +26,17 @@ const PomodoroPage = () => {
         return (
             <Container>
               <HeadingContainer>
-                <HeadingPomodoroTitle variant='h2'>Pomodoro</HeadingPomodoroTitle>
-                <HeadingPomodoroTitle slogan variant='h6'>Be productive, {''}
+                <HeadingPomodoroTitle
+                  Size = {5}
+                  Weight = {300}
+                  Color = {'#2B3467'}
+                >Pomodoro</HeadingPomodoroTitle>
+
+                <HeadingPomodoroTitle 
+                  slogan
+                  Size = {2}
+                
+                >Be productive, {''}
                 <span>Be you!</span>
                 </HeadingPomodoroTitle>
               </HeadingContainer>
@@ -71,18 +80,31 @@ const PomodoroPage = () => {
                   </CountdownAnimation>
                 <ReponsiveGrid
                   container
+                  flexDirection={'column'}
                   justifyContent={'center'}
                 >
-                  <StyledButton 
+                  <PauseButton 
                       selected={startAnimate ? true : false} onClick={startTimer}
+                      BGColor = {'#F5A2A'}
+                      TextColor = {'black'}
+                      FontSize = {2}
+                      FontWeight = {300}
+                      MTop = {1}
+                      Width = {30}
                       >{'Start'}
-                  </StyledButton>
+                  </PauseButton>
 
-                  <StyledButton  
+                  <PauseButton  
                     selected={!startAnimate ? true : false}
                     onClick={pauseTimer}
+                    BGColor = {'#B2B2B2'}
+                    TextColor = {'black'}
+                    FontSize = {2}
+                    FontWeight = {300}
+                    MTop = {10}
+                    Width = {30}
                     >{'Pause'}
-                    </StyledButton>
+                    </PauseButton>
 
                 </ReponsiveGrid>
 
@@ -93,7 +115,7 @@ const PomodoroPage = () => {
                 justifyContent={'center'}
                 marginTop = {3}
                 >
-                  <SettingButton onClick={SettingsBtn}>Create New</SettingButton> 
+                  <FloatingButton onClick={SettingsBtn}>Create New</FloatingButton> 
                 </Grid>
                 
               </> 
