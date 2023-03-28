@@ -1,16 +1,15 @@
-import styled from 'styled-components'
-import { Link } from '@mui/material'
-import React from 'react'
-import Pomodoro from '../public/pomodoro.jpg'
 import { NavigationItemLink, LinkNavigationContainer } from '@/public/styles'
+import {GiTomato, GiStabbedNote, GiTakeMyMoney} from 'react-icons/gi'
+import {RiTodoFill} from 'react-icons/ri'
+import {SiMinds} from 'react-icons/si'
 const Dashboard = () => {
   return (
     <LinkNavigationContainer ColumnNumber = {2} Gap = {2} >
-        <NavigationItemLink href='/services/pomodoro'>Pomodoro Timer</NavigationItemLink>
-        <NavigationItemLink href='/services/appointment'>Appointment Administrator</NavigationItemLink>
-        <NavigationItemLink href='/services/budget'>Budget Tracker</NavigationItemLink>
-        <NavigationItemLink href='/services/tasks'>To-do List</NavigationItemLink>
-        <NavigationItemLink href='/services/articles'>Learn More...</NavigationItemLink>
+        <NavigationItemLink  BGColor = {'#C9215A'} href='/services/pomodoro'>Pomodoro Timer <GiTomato/> </NavigationItemLink>
+        <NavigationItemLink  BGColor = {'#39BF92'} href='/services/appointment'>Appointment Administrator <GiStabbedNote/> </NavigationItemLink>
+        <NavigationItemLink  BGColor = {'#18C0B4'} href='/services/budget'>Budget Tracker <GiTakeMyMoney/> </NavigationItemLink>
+        <NavigationItemLink  BGColor = {'#CB8951'} href='/services/tasks'>To-do List <RiTodoFill/> </NavigationItemLink>
+        <NavigationItemLink  BGColor = {'#546AD1'} href='/services/articles'>Learn More... <SiMinds/> </NavigationItemLink>
     </LinkNavigationContainer>
   )
 }
