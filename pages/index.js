@@ -1,10 +1,10 @@
 import Dashboard from '@/components/Dashboard'
-import { FloatingButton, HeadingPomodoroTitle, SettingButton } from '@/public/styles'
+import { ColoredLine, FloatingButton, FloatingContainer, HeadingPomodoroTitle, LinkNavigationContainer, SettingButton, SpinnerContainer } from '@/public/styles'
 import { Box, Card, Container, Grid, Typography } from '@mui/material'
 import { useSession } from 'next-auth/react'
 import { useState, useEffect } from 'react'
 import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader'
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import useSWR from 'swr'
 import BackgroundImg from '/public/workplaceBG.jpg'
 import balance from '/public/balance.png'
@@ -26,19 +26,10 @@ import ChatForm from '@/components/ChatForm'
 import AnswerSection from '@/components/ChatAnswer'
 import Quotes from '@/components/Quotes'
 
-const FloatingHover = styled.div`
-width: 500px;
-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
-position: fixed;
-bottom: 1%;
-right: 1%;
-padding: 20px;
-border-radius: 15px;
-background-color: #F8F8F8;
+import CollageItem from '@/components/CollageItem'
+import WhyItem from '@/components/WhyItem'
 
-`;
 const Hero = styled.div`
-
   background-image: url(${props => props.image.src});
   width: 100%;
   height: 600px;
@@ -51,11 +42,8 @@ const Hero = styled.div`
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
 `;
-
 const HeadingHero = styled(HeadingPomodoroTitle)`
   text-transform: uppercase;
-  font-family: sans-serif;
-  color: white;
   font-size: 8rem;
   text-align: center;
   font-weight: 900;
@@ -63,58 +51,17 @@ const HeadingHero = styled(HeadingPomodoroTitle)`
   padding: 0;
   line-height: 1.3;
   position: relative;
+  color: white;
   white-space: nowrap;  
-  text-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-  -webkit-text-stroke:  black 2px;
+  text-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   transition: all 1s ease-in-out;
-  
+  text-shadow: 2px 4px 6px #2B3467;
 
-  &:after 
-    --deco-height: 0.3125em;
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: calc(var(--deco-height) * -0.625);
-    height: var(--deco-height);
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23a)'%3E%3Cpath d='M-17 30.5C-1 22 72-4 54 13 37.9 28.2-2.5 57.5 16 55.5s72-29 104-40' stroke='%2300FDCF' stroke-width='10'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='a'%3E%3Cpath fill='%23fff' d='M0 0h100v64H0z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
-    background-size: auto 100%;
-    background-repeat: round;
-    background-position: 0em;
-  
-    &:before {
-      content: 'Be';
-      font-family: 'lobster two';
-      text-transform : capitalize ;
-      position: absolute;
-      top: -40%;
-      left: 45%;
-      color: white;
-      -webkit-text-stroke:  black 2px;
-
-
-    }
-
-`;
-
-const IntroHeading = styled(Typography)`
-
-    font-family: monospace;
-    text-align: center;
-    font-weight: 100;
-    line-height: 2;
+  @media (max-width: 768px) {
+    font-size: 3rem;
+    animation: none;
     
-
-`;
-
-const ColoredLine = styled.div`
-    width: 100%;
-    height: 4px;
-    background-color: #EE769E;
-    margin: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 4rem;
-    border-radius: 45px;
+  }
 `;
 
 
@@ -225,7 +172,7 @@ export default function Home() {
           })
       }, [])
     
-      if (isLoading) return <ClimbingBoxLoader color = '#76EEC6'/>
+      if (isLoading) return <SpinnerContainer><ClimbingBoxLoader color = '#76EEC6' Size={100}/></SpinnerContainer> 
       if (!data) return <p>No profile data</p>
 
   if(session) {
@@ -239,8 +186,13 @@ export default function Home() {
         alignItems="center"
       > 
              
-        <HeadingPomodoroTitle variant='h5'>Ready for a Productive Day?!</HeadingPomodoroTitle>
-        <ColoredLine/>
+        <HeadingPomodoroTitle
+          Size = {2}
+          Weight = {600}
+          Color = {'#2B3467'}
+        >Ready for a Productive Day?!
+        </HeadingPomodoroTitle>
+        <ColoredLine Color = {'#2B3467'}/>
 
         <Container>
                 <Quotes 
@@ -261,7 +213,10 @@ export default function Home() {
 
       <>
         <Hero image={BackgroundImg}>
-         <HeadingHero>{heading}</HeadingHero> 
+         <HeadingHero 
+         
+         LetterSpace = {3}
+         >{heading}</HeadingHero> 
         </Hero>
       
 
@@ -271,21 +226,37 @@ export default function Home() {
             justifyContent={'center'}
             alignItems = {'center'}
           >  
-            <ColoredLine/>
-            <HeadingPomodoroTitle>Who are we?</HeadingPomodoroTitle>
-            <IntroHeading variant='h5'>We are a company specialized in administering and managing your projects in the most effective way. Everything you need to get to the top in one place.</IntroHeading>
+           
+            <HeadingPomodoroTitle 
+              Size ={4}
+              Weight={800} 
+              MTop = {1}
+              Color = {'#413543'}
+              >Who are we?
+            </HeadingPomodoroTitle>
 
-            <ColoredLine/>
-            <HeadingPomodoroTitle>Why us?</HeadingPomodoroTitle>
-            <IntroHeading variant='h5'>Our mission is to facilitate the processes around a desired project, we achieve this with the different tools at our disposal:</IntroHeading>
+            <HeadingPomodoroTitle 
+              Size={1.5}
+              Color = {'#413543'}
+              MBottom = {2}
+              >We are a company specialized in administering and managing your projects in the most effective way. Everything you need to get to the top in one place.
+            </HeadingPomodoroTitle>
 
-            <Grid
-              container 
-              justifyContent={'space-evenly'}
-              alignItems = {'center'}
-              marginTop={'3rem'}
-              marginBottom={'3rem'}
+            <ColoredLine Color = {'#BAD7E9'}/>
+            <HeadingPomodoroTitle 
+              Size={4} 
+              Weight={800} 
+              Color = {'#413543'}
+              >Why us?</HeadingPomodoroTitle>
+            <HeadingPomodoroTitle 
+              Size={1.5}
+              Weight={200}
+              Color = {'#413543'}
               
+              >Our mission is to facilitate the processes around a desired project, we achieve this with the different tools at our disposal:</HeadingPomodoroTitle>
+
+            <LinkNavigationContainer
+              ColumnNumber = {4}
             >
 
             <WhyItem image = {effectiveness} 
@@ -302,46 +273,69 @@ export default function Home() {
             title = {'Cooperation'}
             />
 
-            </Grid>
+             
+            </LinkNavigationContainer>
 
-            <HeadingPomodoroTitle>Our Promise</HeadingPomodoroTitle>
-            <ColoredLine/>
+            <ColoredLine 
+              Color = {'#BAD7E9'}
+              MBottom = {2}
+              MTop = {5}
+            />
+
+            <HeadingPomodoroTitle 
+              Size={4}
+              Weight={800}
+              Color = {'#413543'}
+              >Our Promise
+            </HeadingPomodoroTitle>
+
+           
+          
            
             
             <Grid
                container 
                columns={{ xs: 4, sm: 8, md: 12 }}
-               
-
             >
 
-              <Grid
-                container
-                justifyContent={'center'}
-                alignItems='center'
-                gap={5}
-                margin = {5}
+              <LinkNavigationContainer
+                Display = {'flex'}
+
+
               >
               <CollageItem item image = {collage}/>
-              <HeadingPomodoroTitle>Time for yourself!</HeadingPomodoroTitle>
+              <HeadingPomodoroTitle 
+                  Size ={4}
+                  Color = {'#413543'}
+                  BColor = {'#F0EB8D'}
+                  BWidth = {5}
+                >Time for yourself!</HeadingPomodoroTitle>
 
-              </Grid>
+              </LinkNavigationContainer>
   
 
 
-
-            <Grid
-              display={'grid'}
-              gridTemplateColumns="repeat(3, 1fr)" gap={2}
+            <LinkNavigationContainer
+                ColumnNumber = {4}
+                Gap = {1}
             >
               <CollageItem item image = {collage7}/>
               
               <CollageItem item image = {collage2}/>
               
               <CollageItem item image = {collage3}/>
-            </Grid>
+            </LinkNavigationContainer>
 
-            <HeadingPomodoroTitle>Make every second count!</HeadingPomodoroTitle>
+            <HeadingPomodoroTitle 
+              Size ={5}
+              Color = {'#413543'}
+              BColor = {'#F0EB8D'}
+              BWidth = {15}
+              MBottom = {3}
+              MTop = {3}
+              LetterSpace = {1}
+              >Make every second count!
+            </HeadingPomodoroTitle>
 
             <Grid
               container 
@@ -352,7 +346,15 @@ export default function Home() {
             <CollageItem item image = {collage4}/>
             <CollageItem item image = {collage5}/>
             <CollageItem item image = {collage6}/>
-            <HeadingPomodoroTitle>Joy for your Job!</HeadingPomodoroTitle>
+            <HeadingPomodoroTitle 
+              Size ={3}
+              Color = {'#4c4c47'}
+              BColor = {'#F0EB8D'}
+              BWidth = {2}
+              >Joy for your Job!
+            </HeadingPomodoroTitle>
+
+            <ColoredLine Color = {'#BAD7E9'}/>
             </Grid>
 
             
@@ -364,11 +366,11 @@ export default function Home() {
 
        { 
        openChat &&
-       <FloatingHover>
+       <FloatingContainer>
             <MdClose onClick={() => {setOpenChat(false)}}/>
             <AnswerSection storedValues = {storedValues} chatSpinner = {chatSpinner}/>
             <ChatForm generateResponse={generateResponse}/>
-        </FloatingHover>
+        </FloatingContainer>
         }
 
 
@@ -386,62 +388,4 @@ export default function Home() {
   }
 }
 
-export const WhyItem = ({image, title}) => {
-
-  const ItemBox = styled(Box)`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-
-    padding: 25px;
-    border-radius: 45%;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    transition: all .1s ease-in-out;
-
-    &:hover {
-      transform: translateY(-15px);
-      cursor: pointer;
-      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    }
-    
-
-  `;
-
-  return (
-  <>
-      <ItemBox
-
-      >
-      <Image src={image.src} alt = {`This is ${image}`} width={'50'} height={'50'}></Image>
-      <Typography variant='h6' >{title}</Typography>
-      </ItemBox>
-  
-  </>
-)
-}
-
-export const CollageItem = ({image, title, content}) => {
-
-  const StyledImage = styled(Image)`
-
-  width: fit-content;
-  height: fit-content;
-  transition: all .3s ease-out;
-  border-radius: 45px;
-    &:hover {
-      cursor: pointer;
-      transform: translateY(-15px);
-      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    }
-
-
-  `;
-
-
-  return (
-  
-      <StyledImage src={image.src} alt = {`This is ${image}`} width={300} height={300}></StyledImage>
-)
-}
 
