@@ -1,8 +1,8 @@
-import { EditButton, HeadingPomodoroTitle, SettingButton } from '@/public/styles';
+import { EditButton, HeadingPomodoroTitle, PauseButton, SettingButton } from '@/public/styles';
 import { Container, Grid, Card, Box } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
-
+import {AiFillEdit} from 'react-icons/ai'
 const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 
 
@@ -49,13 +49,27 @@ const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 
 
 
-				<HeadingPomodoroTitle slogan>Budget:</HeadingPomodoroTitle>
-				<HeadingPomodoroTitle>
+				<HeadingPomodoroTitle
+					Size = {3}
+				>Budget:</HeadingPomodoroTitle>
+				<HeadingPomodoroTitle
+					Size = {10}
+					Weight = {800}
+
+				>
 						${budget}
 					</HeadingPomodoroTitle>
-				<EditButton onClick={handleEditClick}>
-					Edit
-				</EditButton>
+				<PauseButton 
+					onClick={handleEditClick}
+					BGColor = {'#EB455F'}
+					FontSize = {3}
+					FontWeight = {300}
+					Width = {35}
+					Padding = {2}
+
+				>
+					<AiFillEdit/>
+				</PauseButton>
 
 		</Grid>
 
@@ -69,10 +83,14 @@ const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 			alignItems = {'center'}
 			justifyContent = {'center'}
 		>
-			<HeadingPomodoroTitle slogan >
+			<HeadingPomodoroTitle
+				Size = {2}
+			>
 				Disponible:
-				<HeadingPomodoroTitle slogan = {totalExpenses > budget ? true : false} 
-				style={{color: totalExpenses > budget ? 'red' : 'black', fontSize: budget - totalExpenses >= 10000 && '4rem'}}>
+				<HeadingPomodoroTitle
+					Size = {3}
+					Weight =  {800}
+				>
 					 ${budget - totalExpenses}
 				</HeadingPomodoroTitle>	
 			</HeadingPomodoroTitle>
@@ -85,8 +103,14 @@ const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 						gridRow={'span 1'}
 						gridColumn = {'11/13'}
 		>
-			<HeadingPomodoroTitle slogan>Spent so far: 
-				<HeadingPomodoroTitle style={ {fontSize: totalExpenses >= 10000 && '2rem'}}>${totalExpenses} </HeadingPomodoroTitle>
+			<HeadingPomodoroTitle
+				Size = {2}
+
+			>Spent so far: 
+				<HeadingPomodoroTitle
+				Weight =  {800}
+				Size = {3}
+				>${totalExpenses} </HeadingPomodoroTitle>
 			</HeadingPomodoroTitle>
 		</ViewBudgetContent>
 		</Grid>

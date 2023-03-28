@@ -1,17 +1,24 @@
 import React, { useState } from 'react'
 import { Grid, Card } from '@mui/material'
 import styled from 'styled-components';
-import {  HeadingPomodoroTitle, NavigationItemLink, EditButton, DeleteButton, HeadingNavButton} from '@/public/styles'
+import {  HeadingPomodoroTitle, NavigationItemLink, EditButton, DeleteButton, HeadingNavButton, PauseButton} from '@/public/styles'
 import { useRouter } from 'next/router';
 import AppointmentForm from './AppointmentForm';
-
+import {AiOutlineDelete, AiFillEdit} from 'react-icons/ai'
 
 const ItemAppointment = styled(NavigationItemLink)`
 
   width: 100%;
 
   @media (max-width: 768px) {
-   width: 80%;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 0;
+   padding: 0;
+   margin: 0;
+   align-items: center;
+   justify-content: center;
 }
 `;
 const AppointmentItem = ({title, description, date, id}) => {
@@ -68,7 +75,10 @@ const AppointmentItem = ({title, description, date, id}) => {
                   alignItems= {'center'}
                   paddingTop = {'25px'}
                 >
-                    <HeadingPomodoroTitle slogan>{title}</HeadingPomodoroTitle>
+                    <HeadingPomodoroTitle
+                      Size = {2}
+                      Weight = {100}
+                    >{title}</HeadingPomodoroTitle>
 
                     <div>
                       <p>{description}</p>
@@ -85,8 +95,26 @@ const AppointmentItem = ({title, description, date, id}) => {
                     gap = {1}
 
                    >
-                    <DeleteButton delete onClick={() => {deleteTermin(id)}} >Delete</DeleteButton>
-                    <EditButton  onClick={() => {setEdit(!edit)}}>Edit</EditButton>
+                    <PauseButton 
+                      onClick={() => {deleteTermin(id)}} 
+                      BGColor = {'#F5A2AF'}
+                      TextColor = {'black'}
+                      FontSize = {2}
+                      FontWeight = {300}
+                      Padding = {1}
+                      >
+                         <AiOutlineDelete/>
+                      </PauseButton>
+                    <PauseButton  
+                      onClick={() => {setEdit(!edit)}}
+                      BGColor = {'#F7CBB4'}
+                      TextColor = {'black'}
+                      FontSize = {2}
+                      FontWeight = {300}
+                      Padding = {1}
+                      >
+                      <AiFillEdit/>
+                      </PauseButton>
                    </Grid>
                 </ItemAppointment>
 

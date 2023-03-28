@@ -1,17 +1,18 @@
-import { DeleteButton, EditButton, HeadingPomodoroTitle, SettingButton } from '@/public/styles'
+import { DeleteButton, EditButton, HeadingPomodoroTitle, PauseButton, SettingButton } from '@/public/styles'
 import { Card, Grid, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import React from 'react'
 import styled from 'styled-components'
-
+import {AiFillEdit, AiOutlineDelete} from 'react-icons/ai'
 
 const TaskCard = styled(Card)`
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   padding: 25px;
-  width: 100%;
+  width: 80%;
   margin-bottom: 15px;
   display: flex;
   border-radius: 45px;
+  margin: 0 auto;
 `;
 
 const TaskContent = styled(Grid)`
@@ -54,12 +55,20 @@ async function MarkAsComplete(id, data) {
         <TaskContent
         >
 
-        <Typography variant='h4'>{name}</Typography>
-        <Typography variant='h5'>{description}</Typography>
-        <Typography>{completed}</Typography>
-        <DeleteButton>{category}</DeleteButton>
+        <HeadingPomodoroTitle
+          Size = {3}
+          Color = {'#2B3467' }
+        >{name}
+        </HeadingPomodoroTitle>
+        <HeadingPomodoroTitle
+          Size = {2}
+        >{description}</HeadingPomodoroTitle>
+        <HeadingPomodoroTitle slogan
+          Size = {1.5}
+          Weight = {500}
+        >{category}</HeadingPomodoroTitle>
 
-        <Typography>{date}</Typography>
+        <HeadingPomodoroTitle slogan>{date}</HeadingPomodoroTitle>
 
         </TaskContent>
 
@@ -68,13 +77,19 @@ async function MarkAsComplete(id, data) {
           container 
           flexDirection={'column'}
           gap = {'15px'}
+          width = {80}
         >
           
        
-        <DeleteButton delete onClick={() => {deleteTask(id)}}>x</DeleteButton>
-        <EditButton onClick={() => {setEditingItem({id, name, description, category, date}); setIsEditingItem(true)}}>Edit</EditButton>
-        <DeleteButton onClick={() => {MarkAsComplete(id, {name, description, category, completed: !completed})}}>{completed ? '✅' : '☑️'}
-        </DeleteButton>
+        <PauseButton delete onClick={() => {deleteTask(id)}}>
+          <AiOutlineDelete/>
+        </PauseButton>
+        <PauseButton 
+          onClick={() => {setEditingItem({id, name, description, category, date}); setIsEditingItem(true)}}>
+          <AiFillEdit/>
+        </PauseButton>
+        <PauseButton onClick={() => {MarkAsComplete(id, {name, description, category, completed: !completed})}}>{completed ? '✅' : '☑️'}
+        </PauseButton>
         </Grid>
 
     </TaskCard>

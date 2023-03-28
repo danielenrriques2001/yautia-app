@@ -44,14 +44,22 @@ if (!data) return <p>No profile data</p>
   return (
     <div>
             <HeadingContainer>
-                <HeadingPomodoroTitle variant='h2'>Appointment Admin</HeadingPomodoroTitle>
+                <HeadingPomodoroTitle
+                    Size = {5}
+                    Weight = {300}
+                    Color = {'#2B3467'}
+                >Appointment Admin</HeadingPomodoroTitle>
                 <FloatingButton onClick={() => {handleOpen()}} >New Appointment</FloatingButton>
               </HeadingContainer>
 
 
             
             <div>
-              <HeadingPomodoroTitle slogan>{data.length > 0 ? 'Appointment List' : ''}</HeadingPomodoroTitle>
+              <HeadingPomodoroTitle 
+                slogan 
+                Size = {2}
+                Weight = {300}
+                >{data.length > 0 ? 'Appointment List' : ''}</HeadingPomodoroTitle>
                 {
                   data && <AppointmentList data = {data} />
                 }

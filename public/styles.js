@@ -499,7 +499,7 @@ export const NavigationItemLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #BAD7E9;
+  border: 2px solid #EB455F;
 
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
