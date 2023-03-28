@@ -5,7 +5,7 @@ import Pomodoro from '../public/pomodoro.jpg'
 import { NavigationItemLink, LinkNavigationContainer } from '@/public/styles'
 const Dashboard = () => {
   return (
-    <LinkNavigationContainer>
+    <LinkNavigationContainer ColumnNumber = {2} Gap = {2} >
         <NavigationItemLink href='/services/pomodoro'>Pomodoro Timer</NavigationItemLink>
         <NavigationItemLink href='/services/appointment'>Appointment Administrator</NavigationItemLink>
         <NavigationItemLink href='/services/budget'>Budget Tracker</NavigationItemLink>

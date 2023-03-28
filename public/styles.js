@@ -130,7 +130,6 @@ export const PauseButton = styled.button`
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
   color: ${(props) => props.TextColor || '#1A202C'};
-  display: inline-flex;
   font-family: 'Yanone Kaffeesatz' , sans-serif;
   font-size: ${(props) => props.FontSize || 1}rem;
   font-weight: ${(props) => props.FontWeight || 800};
@@ -139,7 +138,7 @@ export const PauseButton = styled.button`
   align-items: center;
   line-height: 24px;
   overflow-wrap: break-word;
-  padding: 24px;
+  padding: ${(props) => props.Padding || 24}px;
   text-decoration: none;
   min-width: 10px;
   width: ${(props) => props.Width || 100}%;
@@ -154,6 +153,10 @@ export const PauseButton = styled.button`
   &:hover,
 &:focus {
   opacity: .75;
+}
+
+@media (max-width: 768px) {
+  width: 100%;
 }
   
   
@@ -184,8 +187,8 @@ export const HeadingContainer = styled.div`
 export const HeadingNavButton = styled(Button)`
 
   font-family:  'Yanone Kaffeesatz', sans-serif;
-  font-size: 16px;
-  letter-spacing: 2px;
+  font-size: 25px;
+  letter-spacing: 15px;
   text-decoration: none;
   text-transform: uppercase;
   color: #000;
@@ -198,7 +201,7 @@ export const HeadingNavButton = styled(Button)`
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  background: ${props => props.selected ? "#fbeee0" : "white"};
+  background: ${props => props.selected ? "#BAD7E9" : "white"};
 &:active {
   box-shadow: 0px 0px 0px 0px;
   top: 5px;
@@ -296,21 +299,19 @@ export const StyledSettingButton = styled(Button)`
 export const StyledInput = styled.input`
 
   margin: 0;
-  border:  10px solid #BAF6C4;
+  border:  10px solid #2B3467;
   width: 200px;
   height: 200px;
+  font-family: ;
   border-radius: 50%;
   text-align: center;
   transition: all ease-in .3s;
   cursor: pointer;
-
   margin-bottom: 45px;
-
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-weight: 800;
-  font-size: 120px;
-
+  font-weight: 1000;
+  font-size: 100px;
   outline: none;
+  font-family: 'Nunito', sans-serif;
 
 
   &::-webkit-outer-spin-button,
@@ -321,12 +322,12 @@ export const StyledInput = styled.input`
     &:hover, 
     &:active, 
     &:focus {
-        border: #e06666 1px solid;
+        border: #EB455F 1px solid;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
-        color: #e06666;
+        color: #EB455F;
 
     }
 
@@ -334,9 +335,9 @@ export const StyledInput = styled.input`
 
 export const StyledLabel = styled.label`
 
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
+    font-family:  'Yanone Kaffeesatz', sans-serif;;
+    font-size: 2rem;
+    font-weight: 300;
 
 `;
 
@@ -489,16 +490,16 @@ export const NavigationItemLink = styled.a`
   text-decoration: none;
   border-radius: 15px;
   font-family:  'Yanone Kaffeesatz', sans-serif;
-  font-weight: 100;
+  font-weight: 400;
   min-height: 100px;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   transition: all .2s ease-in-out;
-  font-size: 15px;
-  color: #414141; 
-
+  color: #2B3467; 
+  font-size: ${(props) => props.FontSize || 30}px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 2px solid #BAD7E9;
 
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
@@ -507,6 +508,7 @@ export const NavigationItemLink = styled.a`
 
   @media (max-width: 768px) {
     min-height: 10px;
+    width: 100%;
   }
 
 `;

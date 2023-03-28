@@ -20,6 +20,7 @@ const Quotes = ({content, author}) => {
         <HeadingPomodoroTitle
           Size = {3}
           Weight = {500}
+          Color = {'#2B3467'}
         >{`''`}{content}{`''`}</HeadingPomodoroTitle>
         <HeadingPomodoroTitle
           Size = {1}

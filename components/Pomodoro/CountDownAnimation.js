@@ -11,14 +11,14 @@ const CountdownAnimation = ({pomodoro, animate, children}) => {
 
     return (
       <CountdownCircleTimer
-        colors={['#BAF6C4', '#76eac6', '#d49b7e', '#c67f43', '#bb5865']}
+        colors={['#9DCEC7', '#9EBBBA', '#0369A0', '#B28FBE', '#EC1802']}
         colorsTime={[pomodoro * 60, pomodoro * 60 / 2, pomodoro * 60 / 3, pomodoro * 60 / 4, 0]}
         key={pomodoro}
         isPlaying = {animate}
         duration={pomodoro * 60}
         size={250}
         trailStrokeWidth = {5}
-        strokeWidth = {9}
+        strokeWidth = {25}
         onComplete={ () => {
 
           setTimeout(() => {

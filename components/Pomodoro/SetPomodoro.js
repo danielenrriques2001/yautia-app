@@ -1,4 +1,4 @@
-import { SettingContainer, StyledLabel, StyledInput, StyledSettingButton } from '@/public/styles'
+import { SettingContainer, StyledLabel, StyledInput, StyledSettingButton, HeadingPomodoroTitle, PauseButton } from '@/public/styles'
 import React, { useContext, useState } from 'react'
 import { PomodoroContext} from '../context/PomodoroSettingProvider'
 import { Grid } from '@mui/material'
@@ -110,7 +110,16 @@ const SetPomodoro = () => {
                     container
                     justifyContent='center'
                 >
-                    <StyledSettingButton type='submit'>Set Timer</StyledSettingButton>
+                    <PauseButton 
+                        type='submit'
+                        BGColor = {'#EB455F'}
+                        FontSize = {3}
+                        FontWeight = {300}
+                        Width = {35}
+                        Padding = {45}
+                        
+
+                        >Set Timer</PauseButton>
                 </Grid>
                 
             </form>
