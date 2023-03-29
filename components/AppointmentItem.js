@@ -8,7 +8,8 @@ import {AiOutlineDelete, AiFillEdit} from 'react-icons/ai'
 
 const ItemAppointment = styled(NavigationItemLink)`
 
-  width: 100%;
+  width: 100%;^
+  height: 450px;
 
   @media (max-width: 768px) {
    width: 100%;
@@ -37,10 +38,7 @@ const AppointmentItem = ({title, description, date, id}) => {
         .catch(e => console.log("ERROR:" + e))
 
 
-        setTimeout(() => {
-            router.reload('/services/appointment')
-        }, 500);
-
+        router.push('/services/appointment')
 
         
     }
@@ -56,10 +54,7 @@ const AppointmentItem = ({title, description, date, id}) => {
         .then(res => console.log("SUCCESS:: "+ res.json()))
         .catch(e => console.log("ERROR:" + e))
 
-
-        setTimeout(() => {
-          router.reload('/services/appointment')
-      }, 500);
+      return response;
       
     }
 
@@ -81,8 +76,16 @@ const AppointmentItem = ({title, description, date, id}) => {
                     >{title}</HeadingPomodoroTitle>
 
                     <div>
-                      <p>{description}</p>
-                      <HeadingPomodoroTitle slogan>{date}</HeadingPomodoroTitle>
+                      <HeadingPomodoroTitle
+                        Size = {1.5}
+                        Weight = {800}
+                      >{description}</HeadingPomodoroTitle>
+                      <HeadingPomodoroTitle 
+                        slogan
+                        Size = {2}
+                        Weight = {300}
+
+                      >{date}</HeadingPomodoroTitle>
                     </div>
                 
                 </Grid>

@@ -7,6 +7,7 @@ import BudgetOverView from '@/components/BudgetOverView';
 import BudgetForm from '@/components/BudgetForm';
 import ExpenseList from '@/components/ExpenseList';
 import MoonLoader from "react-spinners/MoonLoader";
+import useSWR from 'swr'
 
 const Modal = styled.div`
   position: fixed; 
@@ -22,6 +23,8 @@ const Modal = styled.div`
 `;
 
 const Budget = () => {
+  const fetcher = (...args) => fetch(...args).then(res => res.json())
+
   const { data: session, status } = useSession()
   const [validBudget, setValidBudget] = useState(false)
   const [budgetNumber, setBudgetNumber] = useState(0)
@@ -38,11 +41,13 @@ const Budget = () => {
   const handleClose = () => setOpen(false);
 
   const [data, setData] = useState(null)
-  const [expensesList, setExpensesList] = useState(null)
+  // const [expensesList, setExpensesList] = useState(null)
 
   const [isLoading, setLoading] = useState(false)
 
   const id = session.user.email;
+
+  const { data: expensesList, mutate } = useSWR(`/api/budget/${id}`, fetcher)
 
 
 useEffect(() => {
@@ -61,18 +66,13 @@ useEffect(() => {
       setValidBudget(false)
       
     })
+   
 
-  
-    fetch(`/api/budget/${id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data)
-      setExpensesList(data)
-    })
-
-  
 }, [])
 
+
+
+mutate();
   
 
 async function updateUser(id, data) {
@@ -86,10 +86,6 @@ async function updateUser(id, data) {
     .then(res => console.log("SUCCESS:: "+ res.json()))
     .catch(e => console.log("ERROR:" + e))
 
-
-  //   setTimeout(() => {
-  //     router.reload('/services/budget')
-  // }, 500);
   
 }
 

@@ -49,6 +49,7 @@ const AppointmentForm = (
     >
     <HeadingAppointment>New Appointment</HeadingAppointment>
     <CreateAppointment
+      handleClose = {handleClose}
       title = {title}
       description = {description}
       date = {date}

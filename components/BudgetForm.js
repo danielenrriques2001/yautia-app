@@ -3,7 +3,7 @@ import { Grid, Select, TextField, MenuItem, InputLabel, Modal} from '@mui/materi
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-
+import useSWR from 'swr'
 
 const StyledSelect = styled.select`
 
@@ -23,6 +23,10 @@ const StyledSelect = styled.select`
 
 const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpense}) => {
 
+  const fetcher = (...args) => fetch(...args).then(res => res.json())
+
+
+  const budget = useSWR(`/api/budget/${id}`, fetcher)
 
 
 
@@ -60,9 +64,7 @@ const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpen
       .catch(e => console.log("ERROR:" + e))
 
 
-      setTimeout(() => {
-        router.reload('/services/budget')
-    }, 500);
+     
     
   }
   
@@ -80,21 +82,17 @@ const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpen
 
     if(isEditingExpense) {
       const result = updateExpense(id, {name, cost, category})
+       
+      handleClose()
 
-
-      setTimeout(() => {
-        handleClose()
-        router.reload('/services/budget')
-      }, 1000);
 
       return; 
     }
     const result = createExpense({name, cost, category, date, user});
-
-    setTimeout(() => {
-
       handleClose()
-    }, 1000);
+      budget.mutate();
+
+
 
   }
 
