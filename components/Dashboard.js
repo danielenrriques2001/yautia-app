@@ -5,11 +5,11 @@ import {SiMinds} from 'react-icons/si'
 const Dashboard = () => {
   return (
     <LinkNavigationContainer ColumnNumber = {2} Gap = {2} >
-        <NavigationItemLink  BGColor = {'#C9215A'} href='/services/pomodoro'>Pomodoro Timer <GiTomato/> </NavigationItemLink>
-        <NavigationItemLink  BGColor = {'#39BF92'} href='/services/appointment'>Appointment Administrator <GiStabbedNote/> </NavigationItemLink>
-        <NavigationItemLink  BGColor = {'#18C0B4'} href='/services/budget'>Budget Tracker <GiTakeMyMoney/> </NavigationItemLink>
-        <NavigationItemLink  BGColor = {'#CB8951'} href='/services/tasks'>To-do List <RiTodoFill/> </NavigationItemLink>
-        <NavigationItemLink  BGColor = {'#546AD1'} href='/services/articles'>Learn More... <SiMinds/> </NavigationItemLink>
+        <NavigationItemLink  BGColor = {'#EC2A4A'} href='/services/pomodoro'>Pomodoro Timer <GiTomato/> </NavigationItemLink>
+        <NavigationItemLink  BGColor = {'#BF185D'} href='/services/appointment'>Appointment Administrator <GiStabbedNote/> </NavigationItemLink>
+        <NavigationItemLink  BGColor = {'#04A94B'} href='/services/budget'>Budget Tracker <GiTakeMyMoney/> </NavigationItemLink>
+        <NavigationItemLink  BGColor = {'#C4BE32'} href='/services/tasks'>To-do List <RiTodoFill/> </NavigationItemLink>
+        <NavigationItemLink  BGColor = {'#324ECF'} href='/services/articles'>Learn More... <SiMinds/> </NavigationItemLink>
     </LinkNavigationContainer>
   )
 }

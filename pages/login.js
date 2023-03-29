@@ -12,7 +12,7 @@ const TextContainer = styled.div`
 
     width: 50%;
     border-radius: 45px;
-    background-color: #2B3467;
+    background-color: #EB455F;
     text-align: center;
     padding: 15px; 
 
@@ -38,7 +38,7 @@ const Login = () => {
   useEffect(() => {
     getSession().then((session) => {
       if (session) {
-        router.replace('/');
+        router.push('/');
       } else {
         setIsLoading(false);
       }

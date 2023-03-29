@@ -178,10 +178,10 @@ const Form = () => {
 <br />
 <PauseButton 
   type='submit'
-  BGColor = {'#EB455F'}
+  BGColor = {'#C4C1C4'}
   Bstyle = {'none'}
   FontSize = {1.3}
-  FontWeight  = {300}
+  FontWeight  = {400}
   BRadius = {4}
   TextColor = {'black'}
   >
@@ -194,7 +194,8 @@ const Form = () => {
   FontSize = {1.3}
   MTop = {5}
   TextColor = {'black'}
-  BGColor = {'#7E4851'}
+  BGColor = {'#ffffff'}
+  BStyle = {'solid'}
   >
 {isLogin ? 'Create new account' : 'Login with existing account'}
 </PauseButton>
@@ -248,13 +249,13 @@ const StyledForm = styled.form`
     padding-top: 100px;
     padding-bottom: 100px;
     border-radius: 45px;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
     transition: all .5s ease-in-out;
     border: 9px  rgba(214, 229, 227, 0.1) solid;
 
 
     &:hover {
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+      box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
       transform: translateY(-15px);
     }
 

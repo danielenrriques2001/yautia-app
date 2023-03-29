@@ -493,16 +493,17 @@ export const NavigationItemLink = styled.a`
   min-height: 100px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: all .2s ease-in-out;
-  color: white; 
-  text-shadow: text-shadow: 1px 1px 2px pink;
+  color: #E5E5E5; 
+  text-shadow: text-shadow: 1px 1px 2px pink; 
   font-size: ${(props) => props.FontSize || 30}px;
-  display: flex;
+  display: flex;  
   justify-content: center;
   align-items: center;
   border: 2px solid;
   border-color: ${(props) => props.BGColor || 'transparent'};
   margin-top: 5px;
   background-color: ${(props) => props.BGColor || 'white'};
+  
 
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
