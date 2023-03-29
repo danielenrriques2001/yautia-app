@@ -1,12 +1,13 @@
 import TaskForm from '@/components/TaskForm'
 import TaskItem from '@/components/TaskItem'
 import TaskList from '@/components/TaskList'
-import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, ModalContent, SpinnerContainer } from '@/public/styles'
+import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, ModalContent, NavigationItemLink, SpinnerContainer } from '@/public/styles'
 import { Grid, Modal } from '@mui/material'
 import { useSession, getSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import {MoonLoader, ClockLoader} from "react-spinners";
+import SetPomodoro from '@/components/Pomodoro/SetPomodoro'
 
 
 const TasksComponent = () => {
@@ -88,7 +89,10 @@ const TasksComponent = () => {
 
           <ModalContent task >
                  {randomTask 
-                 ? <TaskItem name = {randomTask.name} category = {randomTask.category} description = {randomTask.description} date = {randomTask.date}  />
+                 ? <> <TaskItem name = {randomTask.name} category = {randomTask.category} description = {randomTask.description} date = {randomTask.date}/>  
+                      <NavigationItemLink Width={120} Height = {50} TextColor = {'black'} href={'/services/pomodoro'}>Start Now!</NavigationItemLink>
+                 </>
+                 
                  : <SpinnerContainer><ClockLoader color='#BC3F67' size={450}/></SpinnerContainer>
                  }
                 

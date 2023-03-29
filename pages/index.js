@@ -34,7 +34,6 @@ const Hero = styled.div`
   width: 100%;
   height: 600px;
   background-repeat: no-repeat;
-  background-position: center center;
   background-size: cover;
   border-radius: 15px;
   display: flex;
@@ -44,9 +43,9 @@ const Hero = styled.div`
 `;
 const HeadingHero = styled(HeadingPomodoroTitle)`
   text-transform: uppercase;
-  font-size: 8rem;
+  font-size: 5rem;
   text-align: center;
-  font-weight: 900;
+  font-weight: 700;
   margin: 0;
   padding: 0;
   line-height: 1.3;
@@ -55,7 +54,7 @@ const HeadingHero = styled(HeadingPomodoroTitle)`
   white-space: nowrap;  
   text-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   transition: all 1s ease-in-out;
-  text-shadow: 2px 4px 6px #2B3467;
+  color: white; 
 
   @media (max-width: 768px) {
     font-size: 3rem;
@@ -215,7 +214,7 @@ export default function Home() {
         <Hero image={BackgroundImg}>
          <HeadingHero 
          
-         LetterSpace = {3}
+         LetterSpace = {1}
          >{heading}</HeadingHero> 
         </Hero>
       
@@ -242,7 +241,7 @@ export default function Home() {
               >We are a company specialized in administering and managing your projects in the most effective way. Everything you need to get to the top in one place.
             </HeadingPomodoroTitle>
 
-            <ColoredLine Color = {'#BAD7E9'}/>
+            <ColoredLine Color = {'#EB455F'}/>
             <HeadingPomodoroTitle 
               Size={4} 
               Weight={800} 
@@ -277,7 +276,7 @@ export default function Home() {
             </LinkNavigationContainer>
 
             <ColoredLine 
-              Color = {'#BAD7E9'}
+              Color = {'#EB455F'}
               MBottom = {2}
               MTop = {5}
             />
@@ -307,7 +306,7 @@ export default function Home() {
               <HeadingPomodoroTitle 
                   Size ={4}
                   Color = {'#413543'}
-                  BColor = {'#F0EB8D'}
+                  BColor = {'#6F2473'}
                   BWidth = {5}
                 >Time for yourself!</HeadingPomodoroTitle>
 
@@ -329,7 +328,7 @@ export default function Home() {
             <HeadingPomodoroTitle 
               Size ={5}
               Color = {'#413543'}
-              BColor = {'#F0EB8D'}
+              BColor = {'#6F2473'}
               BWidth = {15}
               MBottom = {3}
               MTop = {3}
@@ -349,12 +348,12 @@ export default function Home() {
             <HeadingPomodoroTitle 
               Size ={3}
               Color = {'#4c4c47'}
-              BColor = {'#F0EB8D'}
+              BColor = {'#6F2473'}
               BWidth = {2}
               >Joy for your Job!
             </HeadingPomodoroTitle>
 
-            <ColoredLine Color = {'#BAD7E9'}/>
+            <ColoredLine Color = {'#EB455F'}/>
             </Grid>
 
             

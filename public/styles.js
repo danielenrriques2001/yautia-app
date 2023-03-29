@@ -484,25 +484,31 @@ export const ModalContent = styled.div`
 `;
 
 export const NavigationItemLink = styled.a`
-
-  width: 450px;
+  width: ${(props) => props.Width || 450}px;
+  height: ${(props) => props.Height || 'auto'};
   padding: 45px;
   text-decoration: none;
   border-radius: 15px;
   font-family:  'Yanone Kaffeesatz', sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   min-height: 100px;
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   transition: all .2s ease-in-out;
-  color: #2B3467; 
+  color: ${(props) => props.TextColor || '#E5E5E5'} ; 
+  text-shadow: text-shadow: 1px 1px 2px pink; 
   font-size: ${(props) => props.FontSize || 30}px;
-  display: flex;
+  display: flex;  
   justify-content: center;
   align-items: center;
-  border: 2px solid #EB455F;
+  border: 2px solid;
+  border-color: ${(props) => props.BColor || 'transparent'};
+  margin-top: 5px;
+  background-color: ${(props) => props.BGColor || 'white'};
+  
 
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
     cursor: pointer;
   }
 

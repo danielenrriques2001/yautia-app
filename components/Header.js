@@ -36,7 +36,7 @@ const Heading = styled.a`
       alignItems='baseline'
     >
 
-        <Heading href="/">yautia</Heading>
+        <Heading href="/">yautía</Heading>
         <Navigation/>
   </Grid> 
   );
