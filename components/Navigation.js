@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from '@mui/material'
 import styled from 'styled-components'
-import { useSession } from 'next-auth/react'
-import { BiUser, BiListOl, BiLogIn } from "react-icons/bi";
+import { signOut, useSession } from 'next-auth/react'
+import { BiUser, BiListOl, BiLogIn, BiLogOut} from "react-icons/bi";
 
 
 const Navigation = () => {
@@ -19,6 +19,9 @@ const Navigation = () => {
 
         {
           session &&  <NavItem underline="none" href={'/profile'}>profile<BiUser/></NavItem>
+        }
+        {
+          session &&  <NavItem underline="none" onClick={signOut}>Log out<BiLogOut/></NavItem>
         }
 
 

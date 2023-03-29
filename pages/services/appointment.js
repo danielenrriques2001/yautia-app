@@ -8,33 +8,43 @@ import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, SettingButton, 
 import { getSession, useSession } from 'next-auth/react'
 import AppointmentList from '@/components/AppointmentList'
 import ModalComponent from '@/components/AppointmentForm'
-
+import useSWR from 'swr'
 import ClipLoader from "react-spinners/ClipLoader";
 import AppointmentForm from '@/components/AppointmentForm'
 
 
 
 const AppointmentCom = () => {
+
+  const fetcher = (...args) => fetch(...args).then(res => res.json())
+
+
   const { data: session, status } = useSession()
   const id = session.user.email;
-  const [data, setData] = useState(null)
-  const [isLoading, setLoading] = useState(false)
+  // const [data, setData] = useState(null)
+  const { data, error, isLoading, mutate } = useSWR(`/api/appointment/${id}`, fetcher)
 
+  // const [isLoading, setLoading] = useState(false)
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  useEffect(() => {
+    mutate();
+  }, [])
+  
+  mutate();
 
-useEffect(() => {
-  setLoading(true)
-  fetch(`/api/appointment/${id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data)
-      setData(data)
-      setLoading(false)
-    })
-}, [])
+// useEffect(() => {
+//   setLoading(true)
+//   fetch(`/api/appointment/${id}`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data)
+//       setData(data)
+//       setLoading(false)
+//     })
+// }, [])
 
 
 if (isLoading) return <spinnerContainer><ClipLoader color='#76EEC6' size={450}/></spinnerContainer> 

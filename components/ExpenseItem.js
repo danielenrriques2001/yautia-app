@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import {FaRegEdit} from 'react-icons/fa';
 import BudgetForm from './BudgetForm';
-
-
+import useSWR from 'swr';
+import { useSession } from 'next-auth/react';
 const StyledCard = styled(Card)`
 		box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 		border-radius: 30px;
@@ -76,6 +76,16 @@ const NameHeading = styled(HeadingPomodoroTitle)`
 
 const ExpenseItem = ({id, cost, name, category, isEditingExpense, handleCloseExpense, handleOpenExpense}) => {
 
+
+	const { data: session, status } = useSession()
+	const ID = session.user.email;
+
+	const fetcher = (...args) => fetch(...args).then(res => res.json())
+
+	const expenses = useSWR(`/api/budget/${ID}`, fetcher)
+
+
+
 	const router = useRouter();
 
 	const deleteExpense = async (id) =>{
@@ -87,10 +97,7 @@ const ExpenseItem = ({id, cost, name, category, isEditingExpense, handleCloseExp
         .catch(e => console.log("ERROR:" + e))
 
 
-        setTimeout(() => {
-            router.reload('/services/budget')
-        }, 500);
-
+		expenses.mutate();		
 
         
     }

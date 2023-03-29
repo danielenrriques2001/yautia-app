@@ -40,7 +40,6 @@ const TaskForm = ({id, isEditingItem , EditingItem, setIsEditingItem}) => {
 
   const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-  const tasks = useSWR(`/api/task/${id}`, fetcher)
 
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')

@@ -31,17 +31,20 @@ const Budget = ({value, updateUser, id, isEditing, setIsEditing, expenses}) => {
 	const handleEditClick = () => {
 		setIsEditing(true);
 	};
-
+	
 	const handleSaveClick = (value) => {
 		
     const result = updateUser(id, value)
 
     if(result) {
-    
-      router.reload('/services/budget')
-      
+
+		setTimeout(() => {
+			setIsEditing(false)
+		}, 900);
+
+		router.reload('/services/budget')
     }
-		setIsEditing(false);
+	
 	};
 
 	return (

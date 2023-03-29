@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router';
 
 
-const CreateAppointment = ({title, description, date, updateTermin, edit, id}) => {
+const CreateAppointment = ({title, description, date, updateTermin, edit, id, handleClose}) => {
 
 const { data: session, status } = useSession()
 
@@ -55,11 +55,16 @@ const router = useRouter();
     if(edit) {
       const result = await updateTermin(id, {title, description, date})
 
-
+      
+    router.push('/services/appointment')
+    handleClose();
       return;
     }
 
     const result = await makeAppointment({title, description, date, user});
+
+    router.push('/services/appointment')
+    handleClose();
 
     
     
