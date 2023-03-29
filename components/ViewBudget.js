@@ -90,6 +90,7 @@ const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 				<HeadingPomodoroTitle
 					Size = {3}
 					Weight =  {800}
+					Color = {totalExpenses > budget && '#E41938'}
 				>
 					 ${budget - totalExpenses}
 				</HeadingPomodoroTitle>	

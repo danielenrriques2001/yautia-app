@@ -1,4 +1,4 @@
-import { HeadingPomodoroTitle } from "@/public/styles";
+import { HeadingPomodoroTitle, LinkNavigationContainer } from "@/public/styles";
 import { Card, Typography } from "@mui/material";
 import { useSession, signOut, getSession } from "next-auth/react"
 import { useState, useEffect } from "react";
@@ -18,17 +18,28 @@ function Profile() {
 
   if(session) {
     return (
-      <div> 
-        <HeadingPomodoroTitle>Welcome!</HeadingPomodoroTitle>
-        <HeadingPomodoroTitle>{session.user.name}</HeadingPomodoroTitle>
-        
+      <>
+      <LinkNavigationContainer
+        Display = {'flex'}
+        Gap = {0}
+      > 
+        <HeadingPomodoroTitle
+          Size = {3}
+          
+        >Welcome!
+        </HeadingPomodoroTitle>
+        <HeadingPomodoroTitle
+          Size = {5}
+          Weight = {500}
+        >{session.user.name}</HeadingPomodoroTitle>
 
+        </LinkNavigationContainer>
         <Card>
           <Typography variant="h4">{climate?.name}</Typography>
           <Typography variant="h4">{climate?.weather[0].description}</Typography>
         </Card>
-
-      </div>
+        </>
+     
     )
   } else {
     <div>You have to sign in!</div>

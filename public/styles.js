@@ -215,8 +215,7 @@ export const HeadingNavButton = styled(Button)`
 
 export const HeadingPomodoroTitle = styled.p`
 
-  margin: 0;
-  padding: 0;
+  
   font-family: ${props => props.slogan ? 'Yanone Kaffeesatz, sans-serif': 'Nunito, sans-serif'};
   /* font-size: ${props => props.slogan ? '1rem' : '5rem'}; */
   font-weight: ${(props) => props.Weight || 100};
@@ -230,7 +229,8 @@ export const HeadingPomodoroTitle = styled.p`
   letter-spacing: ${(props) => props.LetterSpace || 0}rem;
   border-bottom-style: solid;
   text-align: center;
-
+  margin: 0;
+  padding: 0;
   @media (max-width: 768px) {
     font-size: 2rem;
   }
