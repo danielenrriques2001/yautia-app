@@ -90,7 +90,7 @@ const TasksComponent = () => {
           <ModalContent task >
                  {randomTask 
                  ? <> <TaskItem name = {randomTask.name} category = {randomTask.category} description = {randomTask.description} date = {randomTask.date}/>  
-                      <NavigationItemLink Width={250} href={'/services/pomodoro'}>Start Now!</NavigationItemLink>
+                      <NavigationItemLink Width={120} Height = {50} TextColor = {'black'} href={'/services/pomodoro'}>Start Now!</NavigationItemLink>
                  </>
                  
                  : <SpinnerContainer><ClockLoader color='#BC3F67' size={450}/></SpinnerContainer>
