@@ -9,13 +9,9 @@ import useSWR from 'swr'
 
 function Profile() {
 
-  const fetcher = (...args) => fetch(...args).then(res => res.json())
-
-  const { data: climate, error, isLoading } = useSWR(`https://api.openweathermap.org/data/2.5/weather?q=${'berlin'}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`, fetcher)
 
   const { data: session, status } = useSession()
 
-  console.log(climate.main)
 
 
   if(session) {
@@ -38,29 +34,7 @@ function Profile() {
         >{session.user.name}</HeadingPomodoroTitle>
 
         </LinkNavigationContainer>
-        <Card>
-          <HeadingPomodoroTitle Size = {5} Weight = {800}  Shadow = {'rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px'}>{climate?.name}</HeadingPomodoroTitle>
-          <HeadingPomodoroTitle slogan Size={3}>{climate?.weather[0].description}</HeadingPomodoroTitle>
-          <HeadingPomodoroTitle 
-            MBottom={10} 
-            MTop = {8}>
-            It feels like: 
-            <HeadingPomodoroTitle Size={5} Weight={500}> {climate.main?.feels_like}</HeadingPomodoroTitle>
-            </HeadingPomodoroTitle>
-          <HeadingPomodoroTitle>
-            
-            Humidity: 
-            <HeadingPomodoroTitle Size={5} Weight={500}>{climate.main?.humidity}</HeadingPomodoroTitle>
-            
-          
-          </HeadingPomodoroTitle>
-          <HeadingPomodoroTitle>
-            
-            Temp: 
-            <HeadingPomodoroTitle Size={5} Weight={500}> {climate.main?.temp}</HeadingPomodoroTitle>
-           
-            </HeadingPomodoroTitle>
-        </Card>
+    
         </>
      
     )
