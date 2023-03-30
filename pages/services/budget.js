@@ -47,7 +47,7 @@ const Budget = () => {
 
   const id = session.user.email;
 
-  const {data: expensesList} = useSWR(`/api/budget/${id}`, fetcher)
+  const {data: expensesList, mutate} = useSWR(`/api/budget/${id}`, fetcher)
 
 
 
@@ -71,17 +71,13 @@ useEffect(() => {
     })
 
 
-    // fetch(`/api/budget/${id}`)
-    // .then((res) => res.json())
-    // .then((data) => {
-    //   console.log(data)
-    //   setExpensesList(data)
-    // })
-
-    
-   
-
 }, [])
+
+useEffect(() => {
+  mutate();
+}, [mutate])
+
+mutate();
   
 
 async function updateUser(id, data) {

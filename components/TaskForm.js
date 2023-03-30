@@ -30,8 +30,9 @@ const StyledForm = styled.form`
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     padding: 15px;
     border-radius: 45px;
-    height: 100%;
-
+    height: 400px;
+    
+    
 `;
 
 const TaskForm = ({id, isEditingItem , EditingItem, setIsEditingItem}) => {

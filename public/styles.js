@@ -531,14 +531,14 @@ export const LinkNavigationContainer = styled.div`
   gap: ${(props) => props.Gap || 5}rem;
   margin-top: 3rem;
   background-color: ${(props) => props.BGColor || 'transparent'};
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
-  border-radius: 45px;
+  box-shadow: ${(props) => props.Shadow || 'none'};
+  border-radius: ${(props) => props.BRadius || 0}px;
   
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    width: 80%;
   }
       
 `;

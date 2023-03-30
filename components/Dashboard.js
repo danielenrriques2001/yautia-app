@@ -11,7 +11,7 @@ const Space = styled.div`
 `;
 const Dashboard = () => {
   return (
-    <LinkNavigationContainer ColumnNumber = {2} Gap = {2} >
+    <LinkNavigationContainer ColumnNumber = {2} Gap = {2} Shadow = {'rgba(0, 0, 0, 0.2) 0px 20px 30px'} BRadius = {45}>
         <NavigationItemLink  BColor = {'#282828'}  BGColor = {'#EC2A4A'} href='/services/pomodoro'>Pomodoro Timer <Space/> <GiTomato/> </NavigationItemLink>
         <NavigationItemLink  BColor = {'#282828'} BGColor = {'#BF185D'} href='/services/appointment'>Appointment Administrator <Space/> <GiStabbedNote/> </NavigationItemLink> 
         <NavigationItemLink  BColor = {'#282828'} BGColor = {'#04A94B'} href='/services/budget'>Budget Tracker <Space/> <GiTakeMyMoney/> </NavigationItemLink>
