@@ -11,7 +11,7 @@ function Profile() {
 
   const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-  const { data: climate, error, isLoading } = useSWR(`https://api.openweathermap.org/data/2.5/weather?q=${'berlin'}&appid=d5eeb7ba23ce10b29a169018a324bb7e`, fetcher)
+  const { data: climate, error, isLoading } = useSWR(`https://api.openweathermap.org/data/2.5/weather?q=${'berlin'}&${process.env.NEXT_PUBLIC_WEATHER_KEY}`, fetcher)
 
   const { data: session, status } = useSession()
 
