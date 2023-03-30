@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import {FaRegEdit} from 'react-icons/fa';
 import BudgetForm from './BudgetForm';
-import useSWR from 'swr';
 import { useSession } from 'next-auth/react';
+
 const StyledCard = styled(Card)`
 		box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 		border-radius: 30px;
@@ -22,7 +22,7 @@ const StyledCard = styled(Card)`
 		props.border === 'expenses' ? 'red' 
 		: props.border === 'saving' ? 'blue'
 		: props.border === 'food' ? 'green'
-		: props.border === 'home' ? 'yellow'
+		: props.border === 'home' ? '#CCAF57'
 		: props.border === 'hobby' ? 'gray'
 		: props.border === 'health' ? 'green'
 		: props.border === 'abo' ? 'orange'
@@ -74,32 +74,21 @@ const NameHeading = styled(HeadingPomodoroTitle)`
 
 `;
 
-const ExpenseItem = ({id, cost, name, category, isEditingExpense, handleCloseExpense, handleOpenExpense}) => {
-
-
-	const { data: session, status } = useSession()
-	const ID = session.user.email;
-
-	const fetcher = (...args) => fetch(...args).then(res => res.json())
-
-	const expenses = useSWR(`/api/budget/${ID}`, fetcher)
-
-
+const ExpenseItem = ({id, cost, name, category, isEditingExpense, handleCloseExpense, handleOpenExpense, EditingItem, setEditingItem}) => {
 
 	const router = useRouter();
 
 	const deleteExpense = async (id) =>{
-        
+		console.log(id)
         const resp = await fetch(`/api/budget/${id}`, {
           method: 'DELETE'
         })
-        .then(res => console.log("SUCCESS:: "+ res.json()))
+        .then(res => console.log("SUCCESS:: "+ res.json()))	
         .catch(e => console.log("ERROR:" + e))
 
+			handleCloseExpense()
+			router.push('/services/budget')
 
-		expenses.mutate();		
-
-        
     }
     
 	return (
@@ -116,33 +105,27 @@ const ExpenseItem = ({id, cost, name, category, isEditingExpense, handleCloseExp
 				>
 					<EditButton slogan color = {category}>{category}</EditButton>
 					<CostHeading slogan>${cost}</CostHeading>
-					<StyledButton onClick={() => {deleteExpense(id)}}>
+					<StyledButton onClick={() => {  deleteExpense(id)}}>
 						<TiDelete/>
 					</StyledButton>
-					<StyledButton onClick={() => {handleOpenExpense()}}>
+					<StyledButton onClick={() => {handleOpenExpense(); setEditingItem({cost, name, category, id})}}>
 						<FaRegEdit/>
 					</StyledButton>
+					
 				</Grid>
 				</StyledCard>
-				
-				
-				
-		
-		
-		
 
-		{
-          isEditingExpense && <BudgetForm  
-			open = {isEditingExpense} 
-			handleClose = {handleCloseExpense}
-			category = {category}
-			cost = {cost}
-			name = {name}
-			isEditingExpense = {isEditingExpense}
-			id = {id}
-		  
-		  /> 
-        }
+				{
+				isEditingExpense && <BudgetForm  
+					open = {isEditingExpense} 
+					handleClose = {handleCloseExpense}
+					isEditingExpense = {isEditingExpense}
+					EditingItem = {EditingItem}
+					setEditingItem = {setEditingItem}
+
+				/> 
+				}
+				
 		</>
 
 	);

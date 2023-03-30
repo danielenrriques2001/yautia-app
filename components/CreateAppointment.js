@@ -74,10 +74,6 @@ const router = useRouter();
 
     <form 
     onSubmit={submitHandler}
-      // container
-      // flexDirection={'column'}
-      // justifyContent = {'center'}
-      // textAlign = {'center'}
     
     >
     <TextField
@@ -125,7 +121,6 @@ const router = useRouter();
     >Add it!</PauseButton>
     </Grid>
 
-    
     </form>
 
 

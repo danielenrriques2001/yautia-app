@@ -31,6 +31,7 @@ const Budget = () => {
 
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingExpense, setisEditingExpense] = useState(false)
+  const [EditingItem, setEditingItem] = useState({})
 
   const handleOpenExpense = () => setisEditingExpense(true);
   const handleCloseExpense = () => setisEditingExpense(false);
@@ -47,7 +48,8 @@ const Budget = () => {
 
   const id = session.user.email;
 
-  const { data: expensesList, mutate } = useSWR(`/api/budget/${id}`, fetcher)
+  const {data: expensesList} = useSWR(`/api/budget/${id}`, fetcher)
+
 
 
 useEffect(() => {
@@ -66,13 +68,19 @@ useEffect(() => {
       setValidBudget(false)
       
     })
+
+
+    // fetch(`/api/budget/${id}`)
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   console.log(data)
+    //   setExpensesList(data)
+    // })
+
+    
    
 
 }, [])
-
-
-
-mutate();
   
 
 async function updateUser(id, data) {
@@ -140,6 +148,8 @@ if (isLoading) return <SpinnerContainer><MoonLoader color='#76EEC6' size={500}/>
           isEditingExpense = {isEditingExpense}
           handleCloseExpense = {handleCloseExpense}
           handleOpenExpense = {handleOpenExpense}
+          EditingItem = {EditingItem}
+          setEditingItem = {setEditingItem}
 
           />
         }

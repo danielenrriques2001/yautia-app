@@ -44,7 +44,6 @@ const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 			flexDirection={'column'}
 			justifyContent={'center'}
 			alignItems={'center'}
-
 		>
 
 
@@ -66,6 +65,7 @@ const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 					FontWeight = {300}
 					Width = {35}
 					Padding = {2}
+				
 
 				>
 					<AiFillEdit/>
@@ -90,6 +90,7 @@ const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 				<HeadingPomodoroTitle
 					Size = {3}
 					Weight =  {800}
+					Color = {totalExpenses > budget && '#E41938'}
 				>
 					 ${budget - totalExpenses}
 				</HeadingPomodoroTitle>	

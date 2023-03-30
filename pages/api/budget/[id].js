@@ -30,15 +30,15 @@ export default async function handler (req, res) {
       }
       break;
 
-
       case 'DELETE':
-
       try {
-
-        const expense = await Expense.findOneAndRemove(id);
+        console.log('Im inside Delete')
+        console.log(id)
+  
+        const expense = await Expense.findOneAndRemove({_id: id});
        
  
-        console.log('Im inside Delete')
+       
 
         if (!expense) {
           return res.status(404).json({ status: "Not Found" });

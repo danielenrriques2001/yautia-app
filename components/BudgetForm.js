@@ -3,7 +3,6 @@ import { Grid, Select, TextField, MenuItem, InputLabel, Modal} from '@mui/materi
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import useSWR from 'swr'
 
 const StyledSelect = styled.select`
 
@@ -21,14 +20,7 @@ const StyledSelect = styled.select`
 
 `;
 
-const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpense}) => {
-
-  const fetcher = (...args) => fetch(...args).then(res => res.json())
-
-
-  const budget = useSWR(`/api/budget/${id}`, fetcher)
-
-
+const BudgetForm = ({id, open, handleClose, EditingItem, setEditingItem , isEditingExpense}) => {
 
   const router = useRouter();
 
@@ -62,18 +54,12 @@ const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpen
     })
       .then(res => console.log("SUCCESS:: "+ res.json()))
       .catch(e => console.log("ERROR:" + e))
-
-
-     
-    
   }
   
   async function submitHandler(event) {
+
     event.preventDefault();
-
-    
     const formElements = event.target;
-
     const name = formElements.name.value;
     const cost = formElements.cost.value;
     const category = formElements.category.value;    
@@ -81,27 +67,26 @@ const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpen
     const user = id; 
 
     if(isEditingExpense) {
-      const result = updateExpense(id, {name, cost, category})
+      const result = updateExpense(EditingItem.id, {name, cost, category})
        
-      handleClose()
+      handleClose();
+      router.push('/services/budget')
 
+      
 
       return; 
     }
     const result = createExpense({name, cost, category, date, user});
       handleClose()
-      budget.mutate();
+      router.push('/services/budget')
+
 
 
 
   }
-
-
-
-
   return (
 
-  
+
     <Modal
       open={open}
       onClose={handleClose}
@@ -114,10 +99,6 @@ const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpen
 
       <form 
           onSubmit={submitHandler}
-      // container
-      // flexDirection={'column'}
-      // justifyContent = {'center'}
-      // textAlign = {'center'}
     
     >
     <TextField
@@ -126,7 +107,7 @@ const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpen
           label={'name'}
           variant="outlined"
           id='name'
-          defaultValue={name}
+          defaultValue={EditingItem?.name}
     />
 
     <TextField
@@ -135,12 +116,12 @@ const BudgetForm = ({id, open, handleClose, category, cost, name, isEditingExpen
           label={'cost'}
           variant="outlined"
           id='cost'
-          defaultValue={cost}
+          defaultValue={EditingItem?.cost}
     />
      <InputLabel id="category">Category</InputLabel>
 
 
-     <StyledSelect name="category" id="category" defaultValue={category}>
+     <StyledSelect name="category" id="category" defaultValue={EditingItem?.category}>
         <option value="saving" disabled>---------------Select---------------</option>
         <option value="saving">Savings</option>
         <option value="food">Food</option>

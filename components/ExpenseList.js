@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect, useMemo } from 'react';
 import ExpenseItem from './ExpenseItem';
 
 
-const ExpenseList = ({expenses, isEditing, isEditingExpense, handleCloseExpense, handleOpenExpense}) => {
+const ExpenseList = ({expenses, isEditing, isEditingExpense, handleCloseExpense, handleOpenExpense, EditingItem, setEditingItem }) => {
 
     const [filteredExpenses, setfilteredExpenses] = useState(expenses)
 	const [selectedCategory, setSelectedCategory] = useState('');
@@ -82,7 +82,8 @@ const ExpenseList = ({expenses, isEditing, isEditingExpense, handleCloseExpense,
 						isEditingExpense = {isEditingExpense}
 						handleCloseExpense = {handleCloseExpense}
 						handleOpenExpense = {handleOpenExpense}
-						// id={expense.id}
+						EditingItem = {EditingItem}
+						setEditingItem = {setEditingItem}
 					/>
 				))}
 			</Grid>
