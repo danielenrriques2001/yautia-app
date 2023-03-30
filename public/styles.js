@@ -526,12 +526,13 @@ export const LinkNavigationContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: ${(props) => props.FlexDirection || 'row'} ;
-  
+  padding: 15px;
   grid-template-columns:  repeat(${(props) => props.ColumnNumber || 2}, 1fr);
   gap: ${(props) => props.Gap || 5}rem;
   margin-top: 3rem;
   background-color: ${(props) => props.BGColor || 'transparent'};
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  border-radius: 45px;
   
   @media (max-width: 768px) {
     display: flex;
