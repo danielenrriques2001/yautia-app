@@ -522,7 +522,6 @@ export const NavigationItemLink = styled.a`
 `;
 
 export const LinkNavigationContainer = styled.div`
-
   display: ${(props) => props.Display || 'grid'};
   justify-content: center;
   align-items: center;
@@ -531,6 +530,8 @@ export const LinkNavigationContainer = styled.div`
   grid-template-columns:  repeat(${(props) => props.ColumnNumber || 2}, 1fr);
   gap: ${(props) => props.Gap || 5}rem;
   margin-top: 3rem;
+  background-color: ${(props) => props.BGColor || 'transparent'};
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
   
   @media (max-width: 768px) {
     display: flex;
