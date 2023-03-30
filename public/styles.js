@@ -522,21 +522,23 @@ export const NavigationItemLink = styled.a`
 `;
 
 export const LinkNavigationContainer = styled.div`
-
   display: ${(props) => props.Display || 'grid'};
   justify-content: center;
   align-items: center;
   flex-direction: ${(props) => props.FlexDirection || 'row'} ;
-  
+  padding: 15px;
   grid-template-columns:  repeat(${(props) => props.ColumnNumber || 2}, 1fr);
   gap: ${(props) => props.Gap || 5}rem;
   margin-top: 3rem;
+  background-color: ${(props) => props.BGColor || 'transparent'};
+  box-shadow: ${(props) => props.Shadow || 'none'};
+  border-radius: ${(props) => props.BRadius || 0}px;
   
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    width: 80%;
   }
       
 `;

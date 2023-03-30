@@ -60,23 +60,19 @@ const NavContainer = styled.nav`
 
 const NavItem = styled.a`
 
-  background-color: #FFFFFF;
-  border: 0;
+  background-color: white;
   border-radius: .5rem;
   box-sizing: border-box;
   color: #111827;
-  font-family:  'Yanone Kaffeesatz', sans-serif;
-  font-size: 1rem;
   font-weight: 600;
   padding: .75rem 1rem;
   text-decoration: none #D1D5DB solid;
   text-decoration-thickness: auto;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   display: flex;
   justify-content: center;
   align-items: center;

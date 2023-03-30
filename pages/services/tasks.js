@@ -1,7 +1,7 @@
 import TaskForm from '@/components/TaskForm'
 import TaskItem from '@/components/TaskItem'
 import TaskList from '@/components/TaskList'
-import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, ModalContent, NavigationItemLink, PauseButton, SpinnerContainer } from '@/public/styles'
+import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, LinkNavigationContainer, ModalContent, NavigationItemLink, PauseButton, SpinnerContainer } from '@/public/styles'
 import { Grid, Modal } from '@mui/material'
 import { useSession, getSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
@@ -65,8 +65,8 @@ const TasksComponent = () => {
             >To-do List</HeadingPomodoroTitle>
         </HeadingContainer>
 
-        <Grid
-          container
+        <div
+         
     
         >
         <TaskForm EditingItem = {EditingItem} id = {id} isEditingItem = {isEditingItem} setIsEditingItem = {setIsEditingItem}/>
@@ -74,7 +74,7 @@ const TasksComponent = () => {
         {
           tasks && <TaskList tasks = {tasks} setEditingItem = {setEditingItem} setIsEditingItem = {setIsEditingItem}/>
         }
-        </Grid>
+        </div>
 
         {
           tasks.length > 0 && <FloatingButton onClick={() => {handleOpenGenerator(); generateRandomTask();}}>Random!</FloatingButton>

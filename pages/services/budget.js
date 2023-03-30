@@ -42,13 +42,14 @@ const Budget = () => {
   const handleClose = () => setOpen(false);
 
   const [data, setData] = useState(null)
-  // const [expensesList, setExpensesList] = useState(null)
 
   const [isLoading, setLoading] = useState(false)
 
   const id = session.user.email;
 
-  const {data: expensesList} = useSWR(`/api/budget/${id}`, fetcher)
+  const {data: expensesList, mutate} = useSWR(`/api/budget/${id}`, fetcher)
+
+
 
 
 
@@ -70,17 +71,13 @@ useEffect(() => {
     })
 
 
-    // fetch(`/api/budget/${id}`)
-    // .then((res) => res.json())
-    // .then((data) => {
-    //   console.log(data)
-    //   setExpensesList(data)
-    // })
-
-    
-   
-
 }, [])
+
+useEffect(() => {
+  mutate();
+}, [mutate])
+
+mutate();
   
 
 async function updateUser(id, data) {
