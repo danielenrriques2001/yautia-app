@@ -4,7 +4,19 @@ import styled from 'styled-components'
 import { signOut, useSession } from 'next-auth/react'
 import { BiUser, BiListOl, BiLogIn, BiLogOut} from "react-icons/bi";
 
+const UserIcon = styled(BiUser)`
 
+  width: 65px;
+  height: 25px;
+`;
+
+const LogOutIcon = styled(BiLogOut)`
+
+  
+  width: 65px;
+  height: 25px;
+
+`;
 const Navigation = () => {
   const { data: session, status } = useSession()
   
@@ -18,10 +30,10 @@ const Navigation = () => {
         }
 
         {
-          session &&  <NavItem underline="none" href={'/profile'}>profile<BiUser/></NavItem>
+          session &&  <NavItem underline="none" href={'/profile'}><UserIcon/></NavItem>
         }
         {
-          session &&  <NavItem underline="none" onClick={signOut}>Log out<BiLogOut/></NavItem>
+          session &&  <NavItem underline="none" onClick={signOut}><LogOutIcon/></NavItem>
         }
 
 

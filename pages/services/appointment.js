@@ -21,7 +21,6 @@ const AppointmentCom = () => {
 
   const { data: session, status } = useSession()
   const id = session.user.email;
-  // const [data, setData] = useState(null)
   const { data, error, isLoading, mutate } = useSWR(`/api/appointment/${id}`, fetcher)
 
   // const [isLoading, setLoading] = useState(false)
@@ -35,16 +34,6 @@ const AppointmentCom = () => {
   
   mutate();
 
-// useEffect(() => {
-//   setLoading(true)
-//   fetch(`/api/appointment/${id}`)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       console.log(data)
-//       setData(data)
-//       setLoading(false)
-//     })
-// }, [])
 
 
 if (isLoading) return <spinnerContainer><ClipLoader color='#76EEC6' size={450}/></spinnerContainer> 

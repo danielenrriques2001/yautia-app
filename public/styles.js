@@ -127,7 +127,7 @@ export const PauseButton = styled.button`
   background: ${(props) => props.BGColor || '#FFFFFF'};
   border: 0 solid #E2E8F0;
   border-style: ${(props) => props.BStyle || 'solid'};
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: ${(props) => props.Shadow || '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'};
   box-sizing: border-box;
   color: ${(props) => props.TextColor || '#1A202C'};
   font-family: 'Yanone Kaffeesatz' , sans-serif;
@@ -227,6 +227,7 @@ export const HeadingPomodoroTitle = styled.p`
   border-bottom-color: ${(props) => props.BColor || 'transparent'};
   border-bottom-width: ${(props) => props.BWidth || 1}px;
   letter-spacing: ${(props) => props.LetterSpace || 0}rem;
+  box-shadow: ${(props) => props.Shadow || 'none'};
   border-bottom-style: solid;
   text-align: center;
   margin: 0;
@@ -504,6 +505,7 @@ export const NavigationItemLink = styled.a`
   border-color: ${(props) => props.BColor || 'transparent'};
   margin-top: 5px;
   background-color: ${(props) => props.BGColor || 'white'};
+  
   
 
   &:hover {

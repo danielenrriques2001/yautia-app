@@ -1,14 +1,14 @@
 import TaskForm from '@/components/TaskForm'
 import TaskItem from '@/components/TaskItem'
 import TaskList from '@/components/TaskList'
-import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, ModalContent, NavigationItemLink, SpinnerContainer } from '@/public/styles'
+import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, ModalContent, NavigationItemLink, PauseButton, SpinnerContainer } from '@/public/styles'
 import { Grid, Modal } from '@mui/material'
 import { useSession, getSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import {MoonLoader, ClockLoader} from "react-spinners";
 import SetPomodoro from '@/components/Pomodoro/SetPomodoro'
-
+import { useRouter } from 'next/router'
 
 const TasksComponent = () => {
 
@@ -17,6 +17,7 @@ const TasksComponent = () => {
   const { data: session, status } = useSession()
   const id = session.user.email;
   const { data: tasks, error, isLoading, mutate } = useSWR(`/api/task/${id}`, fetcher)
+  const router = useRouter();
 
 
   useEffect(() => {
@@ -90,7 +91,16 @@ const TasksComponent = () => {
           <ModalContent task >
                  {randomTask 
                  ? <> <TaskItem name = {randomTask.name} category = {randomTask.category} description = {randomTask.description} date = {randomTask.date}/>  
-                      <NavigationItemLink Width={120} Height = {50} TextColor = {'black'} href={'/services/pomodoro'}>Start Now!</NavigationItemLink>
+                      <PauseButton
+                        onClick={ () => { router.push('/services/pomodoro')}} 
+                        BGColor = {'#282828'} 
+                        Width={25} Height = {50} 
+                        TextColor = {'white'} 
+                        FontWeight = {200}
+                        FontSize = {3}
+                        MTop = {10}
+
+                        >Start Now!</PauseButton>
                  </>
                  
                  : <SpinnerContainer><ClockLoader color='#BC3F67' size={450}/></SpinnerContainer>
