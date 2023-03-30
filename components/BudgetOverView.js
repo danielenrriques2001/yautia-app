@@ -42,7 +42,7 @@ const Budget = ({value, updateUser, id, isEditing, setIsEditing, expenses}) => {
 			setIsEditing(false)
 		}, 900);
 
-		router.reload('/services/budget')
+		router.push('/services/budget')
     }
 	
 	};
