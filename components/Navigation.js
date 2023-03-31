@@ -76,6 +76,7 @@ const NavItem = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family:  'Yanone Kaffeesatz', sans-serif;
 
 
 &:hover {
