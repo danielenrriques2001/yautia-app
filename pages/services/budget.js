@@ -8,6 +8,8 @@ import BudgetForm from '@/components/BudgetForm';
 import ExpenseList from '@/components/ExpenseList';
 import MoonLoader from "react-spinners/MoonLoader";
 import useSWR from 'swr'
+import { useRouter } from 'next/router';
+
 
 const Modal = styled.div`
   position: fixed; 
@@ -28,6 +30,7 @@ const Budget = () => {
   const { data: session, status } = useSession()
   const [validBudget, setValidBudget] = useState(false)
   const [budgetNumber, setBudgetNumber] = useState(0)
+  const router = useRouter();
 
   const [isEditing, setIsEditing] = useState(false);
   const [isEditingExpense, setisEditingExpense] = useState(false)
@@ -75,7 +78,7 @@ useEffect(() => {
 
 useEffect(() => {
   mutate();
-}, [mutate])
+},  [mutate])
 
 mutate();
   
@@ -91,6 +94,7 @@ async function updateUser(id, data) {
     .then(res => console.log("SUCCESS:: "+ res.json()))
     .catch(e => console.log("ERROR:" + e))
 
+    router.reload('/services/budget');
   
 }
 
