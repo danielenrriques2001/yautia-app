@@ -8,6 +8,7 @@ const Select = styled.select`
     font-size: 18px;
     padding: 14px;
     border-radius: 10px;
+    
 `
 
 const useSelect = (label, options) => {
@@ -29,9 +30,9 @@ const useSelect = (label, options) => {
                 <option value="">Select</option>
                 {options.map( option => (
                     <option 
-                        key={option}
-                        value={option}
-                    >{option}</option>
+                        key={option.code}
+                        value={option.code}
+                    >{option.name}</option>
                 ))}
             </Select>
         </>
