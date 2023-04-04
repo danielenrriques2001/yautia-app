@@ -54,6 +54,7 @@ const ViewBudget = ({budget, handleEditClick, totalExpenses}) => {
 				<HeadingPomodoroTitle
 					Size = {10}
 					Weight = {800}
+					
 
 				>
 						${budget}

@@ -1,11 +1,11 @@
-import NewBudget from '@/components/NewBudget'
+import NewBudget from '@/components/Budget/NewBudget';
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, SettingButton, SpinnerContainer } from '../../public/styles'
 import { getSession, useSession } from 'next-auth/react';
-import BudgetOverView from '@/components/BudgetOverView';
-import BudgetForm from '@/components/BudgetForm';
-import ExpenseList from '@/components/ExpenseList';
+import BudgetOverView from '@/components/Budget/BudgetOverView';
+import BudgetForm from '@/components/Budget/BudgetForm';
+import ExpenseList from '@/components/Budget/Expenses/ExpenseList';
 import MoonLoader from "react-spinners/MoonLoader";
 import useSWR from 'swr'
 import { useRouter } from 'next/router';

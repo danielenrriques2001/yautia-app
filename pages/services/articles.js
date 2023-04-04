@@ -1,4 +1,4 @@
-import ArticlesContainer from '@/components/ArticlesContainer'
+import ArticlesContainer from '@/components/Articles/ArticlesContainer'
 import { Container, TextField } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import useSWR from 'swr'

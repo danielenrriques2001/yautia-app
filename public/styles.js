@@ -230,6 +230,7 @@ export const HeadingPomodoroTitle = styled.p`
   box-shadow: ${(props) => props.Shadow || 'none'};
   border-bottom-style: solid;
   text-align: center;
+  background-color: ${(props) => props.BGColor || 'transparent'};
   margin: 0;
   padding: 0;
   @media (max-width: 768px) {

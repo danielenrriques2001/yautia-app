@@ -15,7 +15,6 @@ const StyledGrid = styled(Grid)`
   grid-gap: 1rem;
   margin-top: 3rem;
 
-
 `;
 
 const ArticlesContainer = ({setKeyWord, keyword}) => {
