@@ -5,8 +5,8 @@ import { TiDelete } from 'react-icons/ti';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import {FaRegEdit} from 'react-icons/fa';
-import BudgetForm from './BudgetForm';
 import { useSession } from 'next-auth/react';
+import BudgetForm from '../BudgetForm';
 
 const StyledCard = styled(Card)`
 		box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;

@@ -1,18 +1,16 @@
 
-import CreateAppointment from '@/components/CreateAppointment'
+import CreateAppointment from '@/components/Appointment/CreateAppointment'
 import Form from '@/components/Form'
 import { Grid, Typography } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import styled, {keyframes} from 'styled-components'
 import { FloatingButton, HeadingContainer, HeadingPomodoroTitle, SettingButton, spinnerContainer } from '../../public/styles'
 import { getSession, useSession } from 'next-auth/react'
-import AppointmentList from '@/components/AppointmentList'
-import ModalComponent from '@/components/AppointmentForm'
+import AppointmentList from '@/components/Appointment/AppointmentList'
+import ModalComponent from '@/components/Appointment/AppointmentForm'
 import useSWR from 'swr'
 import ClipLoader from "react-spinners/ClipLoader";
-import AppointmentForm from '@/components/AppointmentForm'
-
-
+import AppointmentForm from '@/components/Appointment/AppointmentForm'
 
 const AppointmentCom = () => {
 
