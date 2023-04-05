@@ -4,7 +4,7 @@ import useSelect from '@/components/Cripto/Hooks/useSelect'
 import CurrencyList from 'currency-list'
 import { useEffect } from 'react'
 import { useState } from 'react'
-
+import Result from '@/components/Cripto/Result'
 const Cripto = () => {
 
   const [pairs, setpairs] = useState({})
@@ -63,10 +63,10 @@ const Cripto = () => {
           const { coinValue, criptoValue } = pairs
           const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptoValue}&tsyms=${coinValue}`
 
-          const respuesta = await fetch(url)
-          const resultado = await respuesta.json()
+          const response = await fetch(url)
+          const result = await response.json()
 
-         setResult(resultado.DISPLAY[criptoValue][coinValue])
+         setResult(result.DISPLAY[criptoValue][coinValue])
 
       }
 
@@ -81,15 +81,18 @@ const Cripto = () => {
         return
     }
 
-    setMonedas({
+    setpairs({
         coinValue,
         criptoValue
     })
 }
   
+  if(result.length === 0){
+  
   return (
 
     <>
+  
         <HeadingContainer>
       <HeadingPomodoroTitle
        Size = {5}
@@ -113,7 +116,9 @@ const Cripto = () => {
     
     </>
 
-  )
+  )} else {
+    return <Result  result = {result} setResult = {setResult} />
+  }
 }
 
 export default Cripto
